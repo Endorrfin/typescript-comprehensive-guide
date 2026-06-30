@@ -103,8 +103,29 @@ build → upload `dist` → deploy. `concurrency: cancel-in-progress: false`. `v
   body — the template's split‑on‑word version missed keys when the record name appeared in comments/paths.
 
 ## 13. Session roadmap
-- **S1 (done):** scaffold + app shell + **M5 golden** (Generics & Conditional Types) + sim + 2 figures.
-- **S2:** M1 (structural typing + assignability checker sim) + M2 (narrowing + CFA visualizer).
+- **S1 (done):** scaffold + app shell + **M5 golden** (Generics & Conditional Types) + sim + 2 figures
+  + palette retuned to the official TypeScript brand (white + #00273F navy + #3178C6; light default).
+- **S2 (next) — Section I, M1 + M2.** Author both to the golden DoD (§§4,6,10), replacing their stubs in
+  `concepts.ts` (import like `m5`, set `signature:true`, `level:'middle'`):
+  - **M1 `m1-structural-typing`** — *Structural Typing & Assignability*. Sim = **structural-assignability
+    checker** ("is A assignable to B?" with a member-by-member reasoning trace): pure engine
+    `src/lib/assignability.ts` + `scripts/test-assignability.ts` + `components/sims/AssignabilitySim.tsx`
+    + a figure. Topics: structural vs nominal · the assignability relation · excess-property checks ·
+    widening/`const` · object/function/array compatibility.
+  - **M2 `m2-narrowing`** — *Narrowing & Control-Flow Analysis*. Sim = **control-flow narrowing
+    visualizer** (step preset snippets line-by-line; show the variable's inferred type at each point,
+    ending in `never` exhaustiveness): engine `src/lib/narrowing.ts` + `scripts/test-narrowing.ts` +
+    `components/sims/NarrowingSim.tsx` + a figure. Topics: type guards · `typeof`/`in`/`instanceof` ·
+    truthiness/equality · discriminated unions · assertion functions & type predicates · exhaustiveness.
+  - Web-verify & cite: inferred type predicates (5.5), assertion functions / `asserts` (3.7), `satisfies`
+    (4.9), `const` assertions. Register sims/figures in `registry.tsx`; add `smoke.ts` canaries (English
+    terms, no angle brackets); update `glossary.ts`. COUNTS stay 4/13 (sim count → 3). Append sim CSS to
+    `components.css` (mirror the `.ct-*` block); ARIA + live region + reduced-motion fallback each.
+  - **Verify** (sandbox blocks `unlink`): `npm install` if needed, then typecheck · lint · check:data ·
+    test · smoke · `vite build --outDir dist-s2 --emptyOutDir`. Branch `s2-section-i-m1-m2`. Owner ships.
+  - **Kickoff phrase for the new session:** *"Continue the TypeScript guide — author modules M1 and M2
+    (Section I) per CLAUDE.md §13. Read CLAUDE.md, PROJECT-BRIEF and CURRICULUM and the M5/typeEval
+    patterns first."*
 - **S3:** M4 (generics) + M6 (mapped/template‑literal types).
 - **S4:** M7 (utility types) + M3 (functions & variance).
 - **S5–S7:** Section III (applied) then Section IV (compiler/tooling), 1–2 modules each.
