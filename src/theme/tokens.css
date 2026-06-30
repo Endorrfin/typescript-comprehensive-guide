@@ -1,0 +1,150 @@
+/*
+ * tokens.css — design tokens for "TypeScript: The Comprehensive Guide".
+ * CHANGED (S1.1): retuned to the OFFICIAL TypeScript brand palette (typescriptlang.org/branding):
+ *   primary blue #3178C6 · deep navy #00273F · polo blue #7FA2C9, on white.
+ * Light theme mirrors the official site (white surfaces + navy ink + TS blue) and is the default;
+ * dark theme is a TS-navy variant. Two palettes below: (1) primary/chrome, (2) concept semantics
+ * (functional meaning in the figures/sims — kept distinct: cool source, green result, red no-match,
+ * amber infer). Contrast checked on both bases.
+ */
+
+:root {
+  /* ---- Base surfaces (TypeScript navy, dark theme) ---- */
+  --bg: #04182a;
+  --surface: #0a2a42;
+  --s2: #103350;
+  --s3: #173f60;
+  --line: #1d486a;
+  --line2: #2a5d83;
+
+  /* ---- Text (cool white) ---- */
+  --tx: #e8f1fb;
+  --tx2: #a8c3dd;
+  --tx3: #6e8aa6;
+
+  /* ---- Primary accent: TypeScript blue ---- */
+  --accent: #4f9fe8; /* brightened TS blue for legibility on navy */
+  --accent-deep: #3178c6; /* official TypeScript blue — fills / borders / brand */
+  --accent-bright: #82b7ee; /* headings / glow highlight (≈ polo blue) */
+  --accent-soft: rgba(49, 120, 198, 0.2); /* tints / hover wash */
+
+  /* ---- Concept semantics (functional meaning in diagrams/sims) ---- */
+  --c-query: #4f9fe8; /* read / primary path */
+  --c-storage: #28b6c6; /* input / source structure (teal) */
+  --c-commit: #46be62; /* result / match / success */
+  --c-dist: #58a6ff; /* flow / distribution */
+  --c-analytics: #e6b53e; /* inferred variable / highlight (amber) */
+  --c-danger: #f0707a; /* no-match / conflict / danger */
+
+  /* semantic tints (low-alpha fills) */
+  --c-query-soft: rgba(79, 159, 232, 0.16);
+  --c-storage-soft: rgba(40, 182, 198, 0.16);
+  --c-commit-soft: rgba(70, 190, 98, 0.16);
+  --c-dist-soft: rgba(88, 166, 255, 0.16);
+  --c-analytics-soft: rgba(230, 181, 62, 0.16);
+  --c-danger-soft: rgba(240, 112, 122, 0.16);
+
+  /* ---- Brand tints (kept for any product labels) ---- */
+  --e-ts: #3178c6;
+  --e-ts-navy: #00273f;
+  --e-ts-polo: #7fa2c9;
+  --e-js: #f7df1e;
+  --e-node: #339933;
+
+  /* ---- Level badges ---- */
+  --lv-beginner: #46be62;
+  --lv-middle: #4f9fe8;
+  --lv-senior: #e6b53e;
+  --lv-staff: #8aa0f0;
+
+  /* ---- Callout tones ---- */
+  --tone-tip: #46be62;
+  --tone-warn: #e6b53e;
+  --tone-senior: #4f9fe8;
+  --tone-security: #f0707a;
+
+  /* ---- Typography ---- */
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-body:
+    'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+
+  /* ---- Spatial / radii / shadow ---- */
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 16px;
+  --r-xl: 22px;
+  --shadow-1: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-2: 0 6px 24px rgba(0, 0, 0, 0.36);
+  --shadow-glow: 0 0 0 1px rgba(49, 120, 198, 0.45), 0 8px 30px rgba(49, 120, 198, 0.22);
+
+  /* ---- Layout metrics ---- */
+  --sidebar-w: 290px;
+  --topbar-h: 58px;
+  --content-max: 940px;
+  --reading-max: 760px;
+
+  /* ---- Motion ---- */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --dur-fast: 120ms;
+  --dur: 240ms;
+  --dur-slow: 480ms;
+
+  color-scheme: dark;
+}
+
+/* ── Light theme — the OFFICIAL typescriptlang.org look (white + navy + TS blue) ────────────────
+   This is the default (AppStateProvider defaults to 'light'). The ThemeProvider sets [data-theme]
+   on <html>; this block overrides only the tokens that flip. Accents are darkened just enough to
+   keep ≥4.5:1 on white where they carry text. */
+:root[data-theme='light'] {
+  color-scheme: light;
+
+  /* Surfaces — white cards on a faint blue-white page (the docs look) */
+  --bg: #f3f7fb;
+  --surface: #ffffff;
+  --s2: #eaf2fa;
+  --s3: #dbe8f5;
+  --line: #d3e2f0;
+  --line2: #b5cde3;
+
+  /* Text — TypeScript deep navy ink */
+  --tx: #00273f; /* brand navy, ~14:1 on white */
+  --tx2: #33536b; /* ~7:1 */
+  --tx3: #5d7488; /* ~4.6:1 */
+
+  /* Accent — TS blue, AA on white; deep elements use the brand navy */
+  --accent: #2c6fb8;
+  --accent-deep: #00273f;
+  --accent-bright: #235a97;
+  --accent-soft: rgba(49, 120, 198, 0.12);
+
+  /* Concept semantics — darkened for contrast on white */
+  --c-query: #2c6fb8;
+  --c-storage: #0d8aa0;
+  --c-commit: #1a7f37;
+  --c-dist: #1f6feb;
+  --c-analytics: #9a6a00;
+  --c-danger: #cf3b3b;
+  --c-query-soft: rgba(44, 111, 184, 0.12);
+  --c-storage-soft: rgba(13, 138, 160, 0.12);
+  --c-commit-soft: rgba(26, 127, 55, 0.13);
+  --c-dist-soft: rgba(31, 111, 235, 0.12);
+  --c-analytics-soft: rgba(154, 106, 0, 0.13);
+  --c-danger-soft: rgba(207, 59, 59, 0.12);
+
+  /* Level badges + callout tones (darkened to match) */
+  --lv-beginner: #1a7f37;
+  --lv-middle: #2c6fb8;
+  --lv-senior: #9a6a00;
+  --lv-staff: #4250b8;
+  --tone-tip: #1a7f37;
+  --tone-warn: #9a6a00;
+  --tone-senior: #2c6fb8;
+  --tone-security: #cf3b3b;
+
+  /* Soft, neutral shadows on light */
+  --shadow-1: 0 1px 2px rgba(0, 39, 63, 0.08);
+  --shadow-2: 0 8px 28px rgba(0, 39, 63, 0.12);
+  --shadow-glow: 0 0 0 1px rgba(49, 120, 198, 0.32), 0 8px 30px rgba(49, 120, 198, 0.16);
+}

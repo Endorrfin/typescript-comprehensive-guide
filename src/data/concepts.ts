@@ -1,0 +1,315 @@
+import type { Level, Localized, Module, Section } from './types';
+// CHANGED (S1): golden module M5 authored; M1–M4, M6–M13 are navigable stubs (authored in later sessions).
+import { m5 } from './modules/m5-generics-conditional-types';
+
+/*
+ * concepts.ts — the SINGLE SOURCE OF TRUTH (CLAUDE.md §2, §4).
+ * 4 sections · 13 modules. S1 ships Section II's golden module (M5 — Generics & Conditional Types)
+ * with its signature sim; the rest are stubs (mental model + nav only) until authored.
+ * The eager chrome reads from here directly — the meta/bundle split (standard §4.4) is deferred
+ * until the guide grows (template package.json note).
+ */
+
+export const sections: Section[] = [
+  {
+    id: 's1-type-system',
+    roman: 'I',
+    title: { en: 'The Type System', uk: 'Система типів' },
+    accent: '#3178c6', // TypeScript blue
+    blurb: {
+      en: 'How TypeScript reasons: structural typing, assignability, narrowing, functions and variance.',
+      uk: 'Як міркує TypeScript: structural typing, assignability, narrowing, функції та variance.',
+    },
+  },
+  {
+    id: 's2-type-level',
+    roman: 'II',
+    title: { en: 'Type-Level Programming', uk: 'Type-Level програмування' },
+    accent: '#1593ad', // teal
+    blurb: {
+      en: 'The type system as a language: generics, conditional types, infer, mapped & utility types.',
+      uk: 'Система типів як мова: generics, conditional types, infer, mapped- та utility-типи.',
+    },
+  },
+  {
+    id: 's3-applied',
+    roman: 'III',
+    title: { en: 'Applied TypeScript', uk: 'Прикладний TypeScript' },
+    accent: '#6a7fe0', // indigo-blue
+    blurb: {
+      en: 'TypeScript in your stack: decorators & DI, DTO validation, typing RxJS and Angular signals.',
+      uk: 'TypeScript у вашому стеку: decorators і DI, валідація DTO, типізація RxJS та Angular signals.',
+    },
+  },
+  {
+    id: 's4-compiler',
+    roman: 'IV',
+    title: { en: 'Compiler & Tooling', uk: 'Компілятор та інструменти' },
+    accent: '#4f86a8', // steel blue
+    blurb: {
+      en: 'tsconfig & strictness, module resolution, project references, declaration files and the build.',
+      uk: 'tsconfig і strictness, module resolution, project references, declaration files та збірка.',
+    },
+  },
+];
+
+// ── Stub helper: a navigable module with a mental model but no body yet ──────────
+type StubInput = {
+  id: string;
+  num: number;
+  section: string;
+  order: number;
+  level: Level;
+  title: Localized;
+  tagline: Localized;
+  mentalModel: Localized;
+  signature?: boolean;
+};
+function stub(s: StubInput): Module {
+  return {
+    ...s,
+    readMins: 0,
+    topics: [],
+    keyPoints: [],
+    pitfalls: [],
+    interview: [],
+    seeAlso: [],
+    sources: [],
+  };
+}
+
+export const modules: Module[] = [
+  // ── Section I · The Type System ──────────────────────────────────────────
+  stub({
+    id: 'm1-structural-typing',
+    num: 1,
+    section: 's1-type-system',
+    order: 1,
+    level: 'middle',
+    title: { en: 'Structural Typing & Assignability', uk: 'Structural Typing та Assignability' },
+    tagline: {
+      en: 'Why TypeScript matches shapes, not names — and what "assignable" really means.',
+      uk: 'Чому TypeScript зіставляє форми, а не імена — і що насправді означає «assignable».',
+    },
+    mentalModel: {
+      en: 'If it has the right shape, it fits — TypeScript checks structure, not the name on the box.',
+      uk: 'Якщо форма підходить — воно пасує: TypeScript перевіряє структуру, а не назву на коробці.',
+    },
+  }),
+  stub({
+    id: 'm2-narrowing',
+    num: 2,
+    section: 's1-type-system',
+    order: 2,
+    level: 'middle',
+    title: { en: 'Narrowing & Control-Flow Analysis', uk: 'Narrowing та Control-Flow Analysis' },
+    tagline: {
+      en: 'How the compiler tracks a type as it flows through guards, returns and assignments.',
+      uk: 'Як компілятор відстежує тип, поки той тече крізь guards, returns і присвоєння.',
+    },
+    mentalModel: {
+      en: 'Each branch is a checkpoint that shrinks the type; the compiler walks the flow with you.',
+      uk: 'Кожна гілка — це checkpoint, що звужує тип; компілятор іде потоком разом із вами.',
+    },
+  }),
+  stub({
+    id: 'm3-functions-variance',
+    num: 3,
+    section: 's1-type-system',
+    order: 3,
+    level: 'senior',
+    title: { en: 'Functions, Overloads & Variance', uk: 'Функції, Overloads та Variance' },
+    tagline: {
+      en: 'Parameter bivariance, overload resolution, and where co/contravariance bites.',
+      uk: 'Біваріантність параметрів, розвʼязання overload-ів і де кусає co/contravariance.',
+    },
+    mentalModel: {
+      en: 'A function is safe to substitute when it asks for no more and promises no less.',
+      uk: 'Функцію безпечно підставити, коли вона просить не більше і обіцяє не менше.',
+    },
+  }),
+
+  // ── Section II · Type-Level Programming ───────────────────────────────────
+  stub({
+    id: 'm4-generics',
+    num: 4,
+    section: 's2-type-level',
+    order: 1,
+    level: 'senior',
+    title: { en: 'Generic Functions & Classes', uk: 'Generic-функції та класи' },
+    tagline: {
+      en: 'Parametric polymorphism at the value level: constraints, defaults, and inference.',
+      uk: 'Параметричний поліморфізм на рівні значень: constraints, defaults та inference.',
+    },
+    mentalModel: {
+      en: 'Write the function once for a placeholder type; the compiler stamps out a version per caller.',
+      uk: 'Напишіть функцію раз для типу-заглушки; компілятор штампує версію під кожного викликача.',
+    },
+  }),
+  m5, // ★ GOLDEN — fully authored (Generics & Conditional Types)
+  stub({
+    id: 'm6-mapped-template-literals',
+    num: 6,
+    section: 's2-type-level',
+    order: 3,
+    level: 'senior',
+    title: { en: 'Mapped & Template-Literal Types', uk: 'Mapped- та Template-Literal типи' },
+    tagline: {
+      en: 'Iterate keys, remap with `as`, and compute string types — Pick/Omit/Record from scratch.',
+      uk: 'Ітеруйте ключі, перейменовуйте через `as` і обчислюйте рядкові типи — Pick/Omit/Record з нуля.',
+    },
+    mentalModel: {
+      en: 'A mapped type is a for-loop over keys; template literals are string arithmetic in the type world.',
+      uk: 'Mapped-тип — це for-цикл по ключах; template literals — рядкова арифметика у світі типів.',
+    },
+  }),
+  stub({
+    id: 'm7-utility-types',
+    num: 7,
+    section: 's2-type-level',
+    order: 4,
+    level: 'senior',
+    title: { en: 'Built-in Utility Types, Decoded', uk: 'Вбудовані Utility-типи, розібрані' },
+    tagline: {
+      en: 'Partial, Pick, Record, ReturnType, Awaited — read the lib.d.ts source and own them.',
+      uk: 'Partial, Pick, Record, ReturnType, Awaited — прочитайте джерело lib.d.ts і опануйте їх.',
+    },
+    mentalModel: {
+      en: 'There is no magic in the standard library — each utility is three lines you could have written.',
+      uk: 'У стандартній бібліотеці немає магії — кожен utility це три рядки, які ви могли б написати самі.',
+    },
+  }),
+
+  // ── Section III · Applied TypeScript ──────────────────────────────────────
+  stub({
+    id: 'm8-decorators-metadata',
+    num: 8,
+    section: 's3-applied',
+    order: 1,
+    level: 'senior',
+    title: { en: 'Decorators & Metadata (NestJS · Angular)', uk: 'Decorators та Metadata (NestJS · Angular)' },
+    tagline: {
+      en: 'Stage-3 decorators vs the legacy experimental ones, and how DI reads metadata.',
+      uk: 'Stage-3 decorators проти legacy experimental, і як DI читає metadata.',
+    },
+    mentalModel: {
+      en: 'A decorator is a function that tags or rewrites a declaration so a framework can find it later.',
+      uk: 'Decorator — це функція, що позначає чи переписує оголошення, щоб фреймворк знайшов його потім.',
+    },
+  }),
+  stub({
+    id: 'm9-dto-validation',
+    num: 9,
+    section: 's3-applied',
+    order: 2,
+    level: 'senior',
+    title: { en: 'DTOs, Validation & API Boundaries', uk: 'DTO, Валідація та межі API' },
+    tagline: {
+      en: 'One source of truth for a shape: a runtime schema, with the static type derived from it.',
+      uk: 'Єдине джерело правди для форми: runtime-схема, з якої виводиться статичний тип.',
+    },
+    mentalModel: {
+      en: 'Validate at the door, infer the type from the validator — never cast untrusted input.',
+      uk: 'Валідуйте на вході, виводьте тип із валідатора — ніколи не кастуйте недовірений вхід.',
+    },
+  }),
+  stub({
+    id: 'm10-rxjs-signals',
+    num: 10,
+    section: 's3-applied',
+    order: 3,
+    level: 'senior',
+    title: { en: 'Typing RxJS, Signals & Component State', uk: 'Типізація RxJS, Signals та стану компонентів' },
+    tagline: {
+      en: 'Operator type flow, typed signals/computed, and discriminated unions for UI state.',
+      uk: 'Потік типів через оператори, типізовані signals/computed і discriminated unions для UI-стану.',
+    },
+    mentalModel: {
+      en: 'Model state as a discriminated union so impossible states cannot be represented.',
+      uk: 'Моделюйте стан як discriminated union, щоб неможливі стани не можна було виразити.',
+    },
+  }),
+
+  // ── Section IV · Compiler & Tooling ───────────────────────────────────────
+  stub({
+    id: 'm11-tsconfig-strictness',
+    num: 11,
+    section: 's4-compiler',
+    order: 1,
+    level: 'senior',
+    title: { en: 'tsconfig & the Strictness Model', uk: 'tsconfig та модель strictness' },
+    tagline: {
+      en: 'What each strict flag buys you, and how target/lib/module shape emit.',
+      uk: 'Що дає кожен strict-флаг, і як target/lib/module формують emit.',
+    },
+    mentalModel: {
+      en: 'tsconfig is a contract with the compiler — strictness trades a little friction for fewer runtime bugs.',
+      uk: 'tsconfig — це контракт із компілятором: strictness міняє трохи тертя на менше runtime-багів.',
+    },
+  }),
+  stub({
+    id: 'm12-modules-resolution',
+    num: 12,
+    section: 's4-compiler',
+    order: 2,
+    level: 'senior',
+    title: { en: 'Modules, Resolution & Project References', uk: 'Модулі, Resolution та Project References' },
+    tagline: {
+      en: 'How TS finds files: moduleResolution, paths, exports maps, and composite builds.',
+      uk: 'Як TS знаходить файли: moduleResolution, paths, exports maps та composite-збірки.',
+    },
+    mentalModel: {
+      en: 'Module resolution is the compiler retracing the exact path your runtime will take to a file.',
+      uk: 'Module resolution — це компілятор, що повторює точний шлях, яким runtime дійде до файлу.',
+    },
+  }),
+  stub({
+    id: 'm13-declaration-files',
+    num: 13,
+    section: 's4-compiler',
+    order: 3,
+    level: 'staff',
+    title: { en: 'Declaration Files & Publishing Types', uk: 'Declaration Files та публікація типів' },
+    tagline: {
+      en: 'Authoring .d.ts, shipping types with your package, and not breaking your consumers.',
+      uk: 'Написання .d.ts, постачання типів із пакетом і як не зламати споживачів.',
+    },
+    mentalModel: {
+      en: 'A .d.ts is the public type contract of a package — the shape, with the implementation removed.',
+      uk: '.d.ts — це публічний типовий контракт пакета: форма без реалізації.',
+    },
+  }),
+];
+
+// ── Lookups ────────────────────────────────────────────────────────────────
+const moduleById = new Map(modules.map((m) => [m.id, m]));
+const sectionById = new Map(sections.map((s) => [s.id, s]));
+
+export function getModule(id: string): Module | undefined {
+  return moduleById.get(id);
+}
+export function getSection(id: string): Section | undefined {
+  return sectionById.get(id);
+}
+export function modulesBySection(sectionId: string): Module[] {
+  return modules.filter((m) => m.section === sectionId).sort((a, b) => a.order - b.order);
+}
+/** Previous / next module in global order (by `num`). */
+export function adjacentModules(id: string): { prev?: Module; next?: Module } {
+  const ordered = [...modules].sort((a, b) => a.num - b.num);
+  const i = ordered.findIndex((m) => m.id === id);
+  if (i === -1) return {};
+  return { prev: ordered[i - 1], next: ordered[i + 1] };
+}
+/** A module is "authored" (vs a navigable stub) once it has topics. */
+export function isAuthored(m: Module): boolean {
+  return m.topics.length > 0;
+}
+
+export const LEVELS: Level[] = ['beginner', 'middle', 'senior', 'staff'];
+
+export const COUNTS = {
+  sections: sections.length,
+  modules: modules.length,
+  sims: modules.filter((m) => m.signature).length,
+};
