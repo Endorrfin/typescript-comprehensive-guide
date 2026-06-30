@@ -1,0 +1,17 @@
+# Rename to `.gitignore` in the guide root. Standard §4.7.
+node_modules/
+dist/
+dist-*/
+*.tsbuildinfo
+_ci/
+preview-*.html
+scripts/_*
+.DS_Store
+.idea/
+_test_ops/        # stray sandbox test dir — not part of the site
+_arhive/
+
+*.log
+
+# Out-of-standard reference material — never committed inside a guide
+_examples/
