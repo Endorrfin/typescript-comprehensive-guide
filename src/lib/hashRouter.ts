@@ -2,16 +2,19 @@ import { useEffect, useState } from 'react';
 
 /*
  * Tiny hash router (no router lib — CLAUDE.md §2).
- * Routes: #/map · #/m/<moduleId>[/<topicId>] · #/mental-models · #/glossary[/<term>]
+ * Routes: #/map · #/m/<moduleId>[/<topicId>] · #/mental-models · #/glossary[/<term>] ·
+ *         #/decide · #/flashcards
  * Hash routing + vite base:'./' = works under any GitHub Pages sub-path.
- * (Later sessions add #/decide, #/flashcards, #/quiz as those features land.)
+ * CHANGED (S9): added #/decide (the picker) + #/flashcards (active recall). #/quiz lands later.
  */
 
 export type Route =
   | { name: 'map' }
   | { name: 'module'; moduleId: string; topicId?: string }
   | { name: 'mentalModels' }
-  | { name: 'glossary'; term?: string };
+  | { name: 'glossary'; term?: string }
+  | { name: 'decide' }
+  | { name: 'flashcards' };
 
 export function parseHash(raw: string): Route {
   const hash = raw.replace(/^#/, '').replace(/^\/+/, '');
@@ -22,6 +25,10 @@ export function parseHash(raw: string): Route {
       return { name: 'map' };
     case 'mental-models':
       return { name: 'mentalModels' };
+    case 'decide':
+      return { name: 'decide' };
+    case 'flashcards':
+      return { name: 'flashcards' };
     case 'glossary':
       return { name: 'glossary', term: parts[1] ? safeDecode(parts[1]) : undefined };
     case 'm':
@@ -44,6 +51,8 @@ export const hrefMap = () => '#/map';
 export const hrefModule = (moduleId: string, topicId?: string) =>
   topicId ? `#/m/${moduleId}/${topicId}` : `#/m/${moduleId}`;
 export const hrefMentalModels = () => '#/mental-models';
+export const hrefDecide = () => '#/decide';
+export const hrefFlashcards = () => '#/flashcards';
 export const hrefGlossary = (term?: string) =>
   term ? `#/glossary/${encodeURIComponent(term)}` : '#/glossary';
 

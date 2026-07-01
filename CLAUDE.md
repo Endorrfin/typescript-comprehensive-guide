@@ -16,7 +16,7 @@ building clean.
 - **Vite + React 19 + TypeScript (strict).** Static content, no runtime fetch — works offline, deploys anywhere.
 - **No router library** — a small custom **hash router** (`#/m/<module>/<topic>`, `#/map`,
   `#/mental-models`, `#/glossary`). Hash routing + `vite base:'./'` makes the build work under **any**
-  GitHub Pages sub‑path with zero config. (Later routes: `#/decide`, `#/flashcards`, `#/quiz`.)
+  GitHub Pages sub‑path with zero config. (`#/decide` + `#/flashcards` shipped S9; `#/quiz` lands S10.)
 - **Single source of truth for content:** `src/data/concepts.ts` (thin aggregator) + `src/data/modules/*`.
   Pages are *rendered from data*; we never hand‑write page HTML.
 - **Bilingual at the data layer:** every human‑readable string is a `Localized` value `{ en; uk }`.
@@ -61,7 +61,8 @@ with **pitfalls** + interview Q&A. Stubs carry a mental model + nav only (`topic
   M4 + M6 (Section II); S4 added M7 (**Section II complete**); S5 added M3 + the meta split (**Section I
   complete**); S6 opened **Section III** with **M8 (Decorators & Metadata)**; S7 added **M9 (DTO Validation)
   + M10 (RxJS/Signals)** — **Section III complete**; S8 opened **Section IV** with **M11 (tsconfig &
-  strictness) + M12 (modules & resolution)**, each with a ★ signature sim. Only **M13** remains (stub).
+  strictness) + M12 (modules & resolution)**, each with a ★ signature sim; S9 shipped **M13 (declaration
+  files & publishing types)** — **all 13 modules authored** — plus the `#/decide` picker + first `#/flashcards` pass.
 
 ## 6. Signature interactives + diagram‑first baseline
 Curated sims only — a pure engine in `lib/*` (deterministic, unit‑tested) + a component (play/pause/step,
@@ -75,8 +76,9 @@ ARIA + live region, **`prefers-reduced-motion`** fallback). Shipped (8): **★ `
 **M8 (decorators & metadata) is diagram‑first** too: figures `decorator-two-systems` + `di-metadata-flow`;
 **M9 (DTO validation)** adds `trust-boundary` + `schema-single-source`; **M10 (RxJS/signals)** adds
 `signals-vs-streams` + `operator-type-flow`; **M11** adds `strict-family`; **M12** adds `resolution-pipeline`
-+ `project-references` (figures now **18**). All planned signature sims are shipped (M11 · M12); the final
-module M13 will be diagram-first.
++ `project-references`; **M13 (declaration files)** adds `dts-contract` + `publish-types-flow` (figures now
+**20**). All planned signature sims are shipped (8: M5·M1·M2·M4·M6·M7·M11·M12); M13 is diagram-first, so
+**all 13 modules are authored** — the curriculum is complete.
 
 ## 7. Theme / brand
 Dark editorial; palette in `theme/tokens.css`; TypeScript‑blue accent (`#3178c6`). Fonts **Fraunces**
@@ -155,13 +157,25 @@ build → upload `dist` → deploy. `concurrency: cancel-in-progress: false`. `v
   Project References), both with the two remaining planned ★ signature sims** (`tsconfig-strictness` ·
   `module-resolution`, each a pure engine + unit test). Golden DoD, grounded in the owner's Node 22 / NestJS /
   esbuild-Serverless stack. See §14. Only M13 remains a stub.
-- **S9 (next):** **M13 (Declaration Files & Publishing Types)** — completes all 13 modules and Section IV.
-  Diagram-first (staff level; no planned sim); authoring `.d.ts`, shipping types with a package, `exports`
-  types conditions, and not breaking consumers (ties to M12 exports + M11 isolatedDeclarations).
-  - **Kickoff phrase for the new session:** *"Continue the TypeScript guide — author M13 (declaration files
-    & publishing types), diagram-first, per CLAUDE.md §13 to golden depth. Read CLAUDE.md, PROJECT-BRIEF,
-    CURRICULUM and the M8/M9/M10 diagram-first patterns + M11/M12 first."*
-- **Polish:** `#/decide` picker · flashcards/quiz · final QA · deploy.
+- **S9 (done):** **M13 (Declaration Files & Publishing Types) — all 13 modules authored — PLUS the polish
+  phase's `#/decide` picker + a first `#/flashcards` pass.** M13 is diagram-first (staff; no sim): the
+  `.d.ts` as a public contract; shipping types via the `types` field + the `exports` **types-first** rule;
+  dual-format `.d.mts`/`.d.cts` & **masquerading** (`attw`/`publint`); types-as-a-semver-API + `typesVersions`
+  and `isolatedDeclarations` (M11); monorepo composite refs (M12) + ambient `declare module` + the erasure
+  line (M9). Two figures (`dts-contract`, `publish-types-flow`). `#/decide` = a data-driven "which config /
+  which feature" chooser (7 decisions, `src/data/decide.ts`); `#/flashcards` = an active-recall deck derived
+  from the interview banks + key points + mental models (`src/data/flashcards.ts`). See §14. Removed the
+  `stub()` helper (no stubs remain). Only the **`#/quiz`** + final QA + deploy remain.
+- **S10 (next):** **the `#/quiz` route + final bilingual QA + first GitHub Pages deploy.** Build `#/quiz`
+  (reuse the flashcards deck / interview banks — multiple-choice or self-graded recall, scored); do a full
+  EN/UA pass and a11y/contrast sweep across the 13 modules + the four utility routes; then the owner ships
+  the first Pages deploy. All content is authored — S10 is polish + release, not new modules.
+  - **Kickoff phrase for the new session:** *"Continue the TypeScript guide (S10) — build the `#/quiz` route
+    (reusing the flashcards/interview banks), do the final bilingual QA + a11y sweep, and prep the first
+    GitHub Pages deploy. Read CLAUDE.md, PROJECT-BRIEF, CURRICULUM and the `#/decide` + `#/flashcards`
+    patterns first."*
+- **Polish (S9 → done for decide + flashcards):** `#/decide` picker ✓ · flashcards ✓ · **remaining:** quiz ·
+  final QA · deploy (S10).
 
 ## 14. Status / progress log
 - **S1** — **Scaffolded the guide and shipped the golden module.** Stood up the Tier‑1 SPA (Vite + React
@@ -350,3 +364,40 @@ build → upload `dist` → deploy. `concurrency: cancel-in-progress: false`. `v
   nearly complete — only **M13 (declaration files)** remains a stub; next = S9 (M13, completing all 13
   modules) then polish (`#/decide` picker · flashcards/quiz · deploy). Note: build into a fresh `dist-sNx`
   (sandbox `unlink` block means `--emptyOutDir` fails on a dir that already exists).
+- **S9** — **Completed the curriculum: M13 (Declaration Files & Publishing Types) — all 13 modules authored
+  — plus the polish phase's `#/decide` picker + a first `#/flashcards` pass.** Three parts. **(A) M13
+  `m13-declaration-files`** — *Declaration Files & Publishing Types*, **diagram-first** (staff; CURRICULUM
+  marks it '—', no sim). Golden DoD: 5 topics (a `.d.ts` as contract — `declaration`/`emitDeclarationOnly`/
+  `declarationMap`, module vs ambient · shipping types — the `types` field vs the `exports` map + the
+  **types-condition-first** rule · dual-format & **masquerading** — `.d.mts`/`.d.cts` + `attw`/`publint` ·
+  types-as-a-semver-API — breaking vs non-breaking, `typesVersions`, `isolatedDeclarations` (M11) · in the
+  owner's stack — monorepo composite refs (M12), ambient/`declare module`, the erasure line (M9)), block
+  kinds prose/figure/code/table/callout/compare, 6 key points, 4 pitfalls, 4 interview Q&A, 12 verified
+  sources, EN+UA. Two figures (`dts-contract` — one `.ts` splits into `.js`+`.d.ts`+`.d.ts.map`;
+  `publish-types-flow` — emit → `exports` types-first → resolve-per-mode → `attw`/`publint` gate) registered
+  + SSR-smoke-canaried; **6 glossary terms** (declaration map, ambient declaration, module augmentation,
+  isolatedDeclarations, typesVersions, masquerading) added and a stale duplicate `declaration file` entry
+  deduped; replaced the **last** stub in `concepts.ts` and **removed the now-unused `stub()` helper +
+  `StubInput`** (no stubs remain). **(B) `#/decide` picker** — a new hash route (`hashRouter` + `App` +
+  Sidebar/TopBar nav + `ui` strings), data-driven from `src/data/decide.ts` (7 curated "which config /
+  which feature" decisions — decorator system, validation style, `moduleResolution`, ship-types, package
+  format, `type` vs `interface`, beyond-`strict` — each option deep-linked to its module), rendered by
+  `DecidePage` as a per-decision radio-group chooser reading the **light `meta` index** (stays out of the
+  `concepts` chunk); added a reusable `MdInline` (inline-code chip labels) + `.decide-*` CSS. **(C) first
+  `#/flashcards` pass** — a second route + `FlashcardsPage`, an active-recall deck **derived** from
+  `concepts.ts` (interview banks + key points + mental models → `src/data/flashcards.ts`, ~78 cards), with
+  per-module filter, seeded shuffle, keyboard nav (Space/Enter flip, ←/→), reveal-style answers kept in the
+  DOM (`hidden`) for SSR/a11y; `.fc-*` CSS. Facts web-verified: `declaration`/`emitDeclarationOnly`/
+  `declarationMap`; the `exports` **`types`-condition-first** rule (order-sensitive; publint); `.d.mts`/
+  `.d.cts` (**TS 4.7**) + masquerading; `@arethetypeswrong/cli` resolves node10/node16-cjs/node16-esm/bundler;
+  `typesVersions` (**TS 3.1**, order-sensitive, external-API only); `isolatedDeclarations` (**TS 5.5**, needs
+  `declaration`/`composite`, `transpileDeclaration`); DefinitelyTyped/`@types`; **TS 6.0** JS-based stable /
+  **TS 7.0** Go-native ("tsgo") **RC Jun 18 2026**, checking semantics identical. COUNTS 4/13, sims **8**
+  (unchanged — M13 is diagram-first), figures **18 → 20**.
+  **Verification:** `gen:meta ✓ (13 modules, 8 sims) · typecheck ✓ (+check:meta) · lint ✓ · check:data ✓
+  (4 sections, 13 modules) · test ✓ (682: 141+37+52+42+67+82+73+188) · smoke ✓ (177 checks, 8 sims + 20
+  figures + DecidePage/FlashcardsPage, EN+UK) · build ✓ (dist-s9x; DtsContract/PublishTypesFlow + DecidePage/
+  FlashcardsPage isolated chunks; concepts body chunk 554 KB, deferred)`. Branch `s9-m13-decide-flashcards`.
+  **Owner:** delete sandbox `node_modules`/`dist*`, `npm install`, commit + deploy. **Open items:** **all 13
+  modules authored — the curriculum is complete**; polish delivered `#/decide` + a first flashcards pass;
+  next = **S10** (the `#/quiz` + final bilingual QA + first Pages deploy).

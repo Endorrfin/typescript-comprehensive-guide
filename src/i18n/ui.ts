@@ -31,6 +31,28 @@ export const ui = {
   landscapeMap: { en: 'Overview', uk: 'Огляд' },
   mentalModels: { en: 'Mental Models', uk: 'Ментальні моделі' },
   glossary: { en: 'Glossary', uk: 'Глосарій' },
+
+  // CHANGED (S9): polish routes — the #/decide picker + #/flashcards.
+  decide: { en: 'Decide', uk: 'Порадник' },
+  decideLede: {
+    en: 'The real forks a TypeScript engineer hits — pick an option to see when to reach for it, and jump to the module that teaches it.',
+    uk: 'Реальні розвилки TypeScript-інженера — оберіть варіант, щоб побачити, коли його брати, і перейти до модуля, що його навчає.',
+  },
+  decideChooseWhen: { en: 'Choose when', uk: 'Обирайте, коли' },
+  decideBottomLine: { en: 'Bottom line', uk: 'Підсумок' },
+  flashcards: { en: 'Flashcards', uk: 'Флешкартки' },
+  flashcardsLede: {
+    en: 'Active recall from the interview banks and key points — read the prompt, answer from memory, then flip.',
+    uk: 'Активне пригадування з банків співбесід і ключових тез — прочитайте питання, дайте відповідь з памʼяті, тоді перегорніть.',
+  },
+  flashcardShow: { en: 'Show answer', uk: 'Показати відповідь' },
+  flashcardHide: { en: 'Hide answer', uk: 'Сховати відповідь' },
+  flashcardNext: { en: 'Next', uk: 'Далі' },
+  flashcardPrev: { en: 'Previous', uk: 'Попередня' },
+  flashcardShuffle: { en: 'Shuffle', uk: 'Перемішати' },
+  flashcardAllModules: { en: 'All modules', uk: 'Усі модулі' },
+  flashcardDeckEmpty: { en: 'No cards match this filter.', uk: 'Немає карток за цим фільтром.' },
+  flashcardProgress: { en: 'of', uk: 'з' },
   startHere: { en: 'Start here', uk: 'Почати тут' },
   suggestedPath: { en: 'Suggested path', uk: 'Рекомендований шлях' },
   suggestedPathLede: {

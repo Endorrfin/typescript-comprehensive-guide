@@ -4,7 +4,7 @@ import type { Level } from '../../data/types';
 import { useLang } from '../../i18n/lang';
 import { ui } from '../../i18n/ui';
 import { useAppState } from '../../lib/appState';
-import { hrefGlossary, hrefMap, hrefMentalModels, navigate } from '../../lib/hashRouter';
+import { hrefDecide, hrefFlashcards, hrefGlossary, hrefMap, hrefMentalModels, navigate } from '../../lib/hashRouter';
 import { search } from '../../lib/search';
 import type { SearchKind, SearchResult } from '../../lib/search';
 import { cx } from '../../lib/utils';
@@ -154,6 +154,9 @@ export function TopBar() {
         <nav className="top-links" aria-label="Sections">
           <a href={hrefMap()}>{t(ui.landscapeMap)}</a>
           <a href={hrefMentalModels()}>{t(ui.mentalModels)}</a>
+          {/* CHANGED (S9): polish routes surfaced in the top nav. */}
+          <a href={hrefDecide()}>{t(ui.decide)}</a>
+          <a href={hrefFlashcards()}>{t(ui.flashcards)}</a>
           <a href={hrefGlossary()}>{t(ui.glossary)}</a>
         </nav>
 

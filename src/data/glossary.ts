@@ -190,14 +190,8 @@ export const glossary: GlossaryEntry[] = [
     seeAlso: ['assignability'],
   },
   {
-    term: 'declaration file',
-    def: {
-      en: 'A `.d.ts` file carrying only type declarations (no implementation) — the public type contract a package ships to its consumers.',
-      uk: 'Файл `.d.ts`, що містить лише оголошення типів (без реалізації) — публічний типовий контракт, який пакет постачає споживачам.',
-    },
-    seeAlso: [],
-  },
-  {
+    // CHANGED (S9): removed a thin duplicate 'declaration file' entry here — the richer one (added S8,
+    // with seeAlso) is kept below; M13 terms are appended at the end of the list.
     term: 'strict',
     def: {
       en: 'The tsconfig flag enabling the family of strict checks (strictNullChecks, noImplicitAny, …) that catch the most runtime bugs at compile time.',
@@ -616,6 +610,55 @@ export const glossary: GlossaryEntry[] = [
       en: 'A `.d.ts` file: the public type contract of a module — its shape with the implementation removed. Packages ship them so consumers get types; composite projects emit them so `tsc -b` can skip unchanged dependencies (authoring them is Module 13).',
       uk: 'Файл `.d.ts`: публічний типовий контракт модуля — його форма без реалізації. Пакети постачають їх, щоб споживачі мали типи; composite-проєкти емітують їх, щоб `tsc -b` міг пропускати незмінні залежності (їх написання — Модуль 13).',
     },
-    seeAlso: ['package exports', 'composite'],
+    seeAlso: ['package exports', 'composite', 'declaration map', 'ambient declaration'],
+  },
+  // ── M13 (S9) — declaration files & publishing types ──────────────────────────
+  {
+    term: 'declaration map',
+    def: {
+      en: 'The `.d.ts.map` file emitted by `declarationMap`: a source map that links a declaration back to the original `.ts` line, so an editor’s Go-to-Definition on a library type jumps to its source instead of the generated `.d.ts`.',
+      uk: 'Файл `.d.ts.map`, що емітує `declarationMap`: source map, який повʼязує декларацію з оригінальним рядком `.ts`, тож Go-to-Definition редактора на типі бібліотеки стрибає до її source, а не до згенерованого `.d.ts`.',
+    },
+    seeAlso: ['declaration file'],
+  },
+  {
+    term: 'ambient declaration',
+    def: {
+      en: 'A hand-written `.d.ts` (no top-level `import`/`export`) that describes names existing at runtime without a TypeScript source — typing an untyped dependency, augmenting a global, or shimming a non-code import (`declare module "*.svg"`).',
+      uk: 'Написаний руками `.d.ts` (без top-level `import`/`export`), що описує імена, які існують у runtime без TypeScript-source — типізація untyped-залежності, augment глобала чи shim для non-code-import (`declare module "*.svg"`).',
+    },
+    seeAlso: ['declaration file', 'module augmentation'],
+  },
+  {
+    term: 'module augmentation',
+    def: {
+      en: 'A `declare module "x" { … }` block that *merges* new members into an existing module’s types (e.g. adding `user` to Express’s `Request`) via declaration merging, rather than replacing them.',
+      uk: 'Блок `declare module "x" { … }`, що *зливає* нові члени в типи наявного модуля (напр. додає `user` до `Request` в Express) через declaration merging, а не заміняє їх.',
+    },
+    seeAlso: ['ambient declaration', 'declaration file'],
+  },
+  {
+    term: 'isolatedDeclarations',
+    def: {
+      en: 'A tsconfig flag (TS 5.5) that errors unless every export carries an explicit type annotation, so a `.d.ts` can be generated from one file alone (no whole-program inference) — enabling parallel, tool-based declaration emit and an explicit public contract.',
+      uk: 'Флаг tsconfig (TS 5.5), що дає помилку, доки кожен export не має явної анотації типу, щоб `.d.ts` можна було згенерувати з одного файлу (без inference по всій програмі) — уможливлює паралельний, інструментальний declaration-emit і явний публічний контракт.',
+    },
+    seeAlso: ['declaration file', 'strict'],
+  },
+  {
+    term: 'typesVersions',
+    def: {
+      en: 'A `package.json` field (TS 3.1) that redirects a package’s `.d.ts` by the consumer’s TypeScript version range (order-sensitive; external API only), letting one package serve different declarations to old and new compilers.',
+      uk: 'Поле `package.json` (TS 3.1), що перенаправляє `.d.ts` пакета за діапазоном версії TypeScript споживача (order-sensitive; лише зовнішній API), даючи одному пакету віддавати різні декларації старим і новим компіляторам.',
+    },
+    seeAlso: ['declaration file', 'package exports'],
+  },
+  {
+    term: 'masquerading',
+    def: {
+      en: 'A publishing bug where a served `.d.ts` claims one module format (ESM/CJS) while the JavaScript it describes is the other. It type-checks under a bundler but breaks on real Node; `@arethetypeswrong/cli` resolves the packed tarball under every mode to catch it.',
+      uk: 'Баг публікації, де відданий `.d.ts` заявляє один формат модуля (ESM/CJS), тоді як JavaScript, який він описує, — інший. Проходить під bundler, але падає на справжньому Node; `@arethetypeswrong/cli` резолвить запакований tarball під кожним режимом, щоб це зловити.',
+    },
+    seeAlso: ['declaration file', 'package exports'],
   },
 ];

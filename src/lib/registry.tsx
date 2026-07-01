@@ -42,6 +42,8 @@ export const figures: Record<string, ComponentType> = {
   'strict-family': lazyNamed(() => import('../components/figures/StrictFamily'), 'StrictFamily'), // M11 (S8)
   'resolution-pipeline': lazyNamed(() => import('../components/figures/ResolutionPipeline'), 'ResolutionPipeline'), // M12 (S8)
   'project-references': lazyNamed(() => import('../components/figures/ProjectReferences'), 'ProjectReferences'), // M12 (S8)
+  'dts-contract': lazyNamed(() => import('../components/figures/DtsContract'), 'DtsContract'), // M13 (S9)
+  'publish-types-flow': lazyNamed(() => import('../components/figures/PublishTypesFlow'), 'PublishTypesFlow'), // M13 (S9)
 };
 
 export const getSim = (key: string): ComponentType | undefined => sims[key];

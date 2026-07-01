@@ -12,6 +12,9 @@ const LandscapeMap = lazy(() => import('./components/map/LandscapeMap').then((m)
 const ModulePage = lazy(() => import('./components/module/ModulePage').then((m) => ({ default: m.ModulePage })));
 const GlossaryPage = lazy(() => import('./components/pages/GlossaryPage').then((m) => ({ default: m.GlossaryPage })));
 const MentalModelsPage = lazy(() => import('./components/pages/MentalModelsPage').then((m) => ({ default: m.MentalModelsPage })));
+// CHANGED (S9): polish routes — the #/decide picker + #/flashcards active-recall deck.
+const DecidePage = lazy(() => import('./components/pages/DecidePage').then((m) => ({ default: m.DecidePage })));
+const FlashcardsPage = lazy(() => import('./components/pages/FlashcardsPage').then((m) => ({ default: m.FlashcardsPage })));
 
 export function App() {
   const route = useRoute();
@@ -50,6 +53,8 @@ export function App() {
             {route.name === 'map' && <LandscapeMap />}
             {route.name === 'module' && <ModulePage moduleId={route.moduleId} topicId={route.topicId} />}
             {route.name === 'mentalModels' && <MentalModelsPage />}
+            {route.name === 'decide' && <DecidePage />}
+            {route.name === 'flashcards' && <FlashcardsPage />}
             {route.name === 'glossary' && <GlossaryPage term={route.term} />}
           </Suspense>
           <Footer />
