@@ -5050,3 +5050,135 @@
 @media (prefers-reduced-motion: reduce) {
   .sx-step, .sx-result, .sx-flag, .rt-step, .rt-result { transition: none; }
 }
+
+/* ── #/decide picker (.decide-*) — S9 polish ───────────────────────────────── */
+.decide-lede { max-width: var(--reading-max); }
+.decide-list { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.4rem; }
+.decide-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--sec, var(--accent));
+  border-radius: var(--r-md);
+  padding: 1.1rem 1.2rem;
+}
+.decide-q { margin: 0 0 0.3rem; font-size: 1.12rem; }
+.decide-hint { margin: 0 0 0.9rem; color: var(--tx2); font-size: 0.9rem; line-height: 1.5; }
+.decide-hint code, .decide-when code, .decide-bottom code, .decide-opt code {
+  font-family: var(--font-mono); font-size: 0.86em;
+  background: var(--s2); padding: 0.05em 0.35em; border-radius: 5px;
+}
+.decide-opts { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.9rem; }
+.decide-opt {
+  border: 1px solid var(--line2);
+  background: var(--bg);
+  color: var(--tx2);
+  border-radius: 99px;
+  padding: 0.34rem 0.9rem;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: border-color var(--dur) var(--ease), background var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.decide-opt:hover { border-color: var(--sec, var(--accent)); color: var(--tx); }
+.decide-opt.on {
+  border-color: var(--sec, var(--accent));
+  background: var(--s2);
+  color: var(--tx);
+  font-weight: 600;
+  box-shadow: inset 0 0 0 1px var(--sec, var(--accent));
+}
+.decide-opt.on code { background: var(--s3); }
+.decide-detail {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  padding: 0.8rem 0.95rem;
+}
+.decide-when { margin: 0; color: var(--tx); font-size: 0.94rem; line-height: 1.55; }
+.decide-tag {
+  display: inline-block;
+  font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.07em; font-weight: 700;
+  color: var(--sec, var(--accent));
+  border: 1px solid var(--sec, var(--accent));
+  border-radius: 5px; padding: 0.05em 0.45em; margin-right: 0.15rem;
+  vertical-align: 0.08em;
+}
+.decide-tag--sum { color: var(--tx3); border-color: var(--line2); }
+.decide-golink {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  margin-top: 0.7rem; padding: 0.35rem 0.7rem;
+  border: 1px solid var(--line2); border-radius: var(--r-sm);
+  background: var(--surface); color: var(--tx);
+  font-size: 0.86rem; text-decoration: none;
+  transition: border-color var(--dur) var(--ease);
+}
+.decide-golink:hover { border-color: var(--sec, var(--accent)); text-decoration: none; }
+.decide-golink .mono { font-size: 0.8rem; }
+.decide-bottom { margin: 0.9rem 0 0; color: var(--tx2); font-size: 0.9rem; line-height: 1.55; }
+@media (prefers-reduced-motion: reduce) {
+  .decide-opt, .decide-golink { transition: none; }
+}
+
+/* ── #/flashcards active-recall deck (.fc-*) — S9 polish ────────────────────── */
+.fc-lede { max-width: var(--reading-max); }
+.fc-controls { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem; margin: 1.3rem 0 1rem; }
+.fc-select {
+  background: var(--surface); color: var(--tx);
+  border: 1px solid var(--line2); border-radius: var(--r-sm);
+  padding: 0.4rem 0.7rem; font: inherit; font-size: 0.88rem; cursor: pointer; max-width: 100%;
+}
+.fc-select:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.btn.btn-on { border-color: var(--accent); color: var(--accent-bright); background: var(--accent-soft); }
+.fc-progress { margin-left: auto; font-size: 0.82rem; }
+
+.fc-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-top: 3px solid var(--sec, var(--accent));
+  border-radius: var(--r-md);
+  padding: 1.3rem 1.4rem;
+  min-height: 220px;
+  display: flex;
+  flex-direction: column;
+}
+.fc-card:focus-visible { outline: none; box-shadow: var(--shadow-glow); }
+.fc-meta { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin-bottom: 1rem; }
+.fc-kind {
+  font-size: 0.66rem; text-transform: uppercase; letter-spacing: 0.07em; font-weight: 700;
+  color: var(--sec, var(--accent));
+  border: 1px solid var(--sec, var(--accent));
+  border-radius: 5px; padding: 0.1em 0.5em;
+}
+.fc-modchip {
+  display: inline-flex; align-items: center; gap: 0.35rem;
+  font-size: 0.8rem; color: var(--tx2); text-decoration: none;
+}
+.fc-modchip:hover { color: var(--tx); text-decoration: none; }
+.fc-front { flex: 1; }
+.fc-front p {
+  font-family: var(--font-display);
+  font-size: 1.24rem; line-height: 1.4; color: var(--tx); margin: 0 0 0.6rem;
+}
+.fc-front code, .fc-answer code {
+  font-family: var(--font-mono); font-size: 0.84em;
+  background: var(--s2); padding: 0.05em 0.35em; border-radius: 5px;
+}
+.fc-flip {
+  align-self: flex-start; margin-top: 0.4rem;
+  background: none; border: 1px dashed var(--line2); border-radius: var(--r-sm);
+  color: var(--tx2); font-size: 0.82rem; padding: 0.3rem 0.75rem; cursor: pointer;
+  transition: border-color var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.fc-flip:hover { border-color: var(--accent); color: var(--tx); }
+.fc-answer { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--line); }
+.fc-answer-body p { margin: 0 0 0.7rem; color: var(--tx2); line-height: 1.6; font-size: 0.94rem; }
+.fc-answer-body p:last-of-type { margin-bottom: 0; }
+.fc-golink {
+  display: inline-block; margin-top: 0.7rem;
+  font-size: 0.84rem; color: var(--accent); text-decoration: none;
+}
+.fc-golink:hover { text-decoration: underline; }
+.fc-nav { display: flex; align-items: center; justify-content: space-between; gap: 0.6rem; margin-top: 1rem; }
+.fc-nav .btn-primary { flex: 0 0 auto; }
+@media (prefers-reduced-motion: reduce) {
+  .fc-flip { transition: none; }
+}

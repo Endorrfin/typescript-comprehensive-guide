@@ -11,8 +11,9 @@
 
 ## B. Navigation & UX
 Landing **Overview** (`#/map`) · collapsible sidebar · global search (modules + topics + glossary terms)
-· level filter (beginner → staff) · mental‑models gallery · bilingual glossary. (Later: a `#/decide`
-"which feature / which config" picker, flashcards, quiz.)
+· level filter (beginner → staff) · mental‑models gallery · bilingual glossary · a `#/decide`
+"which feature / which config" picker (**shipped S9**) · `#/flashcards` active‑recall deck (**shipped S9**).
+(Later: `#/quiz` — S10.)
 
 ## C. Data model
 See `CLAUDE.md` §4 and `src/data/types.ts` (the shared Tier‑1 contract). Levels:
@@ -49,15 +50,15 @@ See `CLAUDE.md` §4 and `src/data/types.ts` (the shared Tier‑1 contract). Leve
 |---|---|---|---|---|---|
 | 11 | **`m11-tsconfig-strictness`** ★ | **tsconfig & the Strictness Model** | senior | the nine-flag strict family · beyond-strict (noUncheckedIndexedAccess…) · target/lib/module · `verbatimModuleSyntax`/isolated* | **★ tsconfig strictness explorer** |
 | 12 | **`m12-modules-resolution`** ★ | **Modules, Resolution & Project References** | senior | four modes · extension substitution · exports/imports maps · the `paths` trap · composite/project refs | **★ module‑resolution tracer** |
-| 13 | `m13-declaration-files` | Declaration Files & Publishing Types | staff | authoring `.d.ts` · shipping types · not breaking consumers | — |
+| 13 | **`m13-declaration-files`** | **Declaration Files & Publishing Types** | staff | `.d.ts` as contract · shipping types (`exports` types‑first) · dual‑format & masquerading · types‑as‑API (`typesVersions`, `isolatedDeclarations`) · in your stack | — (diagram‑first: `dts-contract` + `publish-types-flow`) |
 
 ## E. Totals & asset budget
-**4 sections · 13 modules · 12 modules authored · 8 signature sims shipped** (M5 · M1 · M2 · M4 · M6 · M7 ·
-M11 · M12 — the project's ~6–8 target, now met) · **18 figures shipped** (M5 ×2, M1, M2, M4, M6, M7, M3 ×2,
-M8 ×2, M9 ×2, M10 ×2, M11, M12 ×2). Rough topic count: ~75 across the curriculum. **Sections I (type‑system),
-II (type‑level) and III (applied) are complete, and Section IV is nearly complete** (IV = M11·M12 authored,
-M13 remaining). M3, M8, M9 and M10 are diagram‑first (authored, no sim). **Only M13 (declaration files &
-publishing types) remains.**
+**4 sections · 13 modules · 13 modules authored (COMPLETE) · 8 signature sims shipped** (M5 · M1 · M2 · M4 ·
+M6 · M7 · M11 · M12 — the project's ~6–8 target, met) · **20 figures shipped** (M5 ×2, M1, M2, M4, M6, M7,
+M3 ×2, M8 ×2, M9 ×2, M10 ×2, M11, M12 ×2, M13 ×2). Rough topic count: ~80 across the curriculum. **All four
+sections are complete.** M3, M8, M9, M10 and M13 are diagram‑first (authored, no sim). **Every module is
+authored; no stubs remain.** Utility routes: Overview · Mental Models · Glossary · **`#/decide`** (S9) ·
+**`#/flashcards`** (S9); `#/quiz` lands S10.
 
 ## F. Build order
 1. **S1 (golden, shipped):** M5 — Generics & Conditional Types + the conditional‑type/`infer` evaluator,
@@ -76,5 +77,7 @@ publishing types) remains.**
 8. **S8 (shipped):** **Section IV opened** — **M11 (tsconfig & the Strictness Model) + M12 (Modules,
    Resolution & Project References)**, each with its ★ signature sim (tsconfig strictness explorer ·
    module‑resolution tracer). All planned signature sims are now shipped (8 total).
-9. **S9…SN:** **M13 (declaration files & publishing types)** — completes all 13 modules — then the
-   `#/decide` picker · flashcards/quiz · final polish · deploy.
+9. **S9 (shipped):** **M13 (declaration files & publishing types), diagram‑first** — completes all 13
+   modules — **plus** the `#/decide` picker + a first `#/flashcards` pass (both data‑driven, bilingual).
+10. **S10 (next):** `#/quiz` route + final bilingual QA + a11y sweep + first GitHub Pages deploy. All
+    content is authored; S10 is polish + release, not new modules.

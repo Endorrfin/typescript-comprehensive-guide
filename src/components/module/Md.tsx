@@ -29,3 +29,9 @@ export function Md({ text, className }: { text: string; className?: string }) {
     </div>
   );
 }
+
+// CHANGED (S9): inline-only variant (no <p> wrapper) — for chip/label/inline contexts such as the
+// #/decide picker option labels, where inline `code` should render but a block paragraph should not.
+export function MdInline({ text }: { text: string }) {
+  return <>{renderInline(text, 'i')}</>;
+}

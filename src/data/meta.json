@@ -856,17 +856,58 @@
         "uk": "Declaration Files та публікація типів"
       },
       "tagline": {
-        "en": "Authoring .d.ts, shipping types with your package, and not breaking your consumers.",
-        "uk": "Написання .d.ts, постачання типів із пакетом і як не зламати споживачів."
+        "en": "Authoring .d.ts, shipping types with your package so every resolver finds them, and evolving that public contract without breaking your consumers.",
+        "uk": "Написання .d.ts, постачання типів із пакетом так, щоб кожен resolver їх знайшов, і розвиток цього публічного контракту без ламання споживачів."
       },
       "mentalModel": {
-        "en": "A .d.ts is the public type contract of a package — the shape, with the implementation removed.",
-        "uk": ".d.ts — це публічний типовий контракт пакета: форма без реалізації."
+        "en": "A .d.ts is the public type contract of a package — its shape with the implementation removed. Publishing types is a routing problem: make every resolution mode land on the right .d.ts, then treat that surface as an API you version like code.",
+        "uk": ".d.ts — це публічний типовий контракт пакета: його форма без реалізації. Публікація типів — це задача маршрутизації: зробити так, щоб кожен режим resolution потрапив у правильний .d.ts, а потім ставитися до цієї поверхні як до API, який ви версіонуєте, мов код."
       },
-      "readMins": 0,
-      "topics": [],
-      "seeAlso": [],
-      "authored": false
+      "readMins": 21,
+      "topics": [
+        {
+          "id": "t1-dts-as-contract",
+          "title": {
+            "en": "A `.d.ts` is a contract: shape without implementation",
+            "uk": "`.d.ts` — це контракт: форма без реалізації"
+          }
+        },
+        {
+          "id": "t2-shipping-types",
+          "title": {
+            "en": "Shipping types: the `types` field vs the `exports` map",
+            "uk": "Постачання типів: поле `types` проти `exports`-мапи"
+          }
+        },
+        {
+          "id": "t3-dual-format-resolution",
+          "title": {
+            "en": "The hard part: dual-format & the “masquerading” trap",
+            "uk": "Найважче: dual-format і пастка «masquerading»"
+          }
+        },
+        {
+          "id": "t4-not-breaking-consumers",
+          "title": {
+            "en": "Types are an API: evolving without breaking consumers",
+            "uk": "Типи — це API: розвиток без ламання споживачів"
+          }
+        },
+        {
+          "id": "t5-in-your-stack",
+          "title": {
+            "en": "In your stack: monorepo libs, ambient shims, the erasure line",
+            "uk": "У вашому стеку: monorepo-бібліотеки, ambient-shim-и, межа стирання"
+          }
+        }
+      ],
+      "seeAlso": [
+        "m12-modules-resolution",
+        "m11-tsconfig-strictness",
+        "m9-dto-validation",
+        "m1-structural-typing"
+      ],
+      "authored": true
     }
   ]
 }

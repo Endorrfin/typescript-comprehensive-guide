@@ -3,13 +3,16 @@ import { modulesBySection, sections } from '../../data/meta'; // CHANGED (S5): m
 import { useLang } from '../../i18n/lang';
 import { ui } from '../../i18n/ui';
 import { useAppState } from '../../lib/appState';
-import { hrefGlossary, hrefMap, hrefMentalModels, hrefModule, useRoute } from '../../lib/hashRouter';
+import { hrefDecide, hrefFlashcards, hrefGlossary, hrefMap, hrefMentalModels, hrefModule, useRoute } from '../../lib/hashRouter';
 import type { Route } from '../../lib/hashRouter';
 import { cx } from '../../lib/utils';
 
 const PAGE_LINKS: { name: Route['name']; href: string; label: (typeof ui)[keyof typeof ui] }[] = [
   { name: 'map', href: hrefMap(), label: ui.landscapeMap },
   { name: 'mentalModels', href: hrefMentalModels(), label: ui.mentalModels },
+  // CHANGED (S9): polish routes added to the sidebar chrome.
+  { name: 'decide', href: hrefDecide(), label: ui.decide },
+  { name: 'flashcards', href: hrefFlashcards(), label: ui.flashcards },
   { name: 'glossary', href: hrefGlossary(), label: ui.glossary },
 ];
 

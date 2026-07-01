@@ -87,6 +87,8 @@ const FIG_CANARIES: Record<string, string[]> = {
   StrictFamily: ["noImplicitAny"], // M11 figure — the first flag in the strict family
   ResolutionPipeline: ["node_modules"], // M12 figure — the bare-specifier walk
   ProjectReferences: ["tsbuildinfo"], // M12 figure — the incremental build fingerprint
+  DtsContract: ["greet.d.ts"], // M13 figure — the emitted declaration is the public contract
+  PublishTypesFlow: ["publint"], // M13 figure — the packaging linter in the release gate
 };
 
 async function main(): Promise<void> {
@@ -147,10 +149,14 @@ async function main(): Promise<void> {
   const { LandscapeMap } = await import("../src/components/map/LandscapeMap");
   const { MentalModelsPage } = await import("../src/components/pages/MentalModelsPage");
   const { GlossaryPage } = await import("../src/components/pages/GlossaryPage");
+  const { DecidePage } = await import("../src/components/pages/DecidePage"); // S9 polish
+  const { FlashcardsPage } = await import("../src/components/pages/FlashcardsPage"); // S9 polish
   for (const lang of langs) {
     check("LandscapeMap", h(LandscapeMap), lang, 800);
     check("MentalModelsPage", h(MentalModelsPage), lang, 400);
     check("GlossaryPage", h(GlossaryPage), lang, 800);
+    check("DecidePage", h(DecidePage), lang, 800, ["experimentalDecorators", "moduleResolution"]); // picker renders decisions
+    check("FlashcardsPage", h(FlashcardsPage), lang, 600); // active-recall deck renders the first card
   }
 
   // ── Layer C: per-module page header/TOC/nav for all modules ─────────────────────────────────────
@@ -159,7 +165,7 @@ async function main(): Promise<void> {
 
   // ── Layer D: eager app shell + hash router ──────────────────────────────────────────────────────
   const { App } = await import("../src/App");
-  for (const hash of ["", "#/map", "#/m/m1-structural-typing", "#/m/m2-narrowing", "#/m/m3-functions-variance", "#/m/m4-generics", "#/m/m5-generics-conditional-types", "#/m/m6-mapped-template-literals", "#/m/m7-utility-types", "#/m/m8-decorators-metadata", "#/m/m9-dto-validation", "#/m/m10-rxjs-signals", "#/m/m11-tsconfig-strictness", "#/m/m12-modules-resolution", "#/mental-models", "#/glossary", "#/does-not-exist"]) {
+  for (const hash of ["", "#/map", "#/m/m1-structural-typing", "#/m/m2-narrowing", "#/m/m3-functions-variance", "#/m/m4-generics", "#/m/m5-generics-conditional-types", "#/m/m6-mapped-template-literals", "#/m/m7-utility-types", "#/m/m8-decorators-metadata", "#/m/m9-dto-validation", "#/m/m10-rxjs-signals", "#/m/m11-tsconfig-strictness", "#/m/m12-modules-resolution", "#/m/m13-declaration-files", "#/mental-models", "#/glossary", "#/decide", "#/flashcards", "#/does-not-exist"]) {
     (g.location as { hash: string }).hash = hash;
     check(`App ${hash || "(empty)"}`, h(App), "en", 1500);
   }
