@@ -165,4 +165,77 @@ export const glossary: GlossaryEntry[] = [
     },
     seeAlso: [],
   },
+  // ── S2: Section I (M1 structural typing · M2 narrowing) ──────────────────
+  {
+    term: 'excess property check',
+    def: {
+      en: "A stricter check applied to *fresh* object literals: any property the target type doesn't declare is an error (TS2561). Catches typos in optional keys; storing the literal in a variable first bypasses it.",
+      uk: 'Суворіша перевірка для *свіжих* обʼєктних літералів: будь-яка властивість, якої ціль не оголошує, — помилка (TS2561). Ловить опечатки в опційних ключах; збереження літерала у змінну спершу її обходить.',
+    },
+    seeAlso: ['structural typing', 'assignability'],
+  },
+  {
+    term: 'literal widening',
+    def: {
+      en: "Inference broadening a literal to its primitive: `let x = 'a'` becomes `string`. A `const` binding, `as const`, or `satisfies` preserve the literal type.",
+      uk: "Inference розширює літерал до його примітиву: `let x = 'a'` стає `string`. `const`-звʼязування, `as const` чи `satisfies` зберігають літеральний тип.",
+    },
+    seeAlso: ['const assertion', 'satisfies'],
+  },
+  {
+    term: 'const assertion',
+    def: {
+      en: '`as const` (TS 3.4): stops widening, makes object properties `readonly` and array literals `readonly` tuples. A type-level signal — it does not freeze at runtime.',
+      uk: '`as const` (TS 3.4): зупиняє widening, робить властивості обʼєкта `readonly`, а масивні літерали — `readonly` tuples. Type-level-сигнал — у runtime не заморожує.',
+    },
+    seeAlso: ['literal widening', 'satisfies'],
+  },
+  {
+    term: 'type guard',
+    def: {
+      en: 'An expression the compiler reads to narrow a type along a code path — `typeof`, `instanceof`, the `in` operator, equality, or a user-defined `x is T` function.',
+      uk: 'Вираз, який компілятор читає, щоб звузити тип уздовж шляху коду — `typeof`, `instanceof`, оператор `in`, рівність чи user-defined функція `x is T`.',
+    },
+    seeAlso: ['narrowing', 'type predicate'],
+  },
+  {
+    term: 'type predicate',
+    def: {
+      en: 'A function return type of the form `x is T`; a `true` result narrows the argument to `T` at the call site. TS 5.5 can infer one for a simple boolean-returning function.',
+      uk: 'Тип повернення функції у формі `x is T`; результат `true` звужує аргумент до `T` у місці виклику. TS 5.5 може вивести його для простої функції, що повертає boolean.',
+    },
+    seeAlso: ['type guard', 'assertion function'],
+  },
+  {
+    term: 'assertion function',
+    def: {
+      en: 'A function typed `asserts cond` or `asserts x is T` (TS 3.7) that throws on failure and narrows its argument for the rest of the scope if it returns.',
+      uk: 'Функція з типом `asserts cond` чи `asserts x is T` (TS 3.7), що кидає при невдачі й звужує аргумент на решту scope, якщо повертається.',
+    },
+    seeAlso: ['type predicate', 'narrowing'],
+  },
+  {
+    term: 'exhaustiveness check',
+    def: {
+      en: 'Assigning a fully-narrowed union to `never` in a `default` arm, so adding an unhandled union member becomes a compile error.',
+      uk: 'Присвоєння повністю звуженого union до `never` у гілці `default`, щоб додавання неопрацьованого члена union стало compile-помилкою.',
+    },
+    seeAlso: ['never', 'discriminated union'],
+  },
+  {
+    term: 'never',
+    def: {
+      en: 'The bottom type — the empty set of values. Assignable to every type; nothing (but `never`) is assignable to it. A union with all members removed is `never`.',
+      uk: 'Bottom-тип — порожня множина значень. Assignable до кожного типу; ніщо (крім `never`) не assignable до нього. Union, з якого прибрано всі члени, — це `never`.',
+    },
+    seeAlso: ['unknown', 'narrowing'],
+  },
+  {
+    term: 'unknown',
+    def: {
+      en: 'The safe top type — everything is assignable to it, but it is assignable to nothing until narrowed. Prefer it over `any` for untrusted input.',
+      uk: 'Безпечний top-тип — усе assignable до нього, але він не assignable ні до чого, поки не звужений. Для недовіреного входу кращий за `any`.',
+    },
+    seeAlso: ['never', 'narrowing'],
+  },
 ];

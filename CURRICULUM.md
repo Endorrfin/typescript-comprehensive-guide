@@ -25,8 +25,8 @@ See `CLAUDE.md` §4 and `src/data/types.ts` (the shared Tier‑1 contract). Leve
 ### Section I — The Type System (`s1-type-system`)
 | # | id | Module | Level | Topics | Signature sim |
 |---|---|---|---|---|---|
-| 1 | `m1-structural-typing` | Structural Typing & Assignability | middle | shapes vs names · assignability rules · excess‑property checks · fresh vs widened | structural‑assignability checker (planned) |
-| 2 | `m2-narrowing` | Narrowing & Control‑Flow Analysis | middle | guards · `typeof`/`in`/`instanceof` · discriminated unions · assertion functions | narrowing / CFA visualizer (planned) |
+| 1 | **`m1-structural-typing`** ★ | **Structural Typing & Assignability** | middle | shapes vs names · assignability rules · excess‑property checks · fresh vs widened | **★ structural‑assignability checker** |
+| 2 | **`m2-narrowing`** ★ | **Narrowing & Control‑Flow Analysis** | middle | guards · `typeof`/`in`/`instanceof` · discriminated unions · assertion functions | **★ narrowing / CFA visualizer** |
 | 3 | `m3-functions-variance` | Functions, Overloads & Variance | senior | parameter bivariance · overload resolution · co/contravariance · `in`/`out` | — |
 
 ### Section II — Type‑Level Programming (`s2-type-level`)
@@ -52,12 +52,13 @@ See `CLAUDE.md` §4 and `src/data/types.ts` (the shared Tier‑1 contract). Leve
 | 13 | `m13-declaration-files` | Declaration Files & Publishing Types | staff | authoring `.d.ts` · shipping types · not breaking consumers | — |
 
 ## E. Totals & asset budget
-**4 sections · 13 modules · 1 signature sim shipped** (target ~5–6 across the project) · 2 figures shipped
-(M5). Rough topic count: ~40 across the curriculum.
+**4 sections · 13 modules · 3 signature sims shipped** (M5 · M1 · M2; target ~5–6 across the project) ·
+4 figures shipped (M5 ×2, M1, M2). Rough topic count: ~40 across the curriculum.
 
 ## F. Build order
 1. **S1 (golden, shipped):** M5 — Generics & Conditional Types + the conditional‑type/`infer` evaluator,
    with the scaffold/theme/nav/i18n/search/glossary/mental‑models shell.
-2. **S2…SN:** batches of 1–2 modules. Suggested next: M1 (structural typing + assignability checker) and
-   M2 (narrowing + CFA visualizer) — they ground Section I and add the next sim.
-3. Remaining signature sims · `#/decide` picker · flashcards/quiz · polish · deploy.
+2. **S2 (shipped):** M1 (structural typing + assignability checker) and M2 (narrowing + CFA visualizer) —
+   grounding Section I and adding two signature sims.
+3. **S3…SN:** batches of 1–2 modules. Suggested next: M4 (generics) + M6 (mapped/template‑literal types).
+4. Remaining signature sims · `#/decide` picker · flashcards/quiz · polish · deploy.

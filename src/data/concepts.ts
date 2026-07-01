@@ -1,11 +1,15 @@
 import type { Level, Localized, Module, Section } from './types';
 // CHANGED (S1): golden module M5 authored; M1–M4, M6–M13 are navigable stubs (authored in later sessions).
 import { m5 } from './modules/m5-generics-conditional-types';
+// CHANGED (S2): Section I authored — M1 (structural typing) + M2 (narrowing), each with a signature sim.
+import { m1 } from './modules/m1-structural-typing';
+import { m2 } from './modules/m2-narrowing';
 
 /*
  * concepts.ts — the SINGLE SOURCE OF TRUTH (CLAUDE.md §2, §4).
- * 4 sections · 13 modules. S1 ships Section II's golden module (M5 — Generics & Conditional Types)
- * with its signature sim; the rest are stubs (mental model + nav only) until authored.
+ * 4 sections · 13 modules. S1 shipped Section II's golden M5 (Generics & Conditional Types); S2 adds
+ * Section I's M1 (Structural Typing) + M2 (Narrowing), each with a signature sim. The remaining
+ * modules are stubs (mental model + nav only) until authored.
  * The eager chrome reads from here directly — the meta/bundle split (standard §4.4) is deferred
  * until the guide grows (template package.json note).
  */
@@ -80,38 +84,8 @@ function stub(s: StubInput): Module {
 
 export const modules: Module[] = [
   // ── Section I · The Type System ──────────────────────────────────────────
-  stub({
-    id: 'm1-structural-typing',
-    num: 1,
-    section: 's1-type-system',
-    order: 1,
-    level: 'middle',
-    title: { en: 'Structural Typing & Assignability', uk: 'Structural Typing та Assignability' },
-    tagline: {
-      en: 'Why TypeScript matches shapes, not names — and what "assignable" really means.',
-      uk: 'Чому TypeScript зіставляє форми, а не імена — і що насправді означає «assignable».',
-    },
-    mentalModel: {
-      en: 'If it has the right shape, it fits — TypeScript checks structure, not the name on the box.',
-      uk: 'Якщо форма підходить — воно пасує: TypeScript перевіряє структуру, а не назву на коробці.',
-    },
-  }),
-  stub({
-    id: 'm2-narrowing',
-    num: 2,
-    section: 's1-type-system',
-    order: 2,
-    level: 'middle',
-    title: { en: 'Narrowing & Control-Flow Analysis', uk: 'Narrowing та Control-Flow Analysis' },
-    tagline: {
-      en: 'How the compiler tracks a type as it flows through guards, returns and assignments.',
-      uk: 'Як компілятор відстежує тип, поки той тече крізь guards, returns і присвоєння.',
-    },
-    mentalModel: {
-      en: 'Each branch is a checkpoint that shrinks the type; the compiler walks the flow with you.',
-      uk: 'Кожна гілка — це checkpoint, що звужує тип; компілятор іде потоком разом із вами.',
-    },
-  }),
+  m1, // ★ authored (S2) — Structural Typing & Assignability
+  m2, // ★ authored (S2) — Narrowing & Control-Flow Analysis
   stub({
     id: 'm3-functions-variance',
     num: 3,

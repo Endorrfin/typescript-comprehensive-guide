@@ -55,14 +55,14 @@ with **pitfalls** + interview Q&A. Stubs carry a mental model + nav only (`topic
   template‑literal types, utility types.
 - **III · Applied TypeScript** — decorators & DI, DTO validation, RxJS/signals typing.
 - **IV · Compiler & Tooling** — tsconfig/strictness, module resolution & project refs, declaration files.
-- **4 sections · 13 modules.** S1 shipped M5 + the app shell.
+- **4 sections · 13 modules.** S1 shipped M5 + the app shell; S2 shipped M1 + M2 (Section I).
 
 ## 6. Signature interactives + diagram‑first baseline
 Curated sims only — a pure engine in `lib/*` (deterministic, unit‑tested) + a component (play/pause/step,
-ARIA + live region, **`prefers-reduced-motion`** fallback). Shipped: **★ `conditional-type-eval`** (M5),
-engine `lib/typeEval.ts` + `scripts/test-typeeval.ts` (73 assertions). Diagram‑first elsewhere (crisp SVG +
-table). Planned sims: narrowing/CFA (M2), assignability checker (M1), tsconfig explorer (M11), resolution
-tracer (M12).
+ARIA + live region, **`prefers-reduced-motion`** fallback). Shipped (3): **★ `conditional-type-eval`** (M5,
+`lib/typeEval.ts` · 73 assertions); **★ `structural-assignability`** (M1, `lib/assignability.ts` · 141);
+**★ `control-flow-narrowing`** (M2, `lib/narrowing.ts` · 42). Diagram‑first elsewhere (crisp SVG + table).
+Planned sims: tsconfig explorer (M11), resolution tracer (M12).
 
 ## 7. Theme / brand
 Dark editorial; palette in `theme/tokens.css`; TypeScript‑blue accent (`#3178c6`). Fonts **Fraunces**
@@ -105,8 +105,8 @@ build → upload `dist` → deploy. `concurrency: cancel-in-progress: false`. `v
 ## 13. Session roadmap
 - **S1 (done):** scaffold + app shell + **M5 golden** (Generics & Conditional Types) + sim + 2 figures
   + palette retuned to the official TypeScript brand (white + #00273F navy + #3178C6; light default).
-- **S2 (next) — Section I, M1 + M2.** Author both to the golden DoD (§§4,6,10), replacing their stubs in
-  `concepts.ts` (import like `m5`, set `signature:true`, `level:'middle'`):
+- **S2 (done) — Section I, M1 + M2.** Authored both to the golden DoD (§§4,6,10), replacing their stubs in
+  `concepts.ts` (imported like `m5`, `signature:true`, `level:'middle'`):
   - **M1 `m1-structural-typing`** — *Structural Typing & Assignability*. Sim = **structural-assignability
     checker** ("is A assignable to B?" with a member-by-member reasoning trace): pure engine
     `src/lib/assignability.ts` + `scripts/test-assignability.ts` + `components/sims/AssignabilitySim.tsx`
@@ -126,7 +126,7 @@ build → upload `dist` → deploy. `concurrency: cancel-in-progress: false`. `v
   - **Kickoff phrase for the new session:** *"Continue the TypeScript guide — author modules M1 and M2
     (Section I) per CLAUDE.md §13. Read CLAUDE.md, PROJECT-BRIEF and CURRICULUM and the M5/typeEval
     patterns first."*
-- **S3:** M4 (generics) + M6 (mapped/template‑literal types).
+- **S3 (next):** M4 (generics) + M6 (mapped/template‑literal types).
 - **S4:** M7 (utility types) + M3 (functions & variance).
 - **S5–S7:** Section III (applied) then Section IV (compiler/tooling), 1–2 modules each.
 - **Polish:** remaining sims · `#/decide` picker · flashcards/quiz · deploy.
@@ -144,3 +144,18 @@ build → upload `dist` → deploy. `concurrency: cancel-in-progress: false`. `v
   smoke ✓ (53 SSR checks, EN+UK) · build ✓` (code‑split, react‑vendor isolated).
   Branch `s1-scaffold-golden-m5`. **Owner:** delete sandbox `node_modules`/`dist`, `npm install`, then
   commit + first Pages deploy. **Open items:** meta/bundle split deferred; next session = M1 + M2.
+- **S2** — **Authored Section I: M1 (Structural Typing & Assignability) + M2 (Narrowing & CFA).** Both to
+  the golden DoD — 5 topics each, all 7 block kinds, key points, pitfalls, 4 interview Q&A, verified
+  sources, EN+UA. Two **★ signature sims**, each a pure engine + unit test + component (ARIA live region +
+  `prefers-reduced-motion`): **`structural-assignability`** (`lib/assignability.ts`, 141‑assertion test) —
+  pick Source/Target, step the member‑by‑member obligations, toggle "fresh literal" for the excess‑property
+  check, ⇄ to flip direction; **`control-flow-narrowing`** (`lib/narrowing.ts`, 42‑assertion test) — step
+  preset snippets line‑by‑line, watch the union shrink to `never` at an exhaustive switch. Added 2 figures
+  (`structural-vs-nominal`, `narrowing-funnel`), 9 glossary terms, `.as-*`/`.nr-*` sim CSS, smoke canaries +
+  M1/M2 route hashes. Facts web‑verified: excess‑property checks & freshness; const assertions (3.4);
+  `satisfies` (4.9); `strictFunctionTypes` (2.6, methods stay bivariant); assertion functions / `asserts`
+  (3.7); inferred type predicates (5.5). COUNTS 4/13, sims → 3.
+  **Verification:** `typecheck ✓ · lint ✓ · check:data ✓ (4 sections, 13 modules) · test ✓ (256:
+  141+42+73) · smoke ✓ (73 checks, 3 sims + 4 figures, EN+UK) · build ✓` (all sims code‑split).
+  Branch `s2-section-i-m1-m2`. **Owner:** delete sandbox `node_modules`/`dist*`, `npm install`, commit +
+  deploy. **Open items:** meta/bundle split still deferred; next = S3 (M4 generics + M6 mapped/template).

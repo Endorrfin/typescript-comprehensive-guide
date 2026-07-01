@@ -13,12 +13,16 @@ function lazyNamed<M extends Record<string, ComponentType>>(
 // ── Sims ─────────────────────────────────────────────────────────────────────
 export const sims: Record<string, ComponentType> = {
   'conditional-type-eval': lazyNamed(() => import('../components/sims/ConditionalTypeSim'), 'ConditionalTypeSim'), // ★ M5
+  'structural-assignability': lazyNamed(() => import('../components/sims/AssignabilitySim'), 'AssignabilitySim'), // ★ M1
+  'control-flow-narrowing': lazyNamed(() => import('../components/sims/NarrowingSim'), 'NarrowingSim'), // ★ M2
 };
 
 // ── Figures ───────────────────────────────────────────────────────────────────
 export const figures: Record<string, ComponentType> = {
   'distributive-conditional': lazyNamed(() => import('../components/figures/DistributiveConditional'), 'DistributiveConditional'), // M5
   'infer-extraction': lazyNamed(() => import('../components/figures/InferExtraction'), 'InferExtraction'), // M5
+  'structural-vs-nominal': lazyNamed(() => import('../components/figures/StructuralVsNominal'), 'StructuralVsNominal'), // M1
+  'narrowing-funnel': lazyNamed(() => import('../components/figures/NarrowingFunnel'), 'NarrowingFunnel'), // M2
 };
 
 export const getSim = (key: string): ComponentType | undefined => sims[key];
