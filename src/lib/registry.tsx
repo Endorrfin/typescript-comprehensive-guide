@@ -17,6 +17,7 @@ export const sims: Record<string, ComponentType> = {
   'control-flow-narrowing': lazyNamed(() => import('../components/sims/NarrowingSim'), 'NarrowingSim'), // ★ M2
   'mapped-type-transform': lazyNamed(() => import('../components/sims/MappedTypeSim'), 'MappedTypeSim'), // ★ M6
   'generic-inference': lazyNamed(() => import('../components/sims/InferenceSim'), 'InferenceSim'), // ★ M4
+  'utility-type-decode': lazyNamed(() => import('../components/sims/UtilityTypeSim'), 'UtilityTypeSim'), // ★ M7
 };
 
 // ── Figures ───────────────────────────────────────────────────────────────────
@@ -27,6 +28,7 @@ export const figures: Record<string, ComponentType> = {
   'narrowing-funnel': lazyNamed(() => import('../components/figures/NarrowingFunnel'), 'NarrowingFunnel'), // M2
   'mapped-type-mechanism': lazyNamed(() => import('../components/figures/MappedTypeMechanism'), 'MappedTypeMechanism'), // M6
   'inference-sites': lazyNamed(() => import('../components/figures/InferenceSites'), 'InferenceSites'), // M4
+  'utility-type-taxonomy': lazyNamed(() => import('../components/figures/UtilityTypeTaxonomy'), 'UtilityTypeTaxonomy'), // M7
 };
 
 export const getSim = (key: string): ComponentType | undefined => sims[key];

@@ -56,15 +56,16 @@ with **pitfalls** + interview Q&A. Stubs carry a mental model + nav only (`topic
 - **III · Applied TypeScript** — decorators & DI, DTO validation, RxJS/signals typing.
 - **IV · Compiler & Tooling** — tsconfig/strictness, module resolution & project refs, declaration files.
 - **4 sections · 13 modules.** S1 shipped M5 + the app shell; S2 shipped M1 + M2 (Section I); S3 added
-  M4 + M6 (Section II).
+  M4 + M6 (Section II); S4 added M7 — **Section II (type‑level) now complete**.
 
 ## 6. Signature interactives + diagram‑first baseline
 Curated sims only — a pure engine in `lib/*` (deterministic, unit‑tested) + a component (play/pause/step,
-ARIA + live region, **`prefers-reduced-motion`** fallback). Shipped (5): **★ `conditional-type-eval`** (M5,
+ARIA + live region, **`prefers-reduced-motion`** fallback). Shipped (6): **★ `conditional-type-eval`** (M5,
 `lib/typeEval.ts` · 73); **★ `structural-assignability`** (M1, `lib/assignability.ts` · 141);
 **★ `control-flow-narrowing`** (M2, `lib/narrowing.ts` · 42); **★ `generic-inference`** (M4,
-`lib/inference.ts` · 37); **★ `mapped-type-transform`** (M6, `lib/mappedType.ts` · 52). Diagram‑first
-elsewhere (crisp SVG + table). Planned sims: tsconfig explorer (M11), resolution tracer (M12).
+`lib/inference.ts` · 37); **★ `mapped-type-transform`** (M6, `lib/mappedType.ts` · 52);
+**★ `utility-type-decode`** (M7, `lib/utilityType.ts` · 188). Diagram‑first elsewhere (crisp SVG + table).
+Planned sims: tsconfig explorer (M11), resolution tracer (M12).
 
 ## 7. Theme / brand
 Dark editorial; palette in `theme/tokens.css`; TypeScript‑blue accent (`#3178c6`). Fonts **Fraunces**
@@ -129,8 +130,10 @@ build → upload `dist` → deploy. `concurrency: cancel-in-progress: false`. `v
     (Section I) per CLAUDE.md §13. Read CLAUDE.md, PROJECT-BRIEF and CURRICULUM and the M5/typeEval
     patterns first."*
 - **S3 (done):** M4 (generics) + M6 (mapped/template‑literal types) — both authored with signature sims.
-- **S4 (next):** M7 (utility types) + M3 (functions & variance).
-- **S5–S7:** Section III (applied) then Section IV (compiler/tooling), 1–2 modules each.
+- **S4 (done):** M7 (utility types) + the ★ utility‑type decoder — **Section II complete**. Single module,
+  golden depth (M3 deferred to S5).
+- **S5 (next):** M3 (Functions, Overloads & Variance) — completes Section I.
+- **S6–S8:** Section III (applied) then Section IV (compiler/tooling), 1–2 modules each.
 - **Polish:** remaining sims · `#/decide` picker · flashcards/quiz · deploy.
 
 ## 14. Status / progress log
@@ -178,3 +181,21 @@ build → upload `dist` → deploy. `concurrency: cancel-in-progress: false`. `v
   Branch `s3-section-ii-m4-m6`. **Owner:** delete sandbox `node_modules`/`dist*`, `npm install`, commit +
   deploy. **Open items:** meta/bundle split still deferred (5 authored modules — revisit soon); next = S4
   (M7 utility types + M3 functions & variance). Section I now needs only M3 to be complete.
+- **S4** — **Completed Section II: M7 (Built‑in Utility Types, Decoded).** Authored to the golden DoD —
+  5 topics (map‑or‑filter taxonomy · object‑shaping mapped · union‑filtering distributive · function
+  inspection `infer` · `Awaited` & composing), all 7 block kinds, 6 key points, 4 pitfalls, 4 interview
+  Q&A, 8 verified sources, EN+UA. One **★ signature sim** — pure engine + unit test + component (ARIA live
+  region + `prefers-reduced-motion`): **`utility-type-decode`** (`lib/utilityType.ts`, 188‑assertion test)
+  — pick a utility (Partial/Pick/Omit/Exclude/ReturnType/Awaited/…) + an input and step its REAL `lib.d.ts`
+  definition as it expands to the concrete type, each step badged by mechanism (mapped · conditional ·
+  infer · recursive). Added 1 figure (`utility-type-taxonomy`, the two‑trunk family tree), 3 glossary terms
+  (Exclude, Omit, Awaited), `.ut-*` sim CSS, smoke canaries + the M7 route hash. Facts web‑verified:
+  Partial/Readonly/Record/Pick 2.1; Required/Exclude/Extract/NonNullable/ReturnType/InstanceType 2.8;
+  Parameters/ConstructorParameters 3.1; Omit 3.5; Awaited 4.5; NonNullable rewritten in **4.8** to `T & {}`;
+  overloads infer from the **last** signature; current TS 6.0 stable / 7.0 RC (Go‑native, Jun 2026, identical
+  checking semantics). COUNTS 4/13, sims → 6, figures → 7.
+  **Verification:** `typecheck ✓ · lint ✓ · check:data ✓ (4 sections, 13 modules) · test ✓ (533:
+  141+37+52+42+73+188) · smoke ✓ (100 checks, 6 sims + 7 figures, EN+UK) · build ✓` (all sims code‑split;
+  `UtilityTypeSim`/`UtilityTypeTaxonomy` isolated chunks). Branch `s4-section-ii-m7`. **Owner:** delete
+  sandbox `node_modules`/`dist*`, `npm install`, commit + deploy. **Open items:** meta/bundle split still
+  deferred (6 authored modules — revisit); **Section II complete**; next = S5 (M3, completes Section I).

@@ -35,7 +35,7 @@ See `CLAUDE.md` §4 and `src/data/types.ts` (the shared Tier‑1 contract). Leve
 | 4 | **`m4-generics`** ★ | **Generic Functions & Classes** | senior | parametric polymorphism · constraints · defaults · inference sites | **★ generic‑inference tracer** |
 | 5 | **`m5-generics-conditional-types`** ★ | **Generics & Conditional Types** | senior | generics→types that compute · conditional types & distribution · `infer` · the utility‑type bridge · engineering type‑level code | **★ conditional‑type / `infer` evaluator** |
 | 6 | **`m6-mapped-template-literals`** ★ | **Mapped & Template‑Literal Types** | senior | `[K in keyof T]` · modifiers · key remapping (`as`) · template literal types | **★ mapped‑type transformer** |
-| 7 | `m7-utility-types` | Built‑in Utility Types, Decoded | senior | Partial/Pick/Record · ReturnType/Parameters · Awaited · reading `lib.d.ts` | — |
+| 7 | **`m7-utility-types`** ★ | **Built‑in Utility Types, Decoded** | senior | map-or-filter taxonomy · object-shaping (mapped) · union-filtering (distributive) · function inspection (`infer`) · Awaited & composing | **★ utility‑type decoder** |
 
 ### Section III — Applied TypeScript (`s3-applied`)
 | # | id | Module | Level | Topics | Signature sim |
@@ -52,8 +52,9 @@ See `CLAUDE.md` §4 and `src/data/types.ts` (the shared Tier‑1 contract). Leve
 | 13 | `m13-declaration-files` | Declaration Files & Publishing Types | staff | authoring `.d.ts` · shipping types · not breaking consumers | — |
 
 ## E. Totals & asset budget
-**4 sections · 13 modules · 5 signature sims shipped** (M5 · M1 · M2 · M4 · M6; target ~5–6 across the
-project) · 6 figures shipped (M5 ×2, M1, M2, M4, M6). Rough topic count: ~40 across the curriculum.
+**4 sections · 13 modules · 6 signature sims shipped** (M5 · M1 · M2 · M4 · M6 · M7; target ~6–8 across
+the project) · 7 figures shipped (M5 ×2, M1, M2, M4, M6, M7). Rough topic count: ~45 across the
+curriculum. **Section II (type‑level) is now complete** (M4·M5·M6·M7).
 
 ## F. Build order
 1. **S1 (golden, shipped):** M5 — Generics & Conditional Types + the conditional‑type/`infer` evaluator,
@@ -62,6 +63,8 @@ project) · 6 figures shipped (M5 ×2, M1, M2, M4, M6). Rough topic count: ~40 a
    grounding Section I and adding two signature sims.
 3. **S3 (shipped):** M4 (generics + inference tracer) and M6 (mapped/template‑literal types + transformer)
    — deepening Section II around the golden M5.
-4. **S4…SN:** batches of 1–2 modules. Suggested next: M7 (utility types) + M3 (functions & variance) —
-   M3 completes Section I.
-5. Remaining signature sims · `#/decide` picker · flashcards/quiz · polish · deploy.
+4. **S4 (shipped):** M7 (utility types + the ★ utility‑type decoder) — completing Section II. Single
+   module, golden depth.
+5. **S5…SN:** batches of 1–2 modules. Suggested next: M3 (functions & variance) — completes Section I —
+   then Section III (applied) and Section IV (compiler/tooling).
+6. Remaining signature sims · `#/decide` picker · flashcards/quiz · polish · deploy.

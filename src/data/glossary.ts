@@ -287,4 +287,29 @@ export const glossary: GlossaryEntry[] = [
     },
     seeAlso: ['generic', 'union'],
   },
+  // ── S4: Section II (M7 utility types) ─────────────────────────────────────
+  {
+    term: 'Exclude',
+    def: {
+      en: '`Exclude<T, U> = T extends U ? never : T` — a distributive conditional that drops every union member assignable to `U` (each becomes `never` and vanishes). `Extract` is the inverse, keeping the matches.',
+      uk: '`Exclude<T, U> = T extends U ? never : T` — distributive conditional, що викидає кожен член union, assignable до `U` (кожен стає `never` і зникає). `Extract` — інверсія, лишає збіги.',
+    },
+    seeAlso: ['distributive conditional type', 'never', 'utility type'],
+  },
+  {
+    term: 'Omit',
+    def: {
+      en: '`Omit<T, K> = Pick<T, Exclude<keyof T, K>>` — remove keys `K` from an object type. Built on Pick + Exclude, so it is NOT homomorphic and does not distribute over unions (use a distributive wrapper for discriminated unions).',
+      uk: '`Omit<T, K> = Pick<T, Exclude<keyof T, K>>` — прибрати ключі `K` з обʼєктного типу. Побудований на Pick + Exclude, тож НЕ homomorphic і не дистрибутивний по union (для discriminated unions беріть distributive-обгортку).',
+    },
+    seeAlso: ['homomorphic mapped type', 'Exclude', 'utility type'],
+  },
+  {
+    term: 'Awaited',
+    def: {
+      en: 'A recursive utility type (TS 4.5) that unwraps nested `Promise`s/thenables to model `await`; it also distributes over unions. `Awaited<Promise<Promise<string>>>` is `string`.',
+      uk: 'Рекурсивний utility-тип (TS 4.5), що розгортає вкладені `Promise`/thenable, моделюючи `await`; також дистрибутивний по union. `Awaited<Promise<Promise<string>>>` — це `string`.',
+    },
+    seeAlso: ['conditional type', 'infer', 'utility type'],
+  },
 ];
