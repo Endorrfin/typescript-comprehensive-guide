@@ -18,6 +18,8 @@ export const sims: Record<string, ComponentType> = {
   'mapped-type-transform': lazyNamed(() => import('../components/sims/MappedTypeSim'), 'MappedTypeSim'), // ★ M6
   'generic-inference': lazyNamed(() => import('../components/sims/InferenceSim'), 'InferenceSim'), // ★ M4
   'utility-type-decode': lazyNamed(() => import('../components/sims/UtilityTypeSim'), 'UtilityTypeSim'), // ★ M7
+  'tsconfig-strictness': lazyNamed(() => import('../components/sims/TsconfigStrictSim'), 'TsconfigStrictSim'), // ★ M11 (S8)
+  'module-resolution': lazyNamed(() => import('../components/sims/ResolutionSim'), 'ResolutionSim'), // ★ M12 (S8)
 };
 
 // ── Figures ───────────────────────────────────────────────────────────────────
@@ -37,6 +39,9 @@ export const figures: Record<string, ComponentType> = {
   'schema-single-source': lazyNamed(() => import('../components/figures/SchemaSingleSource'), 'SchemaSingleSource'), // M9 (S7)
   'signals-vs-streams': lazyNamed(() => import('../components/figures/SignalsVsStreams'), 'SignalsVsStreams'), // M10 (S7)
   'operator-type-flow': lazyNamed(() => import('../components/figures/OperatorTypeFlow'), 'OperatorTypeFlow'), // M10 (S7)
+  'strict-family': lazyNamed(() => import('../components/figures/StrictFamily'), 'StrictFamily'), // M11 (S8)
+  'resolution-pipeline': lazyNamed(() => import('../components/figures/ResolutionPipeline'), 'ResolutionPipeline'), // M12 (S8)
+  'project-references': lazyNamed(() => import('../components/figures/ProjectReferences'), 'ProjectReferences'), // M12 (S8)
 };
 
 export const getSim = (key: string): ComponentType | undefined => sims[key];

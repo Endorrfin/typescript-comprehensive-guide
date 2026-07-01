@@ -60,20 +60,23 @@ with **pitfalls** + interview Q&A. Stubs carry a mental model + nav only (`topic
 - **4 sections · 13 modules.** S1 shipped M5 + the app shell; S2 shipped M1 + M2 (Section I); S3 added
   M4 + M6 (Section II); S4 added M7 (**Section II complete**); S5 added M3 + the meta split (**Section I
   complete**); S6 opened **Section III** with **M8 (Decorators & Metadata)**; S7 added **M9 (DTO Validation)
-  + M10 (RxJS/Signals)** — **Section III complete**. Section IV (M11–M13) remains (stubs).
+  + M10 (RxJS/Signals)** — **Section III complete**; S8 opened **Section IV** with **M11 (tsconfig &
+  strictness) + M12 (modules & resolution)**, each with a ★ signature sim. Only **M13** remains (stub).
 
 ## 6. Signature interactives + diagram‑first baseline
 Curated sims only — a pure engine in `lib/*` (deterministic, unit‑tested) + a component (play/pause/step,
-ARIA + live region, **`prefers-reduced-motion`** fallback). Shipped (6): **★ `conditional-type-eval`** (M5,
+ARIA + live region, **`prefers-reduced-motion`** fallback). Shipped (8): **★ `conditional-type-eval`** (M5,
 `lib/typeEval.ts` · 73); **★ `structural-assignability`** (M1, `lib/assignability.ts` · 141);
 **★ `control-flow-narrowing`** (M2, `lib/narrowing.ts` · 42); **★ `generic-inference`** (M4,
 `lib/inference.ts` · 37); **★ `mapped-type-transform`** (M6, `lib/mappedType.ts` · 52);
-**★ `utility-type-decode`** (M7, `lib/utilityType.ts` · 188). Diagram‑first elsewhere (crisp SVG + table) —
+**★ `utility-type-decode`** (M7, `lib/utilityType.ts` · 188); **★ `tsconfig-strictness`** (M11,
+`lib/tsconfigStrict.ts` · 82); **★ `module-resolution`** (M12, `lib/resolution.ts` · 67). Diagram‑first elsewhere (crisp SVG + table) —
 **M3 (functions & variance) is diagram‑first**, no sim: figures `variance-directions` + `overload-resolution`;
 **M8 (decorators & metadata) is diagram‑first** too: figures `decorator-two-systems` + `di-metadata-flow`;
 **M9 (DTO validation)** adds `trust-boundary` + `schema-single-source`; **M10 (RxJS/signals)** adds
-`signals-vs-streams` + `operator-type-flow` (figures now **15**). Planned sims: tsconfig explorer (M11),
-resolution tracer (M12).
+`signals-vs-streams` + `operator-type-flow`; **M11** adds `strict-family`; **M12** adds `resolution-pipeline`
++ `project-references` (figures now **18**). All planned signature sims are shipped (M11 · M12); the final
+module M13 will be diagram-first.
 
 ## 7. Theme / brand
 Dark editorial; palette in `theme/tokens.css`; TypeScript‑blue accent (`#3178c6`). Fonts **Fraunces**
@@ -148,13 +151,17 @@ build → upload `dist` → deploy. `concurrency: cancel-in-progress: false`. `v
 - **S7 (done):** continued **Section III** — M9 (DTO Validation & API Boundaries) + M10 (Typing RxJS,
   Signals & Component State), both diagram‑first, grounded in the owner's NestJS 11 / Angular 21 stack.
   **Section III complete.** See §14.
-- **S8 (next):** **Section IV (Compiler & Tooling)** — M11 (tsconfig & the strictness model) + M12 (modules,
-  resolution & project refs) and/or M13 (declaration files). M11/M12 carry the two remaining planned
-  signature sims (tsconfig strictness explorer · module‑resolution tracer). 1–2 modules per session.
-  - **Kickoff phrase for the new session:** *"Continue the TypeScript guide — author Section IV modules
-    (M11 tsconfig & strictness, then M12 modules & resolution) per CLAUDE.md §13 to golden depth. Read
-    CLAUDE.md, PROJECT-BRIEF, CURRICULUM and the M8/M9/M10 (+M1/M2/M3) patterns first."*
-- **Polish:** remaining sims · `#/decide` picker · flashcards/quiz · deploy.
+- **S8 (done):** **Section IV opened — M11 (tsconfig & the Strictness Model) + M12 (Modules, Resolution &
+  Project References), both with the two remaining planned ★ signature sims** (`tsconfig-strictness` ·
+  `module-resolution`, each a pure engine + unit test). Golden DoD, grounded in the owner's Node 22 / NestJS /
+  esbuild-Serverless stack. See §14. Only M13 remains a stub.
+- **S9 (next):** **M13 (Declaration Files & Publishing Types)** — completes all 13 modules and Section IV.
+  Diagram-first (staff level; no planned sim); authoring `.d.ts`, shipping types with a package, `exports`
+  types conditions, and not breaking consumers (ties to M12 exports + M11 isolatedDeclarations).
+  - **Kickoff phrase for the new session:** *"Continue the TypeScript guide — author M13 (declaration files
+    & publishing types), diagram-first, per CLAUDE.md §13 to golden depth. Read CLAUDE.md, PROJECT-BRIEF,
+    CURRICULUM and the M8/M9/M10 diagram-first patterns + M11/M12 first."*
+- **Polish:** `#/decide` picker · flashcards/quiz · final QA · deploy.
 
 ## 14. Status / progress log
 - **S1** — **Scaffolded the guide and shipped the golden module.** Stood up the Tier‑1 SPA (Vite + React
@@ -306,3 +313,40 @@ build → upload `dist` → deploy. `concurrency: cancel-in-progress: false`. `v
   `s7-section-iii-m9-m10`. **Owner:** delete sandbox `node_modules`/`dist*`, `npm install`, commit + deploy.
   **Open items:** **Section III complete**; next = S8 (Section IV — M11 tsconfig/strictness + M12 modules/
   resolution, both with planned signature sims).
+- **S8** — **Opened Section IV (Compiler & Tooling): M11 (tsconfig & the Strictness Model) + M12 (Modules,
+  Resolution & Project References) — both signature modules with the two remaining planned ★ sims.**
+  Authored to the golden DoD — 5 topics each, all 7 block kinds, 6 key points, 4 pitfalls, 4 interview
+  Q&A, 8/7 verified sources, EN+UA. **M11** teaches tsconfig-as-contract, then the thesis that `strict`
+  is a **family of nine flags** (not one switch) and that `noUncheckedIndexedAccess`/`exactOptionalPropertyTypes`
+  are the highest-value checks left OUTSIDE it, then `target`/`lib`/`module` as three independent axes, then
+  the bundled-build emit flags (`verbatimModuleSyntax`, `isolatedModules`, `isolatedDeclarations`) grounded
+  in the owner's Node 22 / NestJS / esbuild-Serverless stack. **★ sim `tsconfig-strictness`**
+  (`lib/tsconfigStrict.ts`, 82-assertion test) — pick a code sample, step the strict family one diagnostic
+  at a time; each flag lights its offending line and shows the real TSxxxx error, with a checklist marking
+  in-strict vs beyond-strict. Figure `strict-family`. **M12** grounds resolution as "the compiler retracing
+  the runtime's exact path": the four modes (classic/node10/node16·nodenext/bundler), extension substitution
+  (`.ts`/`.d.ts` read before `.js`; ESM makes the written `.js` extension mandatory), package.json
+  `exports`/`imports` conditional maps (key-order matching + encapsulation) versus the compiler-only `paths`
+  trap, and composite project references (`tsc -b`, `.tsbuildinfo`, `declarationMap`). **★ sim
+  `module-resolution`** (`lib/resolution.ts`, 67-assertion test) — a **real resolver** over one fixed virtual
+  project; step the ordered candidate-path probes until it resolves or fails. Figures `resolution-pipeline`
+  + `project-references`. Registered both sims + 3 figures in `registry.tsx`; added 12 glossary terms
+  (strict, strictNullChecks, noUncheckedIndexedAccess, verbatimModuleSyntax, isolatedModules,
+  moduleResolution, extension substitution, package exports, project references, composite, tsbuildinfo,
+  declaration file); `.sx-*`/`.rt-*` sim CSS; smoke canaries + M11/M12 route hashes; replaced both stubs in
+  `concepts.ts`. Facts web-verified: the nine `strict` members + versions; strictBuiltinIteratorReturn joined
+  `strict` in **5.6**; noUncheckedIndexedAccess (**4.1**) & exactOptionalPropertyTypes (**4.4**) are NOT in
+  `strict`; verbatimModuleSyntax (**5.0**, replaced importsNotUsedAsValues + preserveValueImports);
+  isolatedDeclarations (**5.5**); moduleResolution modes with `bundler` + `node`→`node10` rename (**5.0**);
+  extension-substitution order; ESM requires the extension; allowImportingTsExtensions (**5.0**);
+  rewriteRelativeImportExtensions (**5.7**); `exports`/`imports` conditions match in key order and encapsulate;
+  composite/`tsc -b`/`.tsbuildinfo`/`declarationMap`; **TS 6.0** JS-based stable, **TS 7.0** the Go-native port
+  ("tsgo", RC **Jun 18 2026**) with identical checking semantics. COUNTS 4/13, sims **6 → 8**, figures **15 → 18**.
+  **Verification:** `gen:meta ✓ (13 modules, 8 sims) · typecheck ✓ (+check:meta) · lint ✓ · check:data ✓
+  (4 sections, 13 modules) · test ✓ (682: 141+37+52+42+67+82+73+188) · smoke ✓ (158 checks, 8 sims + 18
+  figures, EN+UK) · build ✓ (dist-s8x; TsconfigStrictSim/ResolutionSim + StrictFamily/ResolutionPipeline/
+  ProjectReferences isolated chunks; concepts body chunk 492 KB, deferred)`. Branch `s8-section-iv-m11-m12`.
+  **Owner:** delete sandbox `node_modules`/`dist*`, `npm install`, commit + deploy. **Open items:** Section IV
+  nearly complete — only **M13 (declaration files)** remains a stub; next = S9 (M13, completing all 13
+  modules) then polish (`#/decide` picker · flashcards/quiz · deploy). Note: build into a fresh `dist-sNx`
+  (sandbox `unlink` block means `--emptyOutDir` fails on a dir that already exists).

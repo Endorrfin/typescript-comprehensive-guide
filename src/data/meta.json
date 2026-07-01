@@ -55,6 +55,8 @@
   ],
   "signatureSims": [
     "m1-structural-typing",
+    "m11-tsconfig-strictness",
+    "m12-modules-resolution",
     "m2-narrowing",
     "m4-generics",
     "m5-generics-conditional-types",
@@ -718,23 +720,64 @@
       "section": "s4-compiler",
       "order": 1,
       "level": "senior",
-      "signature": false,
+      "signature": true,
       "title": {
         "en": "tsconfig & the Strictness Model",
         "uk": "tsconfig та модель strictness"
       },
       "tagline": {
-        "en": "What each strict flag buys you, and how target/lib/module shape emit.",
-        "uk": "Що дає кожен strict-флаг, і як target/lib/module формують emit."
+        "en": "What each strict flag actually buys you, why \"strict\" is nine checks not one, and how target/lib/module shape the emit.",
+        "uk": "Що насправді дає кожен strict-флаг, чому «strict» — це девʼ ять перевірок, а не одна, і як target/lib/module формують emit."
       },
       "mentalModel": {
-        "en": "tsconfig is a contract with the compiler — strictness trades a little friction for fewer runtime bugs.",
-        "uk": "tsconfig — це контракт із компілятором: strictness міняє трохи тертя на менше runtime-багів."
+        "en": "tsconfig is a contract with the compiler. \"strict\" is not a dial you turn to 100% — it is a bundle of nine independent checks, and a few of the most valuable checks are not even in the bundle.",
+        "uk": "tsconfig — це контракт із компілятором. «strict» — не регулятор, який ви викручуєте на 100%: це набір із девʼяти незалежних перевірок, і кілька найцінніших перевірок узагалі не входять до нього."
       },
-      "readMins": 0,
-      "topics": [],
-      "seeAlso": [],
-      "authored": false
+      "readMins": 18,
+      "topics": [
+        {
+          "id": "t1-contract",
+          "title": {
+            "en": "tsconfig is a contract with the compiler",
+            "uk": "tsconfig — це контракт із компілятором"
+          }
+        },
+        {
+          "id": "t2-strict-family",
+          "title": {
+            "en": "\"strict\" is a family of nine flags",
+            "uk": "«strict» — це родина з девʼяти флагів"
+          }
+        },
+        {
+          "id": "t3-beyond-strict",
+          "title": {
+            "en": "strict ≠ maximally strict",
+            "uk": "strict ≠ максимально суворо"
+          }
+        },
+        {
+          "id": "t4-target-lib-module",
+          "title": {
+            "en": "target, lib & module — three independent axes",
+            "uk": "target, lib і module — три незалежні осі"
+          }
+        },
+        {
+          "id": "t5-emit-flags",
+          "title": {
+            "en": "Emit & interop: verbatimModuleSyntax, isolated*",
+            "uk": "Emit та interop: verbatimModuleSyntax, isolated*"
+          }
+        }
+      ],
+      "seeAlso": [
+        "m12-modules-resolution",
+        "m3-functions-variance",
+        "m8-decorators-metadata",
+        "m9-dto-validation"
+      ],
+      "authored": true
     },
     {
       "id": "m12-modules-resolution",
@@ -742,23 +785,64 @@
       "section": "s4-compiler",
       "order": 2,
       "level": "senior",
-      "signature": false,
+      "signature": true,
       "title": {
         "en": "Modules, Resolution & Project References",
         "uk": "Модулі, Resolution та Project References"
       },
       "tagline": {
-        "en": "How TS finds files: moduleResolution, paths, exports maps, and composite builds.",
-        "uk": "Як TS знаходить файли: moduleResolution, paths, exports maps та composite-збірки."
+        "en": "How TypeScript finds a file behind an import: moduleResolution, extension substitution, exports maps, and composite project builds.",
+        "uk": "Як TypeScript знаходить файл за імпортом: moduleResolution, підстановка розширень, exports maps і composite-збірки проєктів."
       },
       "mentalModel": {
-        "en": "Module resolution is the compiler retracing the exact path your runtime will take to a file.",
-        "uk": "Module resolution — це компілятор, що повторює точний шлях, яким runtime дійде до файлу."
+        "en": "Module resolution is the compiler retracing the exact path your runtime or bundler will take to reach a file. When it and the runtime disagree, you get \"cannot find module\" — or worse, code that type-checks and then crashes.",
+        "uk": "Module resolution — це компілятор, що повторює точний шлях, яким ваш runtime чи bundler дійде до файлу. Коли він і runtime розходяться, ви отримуєте «cannot find module» — або гірше, код, що проходить перевірку типів і потім падає."
       },
-      "readMins": 0,
-      "topics": [],
-      "seeAlso": [],
-      "authored": false
+      "readMins": 20,
+      "topics": [
+        {
+          "id": "t1-what-resolution",
+          "title": {
+            "en": "What resolution actually answers",
+            "uk": "На що насправді відповідає resolution"
+          }
+        },
+        {
+          "id": "t2-modes",
+          "title": {
+            "en": "The four resolution modes",
+            "uk": "Чотири режими resolution"
+          }
+        },
+        {
+          "id": "t3-extensions",
+          "title": {
+            "en": "Extension substitution & the ESM extension rule",
+            "uk": "Підстановка розширень і правило розширення ESM"
+          }
+        },
+        {
+          "id": "t4-exports-paths",
+          "title": {
+            "en": "\"exports\"/\"imports\" maps & the paths trap",
+            "uk": "\"exports\"/\"imports\" maps і пастка paths"
+          }
+        },
+        {
+          "id": "t5-project-refs",
+          "title": {
+            "en": "Project references & composite builds",
+            "uk": "Project references і composite-збірки"
+          }
+        }
+      ],
+      "seeAlso": [
+        "m11-tsconfig-strictness",
+        "m6-mapped-template-literals",
+        "m13-declaration-files",
+        "m8-decorators-metadata"
+      ],
+      "authored": true
     },
     {
       "id": "m13-declaration-files",

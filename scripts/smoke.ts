@@ -65,6 +65,8 @@ const SIM_CANARIES: Record<string, string[]> = {
   MappedTypeSim: ["keyof"], // M6 — every mapped-type signature contains keyof (no angle brackets)
   InferenceSim: ["identity"], // M4 — default preset's signature/name
   UtilityTypeSim: ["keyof"], // M7 — default (Partial) lib.d.ts signature contains keyof (no angle brackets)
+  TsconfigStrictSim: ["strictNullChecks"], // M11 — the strict-family checklist renders every flag id (English, no angle brackets)
+  ResolutionSim: ["bundler"], // M12 — the scenario dropdown lists every resolution mode (English, no angle brackets)
 };
 const FIG_CANARIES: Record<string, string[]> = {
   DistributiveConditional: ["A[] | B[] | C[]"],
@@ -82,6 +84,9 @@ const FIG_CANARIES: Record<string, string[]> = {
   SchemaSingleSource: ["z.infer"], // M9 figure — one schema derives the static type via z.infer
   SignalsVsStreams: ["toSignal"], // M10 figure — the Observable → signal bridge
   OperatorTypeFlow: ["OperatorFunction"], // M10 figure — the core operator type
+  StrictFamily: ["noImplicitAny"], // M11 figure — the first flag in the strict family
+  ResolutionPipeline: ["node_modules"], // M12 figure — the bare-specifier walk
+  ProjectReferences: ["tsbuildinfo"], // M12 figure — the incremental build fingerprint
 };
 
 async function main(): Promise<void> {
@@ -154,7 +159,7 @@ async function main(): Promise<void> {
 
   // ── Layer D: eager app shell + hash router ──────────────────────────────────────────────────────
   const { App } = await import("../src/App");
-  for (const hash of ["", "#/map", "#/m/m1-structural-typing", "#/m/m2-narrowing", "#/m/m3-functions-variance", "#/m/m4-generics", "#/m/m5-generics-conditional-types", "#/m/m6-mapped-template-literals", "#/m/m7-utility-types", "#/m/m8-decorators-metadata", "#/m/m9-dto-validation", "#/m/m10-rxjs-signals", "#/mental-models", "#/glossary", "#/does-not-exist"]) {
+  for (const hash of ["", "#/map", "#/m/m1-structural-typing", "#/m/m2-narrowing", "#/m/m3-functions-variance", "#/m/m4-generics", "#/m/m5-generics-conditional-types", "#/m/m6-mapped-template-literals", "#/m/m7-utility-types", "#/m/m8-decorators-metadata", "#/m/m9-dto-validation", "#/m/m10-rxjs-signals", "#/m/m11-tsconfig-strictness", "#/m/m12-modules-resolution", "#/mental-models", "#/glossary", "#/does-not-exist"]) {
     (g.location as { hash: string }).hash = hash;
     check(`App ${hash || "(empty)"}`, h(App), "en", 1500);
   }
