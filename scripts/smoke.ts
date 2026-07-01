@@ -78,6 +78,10 @@ const FIG_CANARIES: Record<string, string[]> = {
   OverloadResolution: ["first match"], // M3 figure — the first-match-wins tag on the winning signature
   DecoratorTwoSystems: ["descriptor"], // M8 figure — the legacy (target, key, descriptor) signature
   DiMetadataFlow: ["design:paramtypes"], // M8 figure — the emitted DI metadata key
+  TrustBoundary: ["unknown"], // M9 figure — the boundary types raw input as unknown
+  SchemaSingleSource: ["z.infer"], // M9 figure — one schema derives the static type via z.infer
+  SignalsVsStreams: ["toSignal"], // M10 figure — the Observable → signal bridge
+  OperatorTypeFlow: ["OperatorFunction"], // M10 figure — the core operator type
 };
 
 async function main(): Promise<void> {
@@ -150,7 +154,7 @@ async function main(): Promise<void> {
 
   // ── Layer D: eager app shell + hash router ──────────────────────────────────────────────────────
   const { App } = await import("../src/App");
-  for (const hash of ["", "#/map", "#/m/m1-structural-typing", "#/m/m2-narrowing", "#/m/m3-functions-variance", "#/m/m4-generics", "#/m/m5-generics-conditional-types", "#/m/m6-mapped-template-literals", "#/m/m7-utility-types", "#/m/m8-decorators-metadata", "#/mental-models", "#/glossary", "#/does-not-exist"]) {
+  for (const hash of ["", "#/map", "#/m/m1-structural-typing", "#/m/m2-narrowing", "#/m/m3-functions-variance", "#/m/m4-generics", "#/m/m5-generics-conditional-types", "#/m/m6-mapped-template-literals", "#/m/m7-utility-types", "#/m/m8-decorators-metadata", "#/m/m9-dto-validation", "#/m/m10-rxjs-signals", "#/mental-models", "#/glossary", "#/does-not-exist"]) {
     (g.location as { hash: string }).hash = hash;
     check(`App ${hash || "(empty)"}`, h(App), "en", 1500);
   }

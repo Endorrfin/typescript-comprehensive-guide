@@ -41,8 +41,8 @@ See `CLAUDE.md` §4 and `src/data/types.ts` (the shared Tier‑1 contract). Leve
 | # | id | Module | Level | Topics | Signature sim |
 |---|---|---|---|---|---|
 | 8 | **`m8-decorators-metadata`** | **Decorators & Metadata (NestJS · Angular)** | senior | two systems (standard vs legacy) · standard `(value, context)` · metadata & `reflect-metadata` (DI) · NestJS 11 vs Angular 21 · authoring typed decorators | — (diagram‑first: `decorator-two-systems` + `di-metadata-flow`) |
-| 9 | `m9-dto-validation` | DTOs, Validation & API Boundaries | senior | schema‑first (zod/class‑validator) · derive types from schema · never cast input | — |
-| 10 | `m10-rxjs-signals` | Typing RxJS, Signals & Component State | senior | operator type flow · typed signals/computed · discriminated UI state | — |
+| 9 | **`m9-dto-validation`** | **DTOs, Validation & API Boundaries** | senior | erasure & the boundary · schema‑first (zod, `z.infer`, parse/safeParse) · class‑first NestJS (`ValidationPipe`) · fail‑closed security · choosing + Standard Schema | — (diagram‑first: `trust-boundary` + `schema-single-source`) |
+| 10 | **`m10-rxjs-signals`** | **Typing RxJS, Signals & Component State** | senior | streams vs signals · RxJS operator type flow (`OperatorFunction`) · typed signal/computed/effect · `toSignal`/`toObservable` interop · discriminated‑union UI state | — (diagram‑first: `signals-vs-streams` + `operator-type-flow`) |
 
 ### Section IV — Compiler & Tooling (`s4-compiler`)
 | # | id | Module | Level | Topics | Signature sim |
@@ -52,11 +52,11 @@ See `CLAUDE.md` §4 and `src/data/types.ts` (the shared Tier‑1 contract). Leve
 | 13 | `m13-declaration-files` | Declaration Files & Publishing Types | staff | authoring `.d.ts` · shipping types · not breaking consumers | — |
 
 ## E. Totals & asset budget
-**4 sections · 13 modules · 8 modules authored · 6 signature sims shipped** (M5 · M1 · M2 · M4 · M6 · M7;
-target ~6–8 across the project) · **11 figures shipped** (M5 ×2, M1, M2, M4, M6, M7, M3 ×2, M8 ×2). Rough
-topic count: ~55 across the curriculum. **Sections I (type‑system) and II (type‑level) are complete**
-(I = M1·M2·M3; II = M4·M5·M6·M7); **Section III (applied) is under way — M8 authored** (M9, M10 remain).
-M3 and M8 are diagram‑first (authored, no sim). Section IV remains.
+**4 sections · 13 modules · 10 modules authored · 6 signature sims shipped** (M5 · M1 · M2 · M4 · M6 · M7;
+target ~6–8 across the project) · **15 figures shipped** (M5 ×2, M1, M2, M4, M6, M7, M3 ×2, M8 ×2, M9 ×2,
+M10 ×2). Rough topic count: ~65 across the curriculum. **Sections I (type‑system), II (type‑level) and III
+(applied) are complete** (I = M1·M2·M3; II = M4·M5·M6·M7; III = M8·M9·M10). M3, M8, M9 and M10 are
+diagram‑first (authored, no sim). **Only Section IV (compiler/tooling — M11·M12·M13) remains.**
 
 ## F. Build order
 1. **S1 (golden, shipped):** M5 — Generics & Conditional Types + the conditional‑type/`infer` evaluator,
@@ -70,6 +70,8 @@ M3 and M8 are diagram‑first (authored, no sim). Section IV remains.
 5. **S5 (shipped):** the deferred **meta/bundle split** (standard §4.4) first, then **M3 (functions &
    variance, diagram‑first)** — **Section I complete**.
 6. **S6 (shipped):** **Section III (applied) opened** — **M8 (decorators & metadata, diagram‑first)**,
-   grounded in the owner's NestJS 11 / Angular 21 stack. M9 (DTO validation) + M10 (RxJS/signals) remain.
-7. **S7…SN:** finish Section III then Section IV (compiler/tooling), 1–2 modules each.
-7. Remaining signature sims · `#/decide` picker · flashcards/quiz · polish · deploy.
+   grounded in the owner's NestJS 11 / Angular 21 stack.
+7. **S7 (shipped):** **M9 (DTO validation) + M10 (RxJS/signals), diagram‑first** — **Section III complete**.
+8. **S8…SN:** Section IV (compiler/tooling) — M11–M13, 1–2 modules each (M11/M12 carry the planned
+   signature sims: tsconfig strictness explorer · module‑resolution tracer).
+9. Remaining signature sims · `#/decide` picker · flashcards/quiz · polish · deploy.

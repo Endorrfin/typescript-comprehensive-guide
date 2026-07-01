@@ -594,17 +594,58 @@
         "uk": "DTO, Валідація та межі API"
       },
       "tagline": {
-        "en": "One source of truth for a shape: a runtime schema, with the static type derived from it.",
-        "uk": "Єдине джерело правди для форми: runtime-схема, з якої виводиться статичний тип."
+        "en": "Types vanish at runtime, so the edge of your system is where they lie. Validate there, and derive the type from the validator.",
+        "uk": "Типи зникають у runtime, тож край вашої системи — це місце, де вони брешуть. Валідуйте там і виводьте тип із валідатора."
       },
       "mentalModel": {
-        "en": "Validate at the door, infer the type from the validator — never cast untrusted input.",
-        "uk": "Валідуйте на вході, виводьте тип із валідатора — ніколи не кастуйте недовірений вхід."
+        "en": "A type annotation is a promise the compiler cannot keep about data it never saw. At every trust boundary, parse untrusted input into a typed value once — never cast it — and make the runtime schema the single source of truth the static type is derived from.",
+        "uk": "Анотація типу — це обіцянка, яку компілятор не може стримати щодо даних, яких він ніколи не бачив. На кожній межі довіри перетворюйте (parse) недовірений вхід на типізоване значення один раз — ніколи не кастуйте його — і робіть runtime-схему єдиним джерелом правди, з якого виводиться статичний тип."
       },
-      "readMins": 0,
-      "topics": [],
-      "seeAlso": [],
-      "authored": false
+      "readMins": 21,
+      "topics": [
+        {
+          "id": "t1-erasure-boundary",
+          "title": {
+            "en": "Why the boundary needs a runtime check",
+            "uk": "Чому межа потребує runtime-перевірки"
+          }
+        },
+        {
+          "id": "t2-schema-first",
+          "title": {
+            "en": "Schema-first: derive the type from the validator",
+            "uk": "Schema-first: виводьте тип із валідатора"
+          }
+        },
+        {
+          "id": "t3-class-first-nest",
+          "title": {
+            "en": "Class-first in NestJS: DTO classes + ValidationPipe",
+            "uk": "Class-first у NestJS: DTO-класи + ValidationPipe"
+          }
+        },
+        {
+          "id": "t4-security-fail-closed",
+          "title": {
+            "en": "Fail closed: mass-assignment, coercion & every boundary",
+            "uk": "Fail closed: mass-assignment, coercion і кожна межа"
+          }
+        },
+        {
+          "id": "t5-choosing-composing",
+          "title": {
+            "en": "Choosing an approach & Standard Schema",
+            "uk": "Вибір підходу та Standard Schema"
+          }
+        }
+      ],
+      "seeAlso": [
+        "m8-decorators-metadata",
+        "m2-narrowing",
+        "m7-utility-types",
+        "m1-structural-typing"
+      ],
+      "authored": true
     },
     {
       "id": "m10-rxjs-signals",
@@ -618,17 +659,58 @@
         "uk": "Типізація RxJS, Signals та стану компонентів"
       },
       "tagline": {
-        "en": "Operator type flow, typed signals/computed, and discriminated unions for UI state.",
-        "uk": "Потік типів через оператори, типізовані signals/computed і discriminated unions для UI-стану."
+        "en": "Two reactive models with two type stories: streams over time (RxJS) and memoized values (signals) — and how to model UI state so impossible states cannot compile.",
+        "uk": "Дві реактивні моделі з двома історіями типів: потоки в часі (RxJS) і memoized-значення (signals) — і як моделювати UI-стан, щоб неможливі стани не компілювались."
       },
       "mentalModel": {
-        "en": "Model state as a discriminated union so impossible states cannot be represented.",
-        "uk": "Моделюйте стан як discriminated union, щоб неможливі стани не можна було виразити."
+        "en": "A signal is a pull-based cell whose value you read now; an Observable is a push-based stream of values over time. Type the transformation, not the value — `OperatorFunction<T, R>` threads types through a pipe, `computed` derives one signal from another — and model component state as a discriminated union so impossible combinations are unrepresentable.",
+        "uk": "Signal — це pull-based комірка, значення якої ви читаєте зараз; Observable — це push-based потік значень у часі. Типізуйте перетворення, а не значення — `OperatorFunction<T, R>` протягує типи крізь pipe, `computed` виводить один signal з іншого — і моделюйте стан компонента як discriminated union, щоб неможливі комбінації не можна було виразити."
       },
-      "readMins": 0,
-      "topics": [],
-      "seeAlso": [],
-      "authored": false
+      "readMins": 21,
+      "topics": [
+        {
+          "id": "t1-two-reactive-models",
+          "title": {
+            "en": "Two reactive models: streams vs signals",
+            "uk": "Дві реактивні моделі: streams проти signals"
+          }
+        },
+        {
+          "id": "t2-operator-type-flow",
+          "title": {
+            "en": "RxJS operator type flow through `pipe`",
+            "uk": "Потік типів операторів RxJS крізь `pipe`"
+          }
+        },
+        {
+          "id": "t3-typed-signals",
+          "title": {
+            "en": "Typed signals: signal, computed, effect",
+            "uk": "Типізовані signals: signal, computed, effect"
+          }
+        },
+        {
+          "id": "t4-interop",
+          "title": {
+            "en": "Bridging RxJS ↔ signals: `toSignal` / `toObservable`",
+            "uk": "Мости RxJS ↔ signals: `toSignal` / `toObservable`"
+          }
+        },
+        {
+          "id": "t5-discriminated-state",
+          "title": {
+            "en": "Modelling component state as a discriminated union",
+            "uk": "Моделювання стану компонента як discriminated union"
+          }
+        }
+      ],
+      "seeAlso": [
+        "m2-narrowing",
+        "m9-dto-validation",
+        "m8-decorators-metadata",
+        "m7-utility-types"
+      ],
+      "authored": true
     },
     {
       "id": "m11-tsconfig-strictness",

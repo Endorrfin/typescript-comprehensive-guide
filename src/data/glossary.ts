@@ -424,4 +424,101 @@ export const glossary: GlossaryEntry[] = [
     },
     seeAlso: ['design:paramtypes', 'parameter decorator'],
   },
+  // ── S7: Section III (M9 DTO validation · M10 RxJS/signals) ────────────────
+  {
+    term: 'DTO',
+    def: {
+      en: 'Data Transfer Object — the declared shape of data crossing a boundary (a request body, a response). Because types are erased, a DTO is only trustworthy once a runtime check has validated the value against it.',
+      uk: 'Data Transfer Object — оголошена форма даних, що перетинають межу (тіло запиту, відповідь). Оскільки типи стираються, DTO надійний лише після того, як runtime-перевірка провалідувала значення проти нього.',
+    },
+    seeAlso: ['schema-first validation', 'ValidationPipe'],
+  },
+  {
+    term: 'schema-first validation',
+    def: {
+      en: 'Defining one runtime schema (zod/valibot/arktype) and deriving the static type from it with `z.infer<typeof S>`, so the type and the check are a single source of truth that cannot drift.',
+      uk: 'Означення однієї runtime-схеми (zod/valibot/arktype) і виведення статичного типу з неї через `z.infer<typeof S>`, тож тип і перевірка — єдине джерело правди, що не може розійтися.',
+    },
+    seeAlso: ['DTO', 'parse, don’t validate', 'Standard Schema'],
+  },
+  {
+    term: 'parse, don’t validate',
+    def: {
+      en: 'The principle of turning untrusted input into a typed value in one step — a function that returns `T` or throws — instead of a boolean that leaves you still holding `unknown`. Never cast (`as`) untrusted data.',
+      uk: 'Принцип перетворення недовіреного входу на типізоване значення за один крок — функція, що повертає `T` або кидає — замість boolean, який лишає вас із `unknown`. Ніколи не кастуйте (`as`) недовірені дані.',
+    },
+    seeAlso: ['schema-first validation', 'unknown', 'branded type'],
+  },
+  {
+    term: 'ValidationPipe',
+    def: {
+      en: 'The NestJS pipe that runs class-validator/class-transformer on a DTO: `whitelist` strips unknown properties, `forbidNonWhitelisted` rejects them, `transform` builds the DTO instance and coerces primitives. Inert unless registered.',
+      uk: 'Pipe у NestJS, що запускає class-validator/class-transformer на DTO: `whitelist` зрізає невідомі властивості, `forbidNonWhitelisted` відхиляє їх, `transform` будує екземпляр DTO і приводить примітиви. Інертний, доки не зареєстрований.',
+    },
+    seeAlso: ['DTO', 'dependency injection'],
+  },
+  {
+    term: 'branded type',
+    def: {
+      en: 'A structural type tagged to behave nominally — `string & { readonly __brand: \'UserId\' }` — so only a validated value can be assigned, carrying a boundary check forward as a compile error (a nominal trick over structural typing).',
+      uk: 'Структурний тип, позначений тегом для номінальної поведінки — `string & { readonly __brand: \'UserId\' }` — тож присвоїти можна лише провалідоване значення, несучи перевірку межі вперед як compile-помилку (nominal-трюк над structural typing).',
+    },
+    seeAlso: ['structural typing', 'parse, don’t validate'],
+  },
+  {
+    term: 'Standard Schema',
+    def: {
+      en: 'A tiny (~60-line) TypeScript interface (the `~standard` property) agreed by the Zod, Valibot and ArkType authors, letting consuming tools (tRPC, TanStack) accept any compliant validator with no per-library adapter.',
+      uk: 'Крихітний (~60 рядків) TypeScript-інтерфейс (властивість `~standard`), узгоджений авторами Zod, Valibot і ArkType, що дає споживчим інструментам (tRPC, TanStack) приймати будь-який сумісний валідатор без адаптера на бібліотеку.',
+    },
+    seeAlso: ['schema-first validation'],
+  },
+  {
+    term: 'signal',
+    def: {
+      en: 'Angular’s pull-based reactive primitive: a `WritableSignal<T>` holds one current value read synchronously by calling it (`count()`) and written with `.set`/`.update`. Reads are tracked so dependents recompute on change.',
+      uk: 'Pull-based реактивний примітив Angular: `WritableSignal<T>` тримає одне поточне значення, що читається синхронно викликом (`count()`) і пишеться через `.set`/`.update`. Читання відстежуються, тож залежні переобчислюються при зміні.',
+    },
+    seeAlso: ['computed', 'Observable', 'toSignal'],
+  },
+  {
+    term: 'computed',
+    def: {
+      en: 'A read-only signal derived from other signals via `computed(() => …)`. It is memoized (recomputes only when a read signal changed) and lazy. Use it for derived state instead of writing a signal inside an `effect`.',
+      uk: 'Read-only signal, похідний від інших signals через `computed(() => …)`. Він memoized (переобчислюється лише коли прочитаний signal змінився) і лінивий. Уживайте його для похідного стану замість запису signal усередині `effect`.',
+    },
+    seeAlso: ['signal', 'effect'],
+  },
+  {
+    term: 'effect',
+    def: {
+      en: 'A reactive callback (`effect(() => …)`) that re-runs when the signals it reads change. It returns no value and is for side effects only — logging, persistence, imperative APIs — never for deriving state (that is `computed`/`linkedSignal`).',
+      uk: 'Реактивний callback (`effect(() => …)`), що перезапускається, коли змінюються прочитані ним signals. Він не повертає значення й лише для side effects — логування, персистентність, імперативні API — ніколи для похідного стану (це `computed`/`linkedSignal`).',
+    },
+    seeAlso: ['signal', 'computed'],
+  },
+  {
+    term: 'Observable',
+    def: {
+      en: 'RxJS’s push-based reactive primitive: `Observable<T>` is a stream that pushes zero or more `T`s over time, can complete or error, and does nothing until subscribed. Contrast with a signal’s single synchronous value.',
+      uk: 'Push-based реактивний примітив RxJS: `Observable<T>` — це потік, що штовхає нуль або більше `T` у часі, може завершитись чи впасти, і нічого не робить до підписки. На противагу одному синхронному значенню signal.',
+    },
+    seeAlso: ['OperatorFunction', 'signal', 'toSignal'],
+  },
+  {
+    term: 'OperatorFunction',
+    def: {
+      en: 'The core RxJS operator type: `OperatorFunction<T, R>` turns an `Observable<T>` into an `Observable<R>`. `pipe` composes them so types thread left-to-right; a type-guard `filter` returns `OperatorFunction<T, U>` and narrows the stream.',
+      uk: 'Базовий тип оператора RxJS: `OperatorFunction<T, R>` перетворює `Observable<T>` на `Observable<R>`. `pipe` компонує їх, тож типи протягуються зліва направо; type-guard `filter` повертає `OperatorFunction<T, U>` і звужує потік.',
+    },
+    seeAlso: ['Observable', 'narrowing'],
+  },
+  {
+    term: 'toSignal',
+    def: {
+      en: 'The `@angular/core/rxjs-interop` bridge from an Observable to a signal. Its overloads encode timing: bare → `Signal<T | undefined>`; `{ initialValue }` → `Signal<T | U>`; `{ requireSync: true }` → `Signal<T>` (asserts a synchronous emit).',
+      uk: 'Міст `@angular/core/rxjs-interop` з Observable у signal. Його overloads кодують таймінг: голий → `Signal<T | undefined>`; `{ initialValue }` → `Signal<T | U>`; `{ requireSync: true }` → `Signal<T>` (стверджує синхронну емісію).',
+    },
+    seeAlso: ['signal', 'Observable'],
+  },
 ];

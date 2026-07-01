@@ -59,8 +59,8 @@ with **pitfalls** + interview Q&A. Stubs carry a mental model + nav only (`topic
 - **IV · Compiler & Tooling** — tsconfig/strictness, module resolution & project refs, declaration files.
 - **4 sections · 13 modules.** S1 shipped M5 + the app shell; S2 shipped M1 + M2 (Section I); S3 added
   M4 + M6 (Section II); S4 added M7 (**Section II complete**); S5 added M3 + the meta split (**Section I
-  complete**); S6 opened **Section III** with **M8 (Decorators & Metadata)**. M9 + M10 (Section III) and
-  Section IV remain (stubs).
+  complete**); S6 opened **Section III** with **M8 (Decorators & Metadata)**; S7 added **M9 (DTO Validation)
+  + M10 (RxJS/Signals)** — **Section III complete**. Section IV (M11–M13) remains (stubs).
 
 ## 6. Signature interactives + diagram‑first baseline
 Curated sims only — a pure engine in `lib/*` (deterministic, unit‑tested) + a component (play/pause/step,
@@ -70,8 +70,10 @@ ARIA + live region, **`prefers-reduced-motion`** fallback). Shipped (6): **★ `
 `lib/inference.ts` · 37); **★ `mapped-type-transform`** (M6, `lib/mappedType.ts` · 52);
 **★ `utility-type-decode`** (M7, `lib/utilityType.ts` · 188). Diagram‑first elsewhere (crisp SVG + table) —
 **M3 (functions & variance) is diagram‑first**, no sim: figures `variance-directions` + `overload-resolution`;
-**M8 (decorators & metadata) is diagram‑first** too: figures `decorator-two-systems` + `di-metadata-flow`
-(figures now **11**). Planned sims: tsconfig explorer (M11), resolution tracer (M12).
+**M8 (decorators & metadata) is diagram‑first** too: figures `decorator-two-systems` + `di-metadata-flow`;
+**M9 (DTO validation)** adds `trust-boundary` + `schema-single-source`; **M10 (RxJS/signals)** adds
+`signals-vs-streams` + `operator-type-flow` (figures now **15**). Planned sims: tsconfig explorer (M11),
+resolution tracer (M12).
 
 ## 7. Theme / brand
 Dark editorial; palette in `theme/tokens.css`; TypeScript‑blue accent (`#3178c6`). Fonts **Fraunces**
@@ -143,12 +145,15 @@ build → upload `dist` → deploy. `concurrency: cancel-in-progress: false`. `v
   **then authored M3 (Functions, Overloads & Variance)** to golden depth — **Section I complete**. See §14.
 - **S6 (done):** **Section III (applied) opened — M8 (Decorators & Metadata), diagram-first.** Golden DoD,
   grounded in the owner's NestJS 11 / Angular 21 stack (legacy vs standard decorators; DI metadata). See §14.
-- **S7 (next):** continue **Section III** — M9 (DTO validation & API boundaries) and/or M10 (RxJS/signals),
-  grounded in the owner's NestJS 11 / Angular 21 stack. 1–2 modules per session.
-  - **Kickoff phrase for the new session:** *"Continue the TypeScript guide — author Section III modules
-    (M9 DTO validation, then M10 RxJS/signals) per CLAUDE.md §13 to golden depth. Read CLAUDE.md,
-    PROJECT-BRIEF, CURRICULUM and the M8 (+M1/M2/M3) patterns first."*
-- **S8:** finish Section III then Section IV (compiler/tooling), 1–2 modules each.
+- **S7 (done):** continued **Section III** — M9 (DTO Validation & API Boundaries) + M10 (Typing RxJS,
+  Signals & Component State), both diagram‑first, grounded in the owner's NestJS 11 / Angular 21 stack.
+  **Section III complete.** See §14.
+- **S8 (next):** **Section IV (Compiler & Tooling)** — M11 (tsconfig & the strictness model) + M12 (modules,
+  resolution & project refs) and/or M13 (declaration files). M11/M12 carry the two remaining planned
+  signature sims (tsconfig strictness explorer · module‑resolution tracer). 1–2 modules per session.
+  - **Kickoff phrase for the new session:** *"Continue the TypeScript guide — author Section IV modules
+    (M11 tsconfig & strictness, then M12 modules & resolution) per CLAUDE.md §13 to golden depth. Read
+    CLAUDE.md, PROJECT-BRIEF, CURRICULUM and the M8/M9/M10 (+M1/M2/M3) patterns first."*
 - **Polish:** remaining sims · `#/decide` picker · flashcards/quiz · deploy.
 
 ## 14. Status / progress log
@@ -267,3 +272,37 @@ build → upload `dist` → deploy. `concurrency: cancel-in-progress: false`. `v
   (dist-s6; both M8 figures isolated chunks; `concepts` body chunk 292 KB, deferred)`. Branch
   `s6-section-iii-m8-decorators`. **Owner:** delete sandbox `node_modules`/`dist*`, `npm install`, commit +
   deploy. **Open items:** **Section III opened**; next = S7 (M9 DTO validation and/or M10 RxJS/signals).
+- **S7** — **Completed Section III (Applied): M9 (DTOs, Validation & API Boundaries) + M10 (Typing RxJS,
+  Signals & Component State) — both diagram-first.** Authored to the golden DoD — 5 topics each, block
+  kinds prose/figure/code/table/callout/compare (no sims — CURRICULUM marks M9 & M10 '—', like M3/M8),
+  6 key points, 4 pitfalls, 4 interview Q&A, ~11 verified sources each, EN+UA. **M9** grounds the erasure→
+  boundary argument in the owner's stack: types erased at emit, so `JSON.parse`/`res.json()` hand back
+  `any` and `as` is an unchecked lie → parse (not cast) untrusted input as `unknown`; schema-first (zod)
+  `z.infer` as single source of truth, `parse` (throws) vs `safeParse` (a `{ success }` discriminated
+  union → M2); class-first class-validator + NestJS `ValidationPipe` (`whitelist`/`forbidNonWhitelisted`/
+  `transform`) leaning on `reflect-metadata`/`design:paramtypes` (M8); fail-closed security (mass-assignment/
+  over-posting, `forbidUnknownValues` **defaults true**, coercion edges, every boundary — env/3rd-party/
+  queue), branded types (M1); choosing schema- vs class-first + **Standard Schema** (`~standard`) interop
+  (tRPC/TanStack). **M10** grounds the two reactive models in Angular 21 + RxJS: `Observable<T>` (push,
+  async) vs `Signal<T>` (pull, sync); RxJS `OperatorFunction<T,R>` threads types through `pipe`, `map`
+  changes T→R, a type-guard `filter` narrows T→U (M2); `signal`/`computed` (memoized, read-only)/`effect`
+  (side-effects only), signal `input()`/`output()` replacing decorators (M8); `toSignal` overloads
+  (`T|undefined` vs `initialValue` vs `requireSync`) + `toObservable`; UI state as a **discriminated union**
+  so impossible states are unrepresentable (M2·M7). Four figures (`trust-boundary`, `schema-single-source`,
+  `signals-vs-streams`, `operator-type-flow`) registered + SSR-smoke-canaried; 12 glossary terms (DTO,
+  schema-first validation, parse-don't-validate, ValidationPipe, branded type, Standard Schema, signal,
+  computed, effect, Observable, OperatorFunction, toSignal); M9/M10 route hashes added; both stubs replaced
+  in `concepts.ts`. Facts web-verified: Zod 4 stable (mid-2025; ~14×/7×/6.5× faster string/array/object,
+  ~57% smaller core, `@zod/mini`); NestJS `ValidationPipe` flags; class-validator `forbidUnknownValues`
+  defaults **true** (flip = bypass); Standard Schema (~60-line `~standard`, Zod/Valibot/ArkType authors,
+  tRPC/TanStack); RxJS **7.8** stable, **8** alpha/on hold pending TC39 Observable; Angular 21 signals —
+  `signal`/`computed`/`effect`/`linkedSignal` + signal `input()`/`output()` **stable** (graduated v20),
+  `resource()`/`httpResource()` **developer preview**; `toSignal` overload types; TS **6.0** stable / **7.0**
+  Go-native **RC** (Jun 2026), checking semantics identical. COUNTS 4/13, sims **6** (unchanged — M9/M10
+  have none), figures **15**.
+  **Verification:** `gen:meta ✓ · typecheck ✓ (+check:meta) · lint ✓ · check:data ✓ (4 sections, 13
+  modules) · test ✓ (533: 141+37+52+42+73+188) · smoke ✓ (136 checks, 6 sims + 15 figures, EN+UK) · build ✓
+  (dist-s7; all four M9/M10 figures isolated chunks; `concepts` body chunk 412 KB, deferred)`. Branch
+  `s7-section-iii-m9-m10`. **Owner:** delete sandbox `node_modules`/`dist*`, `npm install`, commit + deploy.
+  **Open items:** **Section III complete**; next = S8 (Section IV — M11 tsconfig/strictness + M12 modules/
+  resolution, both with planned signature sims).

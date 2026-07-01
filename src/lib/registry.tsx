@@ -33,6 +33,10 @@ export const figures: Record<string, ComponentType> = {
   'overload-resolution': lazyNamed(() => import('../components/figures/OverloadResolution'), 'OverloadResolution'), // M3
   'decorator-two-systems': lazyNamed(() => import('../components/figures/DecoratorTwoSystems'), 'DecoratorTwoSystems'), // M8 (S6)
   'di-metadata-flow': lazyNamed(() => import('../components/figures/DiMetadataFlow'), 'DiMetadataFlow'), // M8 (S6)
+  'trust-boundary': lazyNamed(() => import('../components/figures/TrustBoundary'), 'TrustBoundary'), // M9 (S7)
+  'schema-single-source': lazyNamed(() => import('../components/figures/SchemaSingleSource'), 'SchemaSingleSource'), // M9 (S7)
+  'signals-vs-streams': lazyNamed(() => import('../components/figures/SignalsVsStreams'), 'SignalsVsStreams'), // M10 (S7)
+  'operator-type-flow': lazyNamed(() => import('../components/figures/OperatorTypeFlow'), 'OperatorTypeFlow'), // M10 (S7)
 };
 
 export const getSim = (key: string): ComponentType | undefined => sims[key];
