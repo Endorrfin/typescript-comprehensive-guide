@@ -55,14 +55,16 @@ with **pitfalls** + interview Q&A. Stubs carry a mental model + nav only (`topic
   template‑literal types, utility types.
 - **III · Applied TypeScript** — decorators & DI, DTO validation, RxJS/signals typing.
 - **IV · Compiler & Tooling** — tsconfig/strictness, module resolution & project refs, declaration files.
-- **4 sections · 13 modules.** S1 shipped M5 + the app shell; S2 shipped M1 + M2 (Section I).
+- **4 sections · 13 modules.** S1 shipped M5 + the app shell; S2 shipped M1 + M2 (Section I); S3 added
+  M4 + M6 (Section II).
 
 ## 6. Signature interactives + diagram‑first baseline
 Curated sims only — a pure engine in `lib/*` (deterministic, unit‑tested) + a component (play/pause/step,
-ARIA + live region, **`prefers-reduced-motion`** fallback). Shipped (3): **★ `conditional-type-eval`** (M5,
-`lib/typeEval.ts` · 73 assertions); **★ `structural-assignability`** (M1, `lib/assignability.ts` · 141);
-**★ `control-flow-narrowing`** (M2, `lib/narrowing.ts` · 42). Diagram‑first elsewhere (crisp SVG + table).
-Planned sims: tsconfig explorer (M11), resolution tracer (M12).
+ARIA + live region, **`prefers-reduced-motion`** fallback). Shipped (5): **★ `conditional-type-eval`** (M5,
+`lib/typeEval.ts` · 73); **★ `structural-assignability`** (M1, `lib/assignability.ts` · 141);
+**★ `control-flow-narrowing`** (M2, `lib/narrowing.ts` · 42); **★ `generic-inference`** (M4,
+`lib/inference.ts` · 37); **★ `mapped-type-transform`** (M6, `lib/mappedType.ts` · 52). Diagram‑first
+elsewhere (crisp SVG + table). Planned sims: tsconfig explorer (M11), resolution tracer (M12).
 
 ## 7. Theme / brand
 Dark editorial; palette in `theme/tokens.css`; TypeScript‑blue accent (`#3178c6`). Fonts **Fraunces**
@@ -126,8 +128,8 @@ build → upload `dist` → deploy. `concurrency: cancel-in-progress: false`. `v
   - **Kickoff phrase for the new session:** *"Continue the TypeScript guide — author modules M1 and M2
     (Section I) per CLAUDE.md §13. Read CLAUDE.md, PROJECT-BRIEF and CURRICULUM and the M5/typeEval
     patterns first."*
-- **S3 (next):** M4 (generics) + M6 (mapped/template‑literal types).
-- **S4:** M7 (utility types) + M3 (functions & variance).
+- **S3 (done):** M4 (generics) + M6 (mapped/template‑literal types) — both authored with signature sims.
+- **S4 (next):** M7 (utility types) + M3 (functions & variance).
 - **S5–S7:** Section III (applied) then Section IV (compiler/tooling), 1–2 modules each.
 - **Polish:** remaining sims · `#/decide` picker · flashcards/quiz · deploy.
 
@@ -159,3 +161,20 @@ build → upload `dist` → deploy. `concurrency: cancel-in-progress: false`. `v
   141+42+73) · smoke ✓ (73 checks, 3 sims + 4 figures, EN+UK) · build ✓` (all sims code‑split).
   Branch `s2-section-i-m1-m2`. **Owner:** delete sandbox `node_modules`/`dist*`, `npm install`, commit +
   deploy. **Open items:** meta/bundle split still deferred; next = S3 (M4 generics + M6 mapped/template).
+- **S3** — **Deepened Section II: M4 (Generic Functions & Classes) + M6 (Mapped & Template‑Literal Types).**
+  Both to the golden DoD — 5 topics each, all 7 block kinds, key points, pitfalls, 4 interview Q&A,
+  verified sources, EN+UA. Two **★ signature sims**, each a pure engine + unit test + component (ARIA live
+  region + `prefers-reduced-motion`): **`generic-inference`** (`lib/inference.ts`, 37‑assertion test) —
+  pick a generic fn + a call, step each inference site’s candidate → best‑common‑type, with default
+  fallback + constraint check; **`mapped-type-transform`** (`lib/mappedType.ts`, 52‑assertion test) — step
+  `[K in keyof T]` key by key through modifier flips, `as` key remapping and value transforms, watching
+  homomorphic preservation. Added 2 figures (`inference-sites`, `mapped-type-mechanism`), 6 glossary terms,
+  `.in-*`/`.mp-*` sim CSS, smoke canaries + M4/M6 route hashes. Facts web‑verified: generic defaults (2.3),
+  const type params (5.0), NoInfer (5.4); mapped types & plain modifiers (2.1), `+`/`-` modifier prefixes &
+  homomorphic preservation (2.8), key remapping `as` + template literals + intrinsic string types (4.1);
+  static members can’t use the class type param (erasure). COUNTS 4/13, sims → 5.
+  **Verification:** `typecheck ✓ · lint ✓ · check:data ✓ (4 sections, 13 modules) · test ✓ (345:
+  141+37+52+42+73) · smoke ✓ (91 checks, 5 sims + 6 figures, EN+UK) · build ✓` (all sims code‑split).
+  Branch `s3-section-ii-m4-m6`. **Owner:** delete sandbox `node_modules`/`dist*`, `npm install`, commit +
+  deploy. **Open items:** meta/bundle split still deferred (5 authored modules — revisit soon); next = S4
+  (M7 utility types + M3 functions & variance). Section I now needs only M3 to be complete.

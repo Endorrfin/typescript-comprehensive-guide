@@ -15,6 +15,8 @@ export const sims: Record<string, ComponentType> = {
   'conditional-type-eval': lazyNamed(() => import('../components/sims/ConditionalTypeSim'), 'ConditionalTypeSim'), // ★ M5
   'structural-assignability': lazyNamed(() => import('../components/sims/AssignabilitySim'), 'AssignabilitySim'), // ★ M1
   'control-flow-narrowing': lazyNamed(() => import('../components/sims/NarrowingSim'), 'NarrowingSim'), // ★ M2
+  'mapped-type-transform': lazyNamed(() => import('../components/sims/MappedTypeSim'), 'MappedTypeSim'), // ★ M6
+  'generic-inference': lazyNamed(() => import('../components/sims/InferenceSim'), 'InferenceSim'), // ★ M4
 };
 
 // ── Figures ───────────────────────────────────────────────────────────────────
@@ -23,6 +25,8 @@ export const figures: Record<string, ComponentType> = {
   'infer-extraction': lazyNamed(() => import('../components/figures/InferExtraction'), 'InferExtraction'), // M5
   'structural-vs-nominal': lazyNamed(() => import('../components/figures/StructuralVsNominal'), 'StructuralVsNominal'), // M1
   'narrowing-funnel': lazyNamed(() => import('../components/figures/NarrowingFunnel'), 'NarrowingFunnel'), // M2
+  'mapped-type-mechanism': lazyNamed(() => import('../components/figures/MappedTypeMechanism'), 'MappedTypeMechanism'), // M6
+  'inference-sites': lazyNamed(() => import('../components/figures/InferenceSites'), 'InferenceSites'), // M4
 };
 
 export const getSim = (key: string): ComponentType | undefined => sims[key];

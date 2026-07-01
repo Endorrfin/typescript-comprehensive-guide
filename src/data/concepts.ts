@@ -4,12 +4,15 @@ import { m5 } from './modules/m5-generics-conditional-types';
 // CHANGED (S2): Section I authored — M1 (structural typing) + M2 (narrowing), each with a signature sim.
 import { m1 } from './modules/m1-structural-typing';
 import { m2 } from './modules/m2-narrowing';
+// CHANGED (S3): Section II deepened — M4 (generics) + M6 (mapped/template-literal types), each with a sim.
+import { m4 } from './modules/m4-generics';
+import { m6 } from './modules/m6-mapped-template-literals';
 
 /*
  * concepts.ts — the SINGLE SOURCE OF TRUTH (CLAUDE.md §2, §4).
- * 4 sections · 13 modules. S1 shipped Section II's golden M5 (Generics & Conditional Types); S2 adds
- * Section I's M1 (Structural Typing) + M2 (Narrowing), each with a signature sim. The remaining
- * modules are stubs (mental model + nav only) until authored.
+ * 4 sections · 13 modules. S1 shipped Section II's golden M5; S2 added Section I's M1 + M2; S3 deepened
+ * Section II with M4 (Generics) + M6 (Mapped & Template-Literal Types). Each authored module carries a
+ * signature sim. The remaining modules are stubs (mental model + nav only) until authored.
  * The eager chrome reads from here directly — the meta/bundle split (standard §4.4) is deferred
  * until the guide grows (template package.json note).
  */
@@ -104,39 +107,9 @@ export const modules: Module[] = [
   }),
 
   // ── Section II · Type-Level Programming ───────────────────────────────────
-  stub({
-    id: 'm4-generics',
-    num: 4,
-    section: 's2-type-level',
-    order: 1,
-    level: 'senior',
-    title: { en: 'Generic Functions & Classes', uk: 'Generic-функції та класи' },
-    tagline: {
-      en: 'Parametric polymorphism at the value level: constraints, defaults, and inference.',
-      uk: 'Параметричний поліморфізм на рівні значень: constraints, defaults та inference.',
-    },
-    mentalModel: {
-      en: 'Write the function once for a placeholder type; the compiler stamps out a version per caller.',
-      uk: 'Напишіть функцію раз для типу-заглушки; компілятор штампує версію під кожного викликача.',
-    },
-  }),
+  m4, // ★ authored (S3) — Generic Functions & Classes
   m5, // ★ GOLDEN — fully authored (Generics & Conditional Types)
-  stub({
-    id: 'm6-mapped-template-literals',
-    num: 6,
-    section: 's2-type-level',
-    order: 3,
-    level: 'senior',
-    title: { en: 'Mapped & Template-Literal Types', uk: 'Mapped- та Template-Literal типи' },
-    tagline: {
-      en: 'Iterate keys, remap with `as`, and compute string types — Pick/Omit/Record from scratch.',
-      uk: 'Ітеруйте ключі, перейменовуйте через `as` і обчислюйте рядкові типи — Pick/Omit/Record з нуля.',
-    },
-    mentalModel: {
-      en: 'A mapped type is a for-loop over keys; template literals are string arithmetic in the type world.',
-      uk: 'Mapped-тип — це for-цикл по ключах; template literals — рядкова арифметика у світі типів.',
-    },
-  }),
+  m6, // ★ authored (S3) — Mapped & Template-Literal Types
   stub({
     id: 'm7-utility-types',
     num: 7,

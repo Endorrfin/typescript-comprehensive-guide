@@ -238,4 +238,53 @@ export const glossary: GlossaryEntry[] = [
     },
     seeAlso: ['never', 'narrowing'],
   },
+  // ── S3: Section II (M4 generics · M6 mapped/template-literal) ─────────────
+  {
+    term: 'keyof',
+    def: {
+      en: 'A type operator: `keyof T` yields the union of a type’s keys. `keyof { a: 1; b: 2 }` is `"a" | "b"` — the driver of mapped types and typed property access.',
+      uk: 'Оператор типів: `keyof T` дає union ключів типу. `keyof { a: 1; b: 2 }` — це `"a" | "b"`; рушій mapped-типів і типізованого доступу до властивостей.',
+    },
+    seeAlso: ['indexed access type', 'mapped type'],
+  },
+  {
+    term: 'indexed access type',
+    def: {
+      en: 'A "lookup" type `T[K]` that retrieves the value type at key `K`; `T[keyof T]` is the union of all value types.',
+      uk: 'Тип-«пошук» `T[K]`, що дістає тип значення за ключем `K`; `T[keyof T]` — union усіх типів значень.',
+    },
+    seeAlso: ['keyof', 'mapped type'],
+  },
+  {
+    term: 'homomorphic mapped type',
+    def: {
+      en: 'A mapped type of the form `{ [K in keyof T]: … }` that preserves the source’s `readonly`/`?` modifiers (why Partial/Readonly work). Mapping over a raw key union (Record) does not.',
+      uk: 'Mapped-тип форми `{ [K in keyof T]: … }`, що зберігає модифікатори джерела `readonly`/`?` (чому працюють Partial/Readonly). Мапінг по сирому union ключів (Record) — ні.',
+    },
+    seeAlso: ['mapped type', 'utility type'],
+  },
+  {
+    term: 'key remapping',
+    def: {
+      en: 'The `as` clause in a mapped type (TS 4.1): `[K in keyof T as NewKey]` renames each key; remapping to `never` drops the key entirely.',
+      uk: 'Клауза `as` у mapped-типі (TS 4.1): `[K in keyof T as NewKey]` перейменовує кожен ключ; перейменування на `never` повністю викидає ключ.',
+    },
+    seeAlso: ['mapped type', 'template literal type'],
+  },
+  {
+    term: 'intrinsic string types',
+    def: {
+      en: '`Uppercase`, `Lowercase`, `Capitalize`, `Uncapitalize` (TS 4.1) — string transforms built into the compiler (not in any `.d.ts`) and not locale-aware.',
+      uk: '`Uppercase`, `Lowercase`, `Capitalize`, `Uncapitalize` (TS 4.1) — рядкові перетворення, вбудовані в компілятор (їх немає в жодному `.d.ts`) і не залежні від locale.',
+    },
+    seeAlso: ['template literal type'],
+  },
+  {
+    term: 'best common type',
+    def: {
+      en: 'The type TypeScript infers for a parameter with several inference sites — a union when the candidates disagree, e.g. `pair(1, "x")` infers `string | number`.',
+      uk: 'Тип, який TypeScript виводить для параметра з кількох місць inference — union, коли кандидати різняться, напр. `pair(1, "x")` виводить `string | number`.',
+    },
+    seeAlso: ['generic', 'union'],
+  },
 ];
