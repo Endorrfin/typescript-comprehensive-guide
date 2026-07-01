@@ -4859,3 +4859,108 @@
 @media (prefers-reduced-motion: reduce) {
   .in-site, .in-result { transition: none; }
 }
+
+/* ════════════════════════════════════════════════════════════════════════════
+   S4 addition — Section II capstone sim. Mirrors the golden .ct-* block: pure
+   engine + stepped reveal + ARIA live region + reduced-motion fallback.
+   ════════════════════════════════════════════════════════════════════════════ */
+
+/* ── M7 · utility-type decoder (.ut-*) ─────────────────────────────────────── */
+.ut-sim {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.ut-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.ut-signature {
+  margin: 0;
+  padding: 12px 14px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--r-sm);
+  font-size: 12.5px;
+  line-height: 1.5;
+  color: var(--tx);
+  white-space: pre-wrap;
+  overflow-x: auto;
+}
+.ut-mech-line { margin: 0; font-size: 12px; font-family: var(--font-mono); }
+.ut-accent { color: var(--accent-bright); }
+
+.ut-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.ut-step {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 9px 12px;
+  background: var(--surface);
+  opacity: 0.35;
+  transition: opacity var(--dur) var(--ease), border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+.ut-step--on { opacity: 1; }
+.ut-step--active {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-glow);
+}
+.ut-step--result.ut-step--on { border-left: 3px solid var(--c-commit); background: var(--c-commit-soft); }
+
+/* mechanism badge — colour-codes which of the four families the step belongs to */
+.ut-badge {
+  font-family: var(--font-body);
+  font-size: 10.5px;
+  letter-spacing: 0.02em;
+  border-radius: 99px;
+  padding: 1px 9px;
+  border: 1px solid transparent;
+  flex: none;
+}
+.ut-badge--mapped { color: var(--c-storage); background: var(--c-storage-soft); border-color: var(--c-storage); }
+.ut-badge--conditional { color: var(--c-analytics); background: var(--c-analytics-soft); border-color: var(--c-analytics); }
+.ut-badge--infer { color: var(--accent-bright); background: var(--accent-soft); border-color: var(--accent-deep); }
+.ut-badge--recursive { color: var(--c-commit); background: var(--c-commit-soft); border-color: var(--c-commit); }
+.ut-badge--result { color: var(--tx); background: var(--s2); border-color: var(--line2); font-weight: 600; }
+
+.ut-step-cap { font-size: 12px; }
+.ut-step-expr {
+  flex-basis: 100%;
+  font-size: 13px;
+  color: var(--tx);
+  white-space: pre-wrap;
+  overflow-x: auto;
+}
+.ut-step--result .ut-step-expr { font-weight: 500; }
+
+.ut-result {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 14px;
+  border: 1px solid var(--line2);
+  border-radius: var(--r-md);
+  background: var(--s2);
+  opacity: 0.6;
+  transition: opacity var(--dur) var(--ease), background var(--dur) var(--ease);
+  overflow-x: auto;
+}
+.ut-result--on { opacity: 1; background: var(--c-commit-soft); }
+.ut-result-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; }
+.ut-result-ty { font-size: 15px; color: var(--tx); font-weight: 500; white-space: pre-wrap; }
+
+@media (prefers-reduced-motion: reduce) {
+  .ut-step, .ut-result { transition: none; }
+}

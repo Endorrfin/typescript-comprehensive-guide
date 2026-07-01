@@ -7,12 +7,15 @@ import { m2 } from './modules/m2-narrowing';
 // CHANGED (S3): Section II deepened — M4 (generics) + M6 (mapped/template-literal types), each with a sim.
 import { m4 } from './modules/m4-generics';
 import { m6 } from './modules/m6-mapped-template-literals';
+// CHANGED (S4): Section II capstone — M7 (utility types) authored with the ★ utility-type decoder sim.
+import { m7 } from './modules/m7-utility-types';
 
 /*
  * concepts.ts — the SINGLE SOURCE OF TRUTH (CLAUDE.md §2, §4).
  * 4 sections · 13 modules. S1 shipped Section II's golden M5; S2 added Section I's M1 + M2; S3 deepened
- * Section II with M4 (Generics) + M6 (Mapped & Template-Literal Types). Each authored module carries a
- * signature sim. The remaining modules are stubs (mental model + nav only) until authored.
+ * Section II with M4 (Generics) + M6 (Mapped & Template-Literal Types); S4 completed Section II with M7
+ * (Utility Types). Each authored module carries a signature sim. The remaining modules are stubs
+ * (mental model + nav only) until authored.
  * The eager chrome reads from here directly — the meta/bundle split (standard §4.4) is deferred
  * until the guide grows (template package.json note).
  */
@@ -110,22 +113,7 @@ export const modules: Module[] = [
   m4, // ★ authored (S3) — Generic Functions & Classes
   m5, // ★ GOLDEN — fully authored (Generics & Conditional Types)
   m6, // ★ authored (S3) — Mapped & Template-Literal Types
-  stub({
-    id: 'm7-utility-types',
-    num: 7,
-    section: 's2-type-level',
-    order: 4,
-    level: 'senior',
-    title: { en: 'Built-in Utility Types, Decoded', uk: 'Вбудовані Utility-типи, розібрані' },
-    tagline: {
-      en: 'Partial, Pick, Record, ReturnType, Awaited — read the lib.d.ts source and own them.',
-      uk: 'Partial, Pick, Record, ReturnType, Awaited — прочитайте джерело lib.d.ts і опануйте їх.',
-    },
-    mentalModel: {
-      en: 'There is no magic in the standard library — each utility is three lines you could have written.',
-      uk: 'У стандартній бібліотеці немає магії — кожен utility це три рядки, які ви могли б написати самі.',
-    },
-  }),
+  m7, // ★ authored (S4) — Built-in Utility Types, Decoded
 
   // ── Section III · Applied TypeScript ──────────────────────────────────────
   stub({

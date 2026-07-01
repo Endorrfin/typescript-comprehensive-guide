@@ -64,6 +64,7 @@ const SIM_CANARIES: Record<string, string[]> = {
   NarrowingSim: ["typeof"], // M2 — default snippet's code (English, no angle brackets)
   MappedTypeSim: ["keyof"], // M6 — every mapped-type signature contains keyof (no angle brackets)
   InferenceSim: ["identity"], // M4 — default preset's signature/name
+  UtilityTypeSim: ["keyof"], // M7 — default (Partial) lib.d.ts signature contains keyof (no angle brackets)
 };
 const FIG_CANARIES: Record<string, string[]> = {
   DistributiveConditional: ["A[] | B[] | C[]"],
@@ -72,6 +73,7 @@ const FIG_CANARIES: Record<string, string[]> = {
   NarrowingFunnel: ["never"], // M2 figure — the funnel bottoms out here
   MappedTypeMechanism: ["keyof"], // M6 figure
   InferenceSites: ["candidate"], // M4 figure
+  UtilityTypeTaxonomy: ["Awaited"], // M7 figure — the recursive branch is labelled Awaited
 };
 
 async function main(): Promise<void> {
@@ -144,7 +146,7 @@ async function main(): Promise<void> {
 
   // ── Layer D: eager app shell + hash router ──────────────────────────────────────────────────────
   const { App } = await import("../src/App");
-  for (const hash of ["", "#/map", "#/m/m1-structural-typing", "#/m/m2-narrowing", "#/m/m4-generics", "#/m/m5-generics-conditional-types", "#/m/m6-mapped-template-literals", "#/mental-models", "#/glossary", "#/does-not-exist"]) {
+  for (const hash of ["", "#/map", "#/m/m1-structural-typing", "#/m/m2-narrowing", "#/m/m4-generics", "#/m/m5-generics-conditional-types", "#/m/m6-mapped-template-literals", "#/m/m7-utility-types", "#/mental-models", "#/glossary", "#/does-not-exist"]) {
     (g.location as { hash: string }).hash = hash;
     check(`App ${hash || "(empty)"}`, h(App), "en", 1500);
   }
