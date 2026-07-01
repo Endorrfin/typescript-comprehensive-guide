@@ -521,4 +521,101 @@ export const glossary: GlossaryEntry[] = [
     },
     seeAlso: ['signal', 'Observable'],
   },
+  // ── S8: Section IV (M11 tsconfig/strictness · M12 modules/resolution) ─────
+  {
+    term: 'strict',
+    def: {
+      en: 'A tsconfig shorthand that enables nine independent checks (noImplicitAny, strictNullChecks, strictFunctionTypes, strictBindCallApply, strictPropertyInitialization, noImplicitThis, useUnknownInCatchVariables, alwaysStrict, strictBuiltinIteratorReturn). Any can be turned back off individually.',
+      uk: 'Скорочення в tsconfig, що вмикає девʼ ять незалежних перевірок (noImplicitAny, strictNullChecks, strictFunctionTypes, strictBindCallApply, strictPropertyInitialization, noImplicitThis, useUnknownInCatchVariables, alwaysStrict, strictBuiltinIteratorReturn). Кожну можна вимкнути окремо.',
+    },
+    seeAlso: ['strictNullChecks', 'noUncheckedIndexedAccess'],
+  },
+  {
+    term: 'strictNullChecks',
+    def: {
+      en: 'The most impactful strict flag: `null` and `undefined` are removed from every other type, so a possibly-absent value must be handled before use. Turning it off (even after `strict: true`) re-opens the biggest class of runtime bugs.',
+      uk: 'Найвпливовіший strict-флаг: `null` та `undefined` прибираються з усіх інших типів, тож можливо-відсутнє значення треба обробити перед використанням. Вимкнення (навіть після `strict: true`) знову відкриває найбільший клас runtime-багів.',
+    },
+    seeAlso: ['strict', 'noUncheckedIndexedAccess'],
+  },
+  {
+    term: 'noUncheckedIndexedAccess',
+    def: {
+      en: 'A recommended check that is NOT part of `strict` (TS 4.1): it adds `undefined` to the type of `arr[i]` and `obj[key]`, because an index access can miss. exactOptionalPropertyTypes (4.4) is another high-value flag left out of `strict`.',
+      uk: 'Рекомендована перевірка, що НЕ входить до `strict` (TS 4.1): додає `undefined` до типу `arr[i]` та `obj[key]`, бо доступ за індексом може не влучити. exactOptionalPropertyTypes (4.4) — ще один цінний флаг, не включений до `strict`.',
+    },
+    seeAlso: ['strict', 'strictNullChecks'],
+  },
+  {
+    term: 'verbatimModuleSyntax',
+    def: {
+      en: 'A tsconfig flag (TS 5.0) making emit 1:1 with source: imports are emitted as written, and any import used only as a type must be marked `type` or it errors. It replaced importsNotUsedAsValues + preserveValueImports and makes single-file transpilers (esbuild/swc) safe.',
+      uk: 'Флаг tsconfig (TS 5.0), що робить emit 1:1 із джерелом: імпорти емітуються як написані, а будь-який імпорт, використаний лише як тип, має бути позначений `type`, інакше помилка. Замінив importsNotUsedAsValues + preserveValueImports і робить однофайлові транспілери (esbuild/swc) безпечними.',
+    },
+    seeAlso: ['isolatedModules', 'ESM'],
+  },
+  {
+    term: 'isolatedModules',
+    def: {
+      en: 'A tsconfig flag requiring every file to be transpilable on its own, with no cross-file type information — the contract single-file tools (esbuild, swc, Babel, tsx) need. isolatedDeclarations (5.5) goes further, requiring explicit export types for checker-free `.d.ts` generation.',
+      uk: 'Флаг tsconfig, що вимагає, аби кожен файл транспілювався окремо, без міжфайлової типової інформації — контракт, потрібний однофайловим інструментам (esbuild, swc, Babel, tsx). isolatedDeclarations (5.5) іде далі, вимагаючи явних типів export для генерації `.d.ts` без checker.',
+    },
+    seeAlso: ['verbatimModuleSyntax'],
+  },
+  {
+    term: 'moduleResolution',
+    def: {
+      en: 'The tsconfig option choosing how imports resolve to files: `classic` (never), `node10` (legacy CJS, no exports), `node16`/`nodenext` (Node’s modern ESM+CJS, honours exports, needs extensions on ESM), `bundler` (Vite/esbuild; no extensions). It mirrors how the runtime/bundler will load the code.',
+      uk: 'Опція tsconfig, що обирає, як імпорти резолвляться у файли: `classic` (ніколи), `node10` (legacy CJS, без exports), `node16`/`nodenext` (сучасний ESM+CJS Node, шанує exports, потребує розширень на ESM), `bundler` (Vite/esbuild; без розширень). Дзеркалить, як runtime/bundler завантажить код.',
+    },
+    seeAlso: ['extension substitution', 'package exports', 'ESM'],
+  },
+  {
+    term: 'extension substitution',
+    def: {
+      en: 'The rule that for any would-be `.js` lookup TypeScript first tries the TypeScript file in a fixed order — `.ts`, `.tsx`, `.d.ts` before `.js` (and `.mjs`→`.mts`, `.cjs`→`.cts`). It is why you write `./x.js` in an import while the file on disk is `x.ts`.',
+      uk: 'Правило, що для будь-якого потенційного пошуку `.js` TypeScript спершу пробує TypeScript-файл у фіксованому порядку — `.ts`, `.tsx`, `.d.ts` перед `.js` (а `.mjs`→`.mts`, `.cjs`→`.cts`). Тому в імпорті ви пишете `./x.js`, тоді як файл на диску — `x.ts`.',
+    },
+    seeAlso: ['moduleResolution', 'ESM'],
+  },
+  {
+    term: 'package exports',
+    def: {
+      en: 'The package.json `"exports"` field: a conditional map (matched in key order — `types`, `import`, `require`, `default`) that both directs resolution and ENCAPSULATES the package — any subpath it does not list is blocked, even if the file exists. `"imports"` (# keys) does the same for internal aliases.',
+      uk: 'Поле package.json `"exports"`: умовна мапа (збіг у порядку ключів — `types`, `import`, `require`, `default`), що і спрямовує resolution, і ІНКАПСУЛЮЄ пакет — будь-який неперелічений підшлях заблоковано, навіть якщо файл існує. `"imports"` (# ключі) робить те саме для внутрішніх аліасів.',
+    },
+    seeAlso: ['moduleResolution', 'declaration file'],
+  },
+  {
+    term: 'project references',
+    def: {
+      en: 'A tsconfig feature that composes several projects into one build graph via `references`. Each referenced project sets `composite: true` and emits `.d.ts` + a `.tsbuildinfo` fingerprint; `tsc -b` builds them leaf-first and skips unchanged ones for incremental monorepo builds.',
+      uk: 'Можливість tsconfig, що композує кілька проєктів в один граф збірки через `references`. Кожен проєкт-залежність ставить `composite: true` й емітує `.d.ts` + відбиток `.tsbuildinfo`; `tsc -b` збирає їх від листків і пропускає незмінні для інкрементних monorepo-збірок.',
+    },
+    seeAlso: ['composite', 'declaration file'],
+  },
+  {
+    term: 'composite',
+    def: {
+      en: 'The tsconfig flag that marks a project as part of a reference build graph. It forces `declaration` and a known `rootDir`, so the project emits `.d.ts` files plus a `.tsbuildinfo` — the stable contract downstream projects consume instead of re-checking source.',
+      uk: 'Флаг tsconfig, що позначає проєкт частиною reference-графа збірки. Вмикає `declaration` і відомий `rootDir`, тож проєкт емітує `.d.ts` плюс `.tsbuildinfo` — стабільний контракт, який нижчі проєкти споживають замість повторної перевірки джерела.',
+    },
+    seeAlso: ['project references', 'tsbuildinfo', 'declaration file'],
+  },
+  {
+    term: 'tsbuildinfo',
+    def: {
+      en: 'The `.tsbuildinfo` file written by `incremental`/`composite` builds: a fingerprint of a project’s inputs and prior results. `tsc -b` reads it to rebuild only what changed, turning a full monorepo type-check into an incremental one.',
+      uk: 'Файл `.tsbuildinfo`, що пишуть `incremental`/`composite`-збірки: відбиток входів проєкту й попередніх результатів. `tsc -b` читає його, щоб перезбирати лише змінене, перетворюючи повну перевірку monorepo на інкрементну.',
+    },
+    seeAlso: ['composite', 'project references'],
+  },
+  {
+    term: 'declaration file',
+    def: {
+      en: 'A `.d.ts` file: the public type contract of a module — its shape with the implementation removed. Packages ship them so consumers get types; composite projects emit them so `tsc -b` can skip unchanged dependencies (authoring them is Module 13).',
+      uk: 'Файл `.d.ts`: публічний типовий контракт модуля — його форма без реалізації. Пакети постачають їх, щоб споживачі мали типи; composite-проєкти емітують їх, щоб `tsc -b` міг пропускати незмінні залежності (їх написання — Модуль 13).',
+    },
+    seeAlso: ['package exports', 'composite'],
+  },
 ];
