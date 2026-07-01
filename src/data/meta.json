@@ -529,17 +529,58 @@
         "uk": "Decorators та Metadata (NestJS · Angular)"
       },
       "tagline": {
-        "en": "Stage-3 decorators vs the legacy experimental ones, and how DI reads metadata.",
-        "uk": "Stage-3 decorators проти legacy experimental, і як DI читає metadata."
+        "en": "Two incompatible decorator systems, the metadata that powers dependency injection, and why frameworks are stuck on the legacy one.",
+        "uk": "Дві несумісні системи decorators, metadata, що живить dependency injection, і чому фреймворки застрягли на legacy."
       },
       "mentalModel": {
-        "en": "A decorator is a function that tags or rewrites a declaration so a framework can find it later.",
-        "uk": "Decorator — це функція, що позначає чи переписує оголошення, щоб фреймворк знайшов його потім."
+        "en": "A decorator is a function that runs on a declaration at definition time — it can observe it, replace it, or record metadata a framework reads back later to wire things up.",
+        "uk": "Decorator — це функція, що виконується над оголошенням у момент його визначення: вона може спостерігати за ним, замінити його або записати metadata, яку фреймворк зчитає потім, щоб усе звʼязати."
       },
-      "readMins": 0,
-      "topics": [],
-      "seeAlso": [],
-      "authored": false
+      "readMins": 22,
+      "topics": [
+        {
+          "id": "t1-two-decorator-systems",
+          "title": {
+            "en": "Two decorator systems: standard vs legacy",
+            "uk": "Дві системи decorators: standard проти legacy"
+          }
+        },
+        {
+          "id": "t2-standard-decorators",
+          "title": {
+            "en": "The standard decorator: value in, replacement out",
+            "uk": "Standard-decorator: value на вході, заміна на виході"
+          }
+        },
+        {
+          "id": "t3-metadata-reflection",
+          "title": {
+            "en": "Metadata & `reflect-metadata`: how DI reads types",
+            "uk": "Metadata та `reflect-metadata`: як DI читає типи"
+          }
+        },
+        {
+          "id": "t4-nest-angular-stacks",
+          "title": {
+            "en": "In the frameworks: NestJS 11 vs Angular 21",
+            "uk": "У фреймворках: NestJS 11 проти Angular 21"
+          }
+        },
+        {
+          "id": "t5-authoring-typing-decorators",
+          "title": {
+            "en": "Writing your own typed decorators (and picking a system)",
+            "uk": "Пишемо власні типізовані decorators (і обираємо систему)"
+          }
+        }
+      ],
+      "seeAlso": [
+        "m9-dto-validation",
+        "m1-structural-typing",
+        "m10-rxjs-signals",
+        "m5-generics-conditional-types"
+      ],
+      "authored": true
     },
     {
       "id": "m9-dto-validation",

@@ -58,8 +58,9 @@ with **pitfalls** + interview Q&A. Stubs carry a mental model + nav only (`topic
 - **III · Applied TypeScript** — decorators & DI, DTO validation, RxJS/signals typing.
 - **IV · Compiler & Tooling** — tsconfig/strictness, module resolution & project refs, declaration files.
 - **4 sections · 13 modules.** S1 shipped M5 + the app shell; S2 shipped M1 + M2 (Section I); S3 added
-  M4 + M6 (Section II); S4 added M7 (**Section II complete**); S5 added M3 + the meta split — **Section I
-  (type‑system) now complete**. Sections III + IV remain (stubs).
+  M4 + M6 (Section II); S4 added M7 (**Section II complete**); S5 added M3 + the meta split (**Section I
+  complete**); S6 opened **Section III** with **M8 (Decorators & Metadata)**. M9 + M10 (Section III) and
+  Section IV remain (stubs).
 
 ## 6. Signature interactives + diagram‑first baseline
 Curated sims only — a pure engine in `lib/*` (deterministic, unit‑tested) + a component (play/pause/step,
@@ -68,8 +69,9 @@ ARIA + live region, **`prefers-reduced-motion`** fallback). Shipped (6): **★ `
 **★ `control-flow-narrowing`** (M2, `lib/narrowing.ts` · 42); **★ `generic-inference`** (M4,
 `lib/inference.ts` · 37); **★ `mapped-type-transform`** (M6, `lib/mappedType.ts` · 52);
 **★ `utility-type-decode`** (M7, `lib/utilityType.ts` · 188). Diagram‑first elsewhere (crisp SVG + table) —
-**M3 (functions & variance) is diagram‑first**, no sim: figures `variance-directions` + `overload-resolution`
-(figures now **9**). Planned sims: tsconfig explorer (M11), resolution tracer (M12).
+**M3 (functions & variance) is diagram‑first**, no sim: figures `variance-directions` + `overload-resolution`;
+**M8 (decorators & metadata) is diagram‑first** too: figures `decorator-two-systems` + `di-metadata-flow`
+(figures now **11**). Planned sims: tsconfig explorer (M11), resolution tracer (M12).
 
 ## 7. Theme / brand
 Dark editorial; palette in `theme/tokens.css`; TypeScript‑blue accent (`#3178c6`). Fonts **Fraunces**
@@ -139,12 +141,14 @@ build → upload `dist` → deploy. `concurrency: cancel-in-progress: false`. `v
 - **S5 (done):** shipped the **meta/bundle split** (standard §4.4: `genMeta.ts` + `checkMeta.ts` +
   `data/meta.ts`/`meta.json`; eager chrome repointed to `meta`, bodies deferred to the lazy `ModulePage`)
   **then authored M3 (Functions, Overloads & Variance)** to golden depth — **Section I complete**. See §14.
-- **S6 (next):** **Section III (applied)** — start M8 (Decorators & Metadata) and/or M9 (DTO validation),
-  grounded in the owner's NestJS 11 / Angular 21 stack; then M10 (RxJS/signals). 1–2 modules per session.
+- **S6 (done):** **Section III (applied) opened — M8 (Decorators & Metadata), diagram-first.** Golden DoD,
+  grounded in the owner's NestJS 11 / Angular 21 stack (legacy vs standard decorators; DI metadata). See §14.
+- **S7 (next):** continue **Section III** — M9 (DTO validation & API boundaries) and/or M10 (RxJS/signals),
+  grounded in the owner's NestJS 11 / Angular 21 stack. 1–2 modules per session.
   - **Kickoff phrase for the new session:** *"Continue the TypeScript guide — author Section III modules
-    (start M8 Decorators & Metadata) per CLAUDE.md §13 to golden depth. Read CLAUDE.md, PROJECT-BRIEF,
-    CURRICULUM and the M1/M2/M3 patterns first; plan first, wait for my go before building."*
-- **S7–S8:** finish Section III then Section IV (compiler/tooling), 1–2 modules each.
+    (M9 DTO validation, then M10 RxJS/signals) per CLAUDE.md §13 to golden depth. Read CLAUDE.md,
+    PROJECT-BRIEF, CURRICULUM and the M8 (+M1/M2/M3) patterns first."*
+- **S8:** finish Section III then Section IV (compiler/tooling), 1–2 modules each.
 - **Polish:** remaining sims · `#/decide` picker · flashcards/quiz · deploy.
 
 ## 14. Status / progress log
@@ -240,3 +244,26 @@ build → upload `dist` → deploy. `concurrency: cancel-in-progress: false`. `v
   **Owner:** delete sandbox `node_modules`/`dist*`, `npm install`, commit + deploy. **Open items:**
   **Section I complete**; next = S6 (Section III applied — M8 decorators/metadata, grounded in NestJS 11 /
   Angular 21).
+- **S6** — **Opened Section III (Applied): M8 (Decorators & Metadata, NestJS · Angular) — diagram-first.**
+  Authored to the golden DoD — 5 topics (two decorator systems: standard vs legacy · the standard
+  `(value, context)` decorator · metadata & `reflect-metadata` for DI · NestJS 11 vs Angular 21 · authoring
+  typed decorators), block kinds prose/figure/code/table/callout/compare (no sim — CURRICULUM marks M8 '—',
+  like M3), 6 key points, 4 pitfalls, 4 interview Q&A, 10 verified sources, EN+UA. Two figures
+  (`decorator-two-systems` — legacy `(target, key, descriptor)` vs standard `(value, context)`;
+  `di-metadata-flow` — constructor → `emitDecoratorMetadata` → `design:paramtypes` → `Reflect.getMetadata`
+  → container resolves by type) registered + SSR-smoke-canaried; 9 glossary terms (decorator, standard/
+  experimental decorators, decorator factory, parameter decorator, `emitDecoratorMetadata`,
+  `design:paramtypes`, `reflect-metadata`, dependency injection); M8 route hash added; replaced the stub in
+  `concepts.ts`. Facts web-verified: standard decorators shipped **TS 5.0** (no flag, `(value, context)`);
+  decorator metadata / `Symbol.metadata` **TS 5.2**; the standard proposal deliberately drops **parameter
+  decorators** and **`emitDecoratorMetadata`**, so NestJS 11 / Angular / TypeORM stay on legacy
+  `experimentalDecorators`; Nest reads `design:paramtypes` via `reflect-metadata` at **runtime**, Angular's
+  **ngtsc** generates metadata at **build** (AOT, no `emitDecoratorMetadata`, tree-shakeable) and is shifting
+  to `inject()` + signal `input()`/`output()`; interfaces/unions/aliases erase to `Object` in
+  `design:paramtypes`; TS **6.0** stable / **7.0** Go-native **RC** (Jun 2026), checking semantics identical.
+  COUNTS 4/13, sims **6** (unchanged — M8 has none), figures **11**.
+  **Verification:** `gen:meta ✓ · typecheck ✓ (+check:meta) · lint ✓ · check:data ✓ (4 sections, 13
+  modules) · test ✓ (533: 141+37+52+42+73+188) · smoke ✓ (118 checks, 6 sims + 11 figures, EN+UK) · build ✓
+  (dist-s6; both M8 figures isolated chunks; `concepts` body chunk 292 KB, deferred)`. Branch
+  `s6-section-iii-m8-decorators`. **Owner:** delete sandbox `node_modules`/`dist*`, `npm install`, commit +
+  deploy. **Open items:** **Section III opened**; next = S7 (M9 DTO validation and/or M10 RxJS/signals).

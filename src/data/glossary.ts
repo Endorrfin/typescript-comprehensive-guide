@@ -352,4 +352,76 @@ export const glossary: GlossaryEntry[] = [
     },
     seeAlso: ['conditional type', 'infer', 'utility type'],
   },
+  {
+    term: 'decorator',
+    def: {
+      en: 'A function attached to a declaration with `@name` that TypeScript runs when the class is defined (not per instance). It can observe, replace, or record metadata about the class, method, accessor or field.',
+      uk: 'Функція, причеплена до оголошення через `@name`, яку TypeScript виконує коли клас визначається (не на кожен екземпляр). Може спостерігати, замінювати чи записувати metadata про клас, метод, accessor чи поле.',
+    },
+    seeAlso: ['standard decorators', 'experimental decorators', 'decorator factory'],
+  },
+  {
+    term: 'standard decorators',
+    def: {
+      en: 'The TC39 Stage-3 decorator system, shipped in TypeScript 5.0 with no compiler flag. A decorator receives `(value, context)` and may return a replacement; it has no parameter decorators and no `emitDecoratorMetadata`.',
+      uk: 'Система decorators TC39 Stage-3, що вийшла в TypeScript 5.0 без compiler-флага. Decorator отримує `(value, context)` і може повернути заміну; не має parameter decorators і `emitDecoratorMetadata`.',
+    },
+    seeAlso: ['decorator', 'experimental decorators', 'parameter decorator'],
+  },
+  {
+    term: 'experimental decorators',
+    def: {
+      en: 'The legacy decorator system enabled by `experimentalDecorators` in `tsconfig`, based on a pre-standard proposal. A decorator receives `(target, key, descriptor)`; it supports parameter decorators and `design:*` metadata, so NestJS/Angular/TypeORM rely on it.',
+      uk: 'Legacy-система decorators, що вмикається через `experimentalDecorators` у `tsconfig`, на основі до-стандартної пропозиції. Decorator отримує `(target, key, descriptor)`; підтримує parameter decorators і `design:*` metadata, тож NestJS/Angular/TypeORM спираються на неї.',
+    },
+    seeAlso: ['decorator', 'standard decorators', 'emitDecoratorMetadata'],
+  },
+  {
+    term: 'decorator factory',
+    def: {
+      en: 'A function that takes configuration and *returns* a decorator, so you can parameterise it — e.g. `@Inject(\'TOKEN\')` or `@clamp(0, 100)`. The outer call runs first; its returned decorator is what actually decorates.',
+      uk: 'Функція, що приймає конфігурацію і *повертає* decorator, аби його параметризувати — напр. `@Inject(\'TOKEN\')` чи `@clamp(0, 100)`. Зовнішній виклик відпрацьовує першим; повернений ним decorator і є тим, що реально декорує.',
+    },
+    seeAlso: ['decorator'],
+  },
+  {
+    term: 'parameter decorator',
+    def: {
+      en: 'A decorator applied to a constructor/method parameter (e.g. NestJS `@Param()`, `@Inject()`). It exists only in the legacy system — standard decorators deliberately omit it, which keeps DI frameworks on `experimentalDecorators`.',
+      uk: 'Decorator, застосований до параметра конструктора/методу (напр. `@Param()`, `@Inject()` у NestJS). Існує лише в legacy-системі — standard-decorators навмисно його опускають, що тримає DI-фреймворки на `experimentalDecorators`.',
+    },
+    seeAlso: ['experimental decorators', 'dependency injection'],
+  },
+  {
+    term: 'emitDecoratorMetadata',
+    def: {
+      en: 'A legacy compiler flag that, for any decorated declaration, emits `design:type`/`design:paramtypes`/`design:returntype` via `reflect-metadata`. It is how by-type dependency injection learns constructor parameter types at runtime.',
+      uk: 'Legacy compiler-флаг, що для будь-якого декорованого оголошення емітить `design:type`/`design:paramtypes`/`design:returntype` через `reflect-metadata`. Саме так DI-за-типом дізнається типи параметрів конструктора в runtime.',
+    },
+    seeAlso: ['design:paramtypes', 'reflect-metadata', 'experimental decorators'],
+  },
+  {
+    term: 'design:paramtypes',
+    def: {
+      en: 'The metadata key holding a decorated constructor/method’s parameter types as an array of runtime constructors. A DI container reads it to resolve dependencies by type. Interfaces/unions/aliases have no runtime value and collapse to `Object`.',
+      uk: 'Metadata-ключ, що містить типи параметрів декорованого конструктора/методу як масив runtime-конструкторів. DI-контейнер читає його, щоб резолвити залежності за типом. Interface-и/union-и/alias-и не мають runtime-значення і згортаються в `Object`.',
+    },
+    seeAlso: ['emitDecoratorMetadata', 'reflect-metadata', 'dependency injection'],
+  },
+  {
+    term: 'reflect-metadata',
+    def: {
+      en: 'A polyfill implementing the `Reflect.metadata`/`Reflect.getMetadata` API that stores decorator-emitted metadata on objects. NestJS imports it once at the entrypoint so its DI container can read `design:paramtypes` at runtime.',
+      uk: 'Polyfill, що реалізує API `Reflect.metadata`/`Reflect.getMetadata` і зберігає metadata, емітовану decorators, на обʼєктах. NestJS імпортує його раз на вході, щоб DI-контейнер міг читати `design:paramtypes` у runtime.',
+    },
+    seeAlso: ['emitDecoratorMetadata', 'design:paramtypes'],
+  },
+  {
+    term: 'dependency injection',
+    def: {
+      en: 'A pattern where a container constructs an object’s dependencies and passes them in, rather than the object creating them. In NestJS this is by-type via `design:paramtypes`; in Angular via the compiler and `inject()`.',
+      uk: 'Патерн, де контейнер конструює залежності обʼєкта й передає їх, замість того щоб обʼєкт створював їх сам. У NestJS це за типом через `design:paramtypes`; в Angular — через компілятор і `inject()`.',
+    },
+    seeAlso: ['design:paramtypes', 'parameter decorator'],
+  },
 ];
