@@ -155,13 +155,18 @@ build → upload `dist` → deploy. `concurrency: cancel-in-progress: false`. `v
   Project References), both with the two remaining planned ★ signature sims** (`tsconfig-strictness` ·
   `module-resolution`, each a pure engine + unit test). Golden DoD, grounded in the owner's Node 22 / NestJS /
   esbuild-Serverless stack. See §14. Only M13 remains a stub.
-- **S9 (next):** **M13 (Declaration Files & Publishing Types)** — completes all 13 modules and Section IV.
-  Diagram-first (staff level; no planned sim); authoring `.d.ts`, shipping types with a package, `exports`
-  types conditions, and not breaking consumers (ties to M12 exports + M11 isolatedDeclarations).
-  - **Kickoff phrase for the new session:** *"Continue the TypeScript guide — author M13 (declaration files
-    & publishing types), diagram-first, per CLAUDE.md §13 to golden depth. Read CLAUDE.md, PROJECT-BRIEF,
-    CURRICULUM and the M8/M9/M10 diagram-first patterns + M11/M12 first."*
-- **Polish:** `#/decide` picker · flashcards/quiz · final QA · deploy.
+- **S9 (next):** **M13 (Declaration Files & Publishing Types) — completing all 13 modules — PLUS begin the
+  polish phase: the `#/decide` picker + flashcards.** M13 is diagram-first (staff; no sim): authoring
+  `.d.ts`, shipping types with a package, `exports` "types" conditions, and not breaking consumers (ties to
+  M12 exports + M11 isolatedDeclarations). Then scaffold `#/decide` (a new hash route reusing the chrome +
+  registry patterns — a "which config / which feature" chooser) and a first **flashcards** pass drawn from
+  the interview banks + key points already in `concepts.ts`. Keep both polish pieces small and shippable;
+  full quiz + deploy come after.
+  - **Kickoff phrase for the new session:** *"Continue the TypeScript guide (S9) — author M13 (declaration
+    files & publishing types) diagram-first to golden depth, completing all 13 modules, THEN start the
+    polish phase: scaffold the `#/decide` picker route and a first flashcards pass. Read CLAUDE.md,
+    PROJECT-BRIEF, CURRICULUM and the M8/M9/M10 diagram-first patterns + M11/M12 first."*
+- **Polish (S9 →):** `#/decide` picker · flashcards/quiz · final QA · deploy.
 
 ## 14. Status / progress log
 - **S1** — **Scaffolded the guide and shipped the golden module.** Stood up the Tier‑1 SPA (Vite + React
