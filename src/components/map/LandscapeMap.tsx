@@ -1,4 +1,4 @@
-import { COUNTS, modulesBySection, sections } from '../../data/concepts';
+import { COUNTS, modulesBySection, sections } from '../../data/meta'; // CHANGED (S5): meta split — landing reads the slim nav index.
 import { useLang } from '../../i18n/lang';
 import { ui } from '../../i18n/ui';
 import { hrefModule } from '../../lib/hashRouter';

@@ -1,0 +1,665 @@
+{
+  "sections": [
+    {
+      "id": "s1-type-system",
+      "roman": "I",
+      "title": {
+        "en": "The Type System",
+        "uk": "Система типів"
+      },
+      "accent": "#3178c6",
+      "blurb": {
+        "en": "How TypeScript reasons: structural typing, assignability, narrowing, functions and variance.",
+        "uk": "Як міркує TypeScript: structural typing, assignability, narrowing, функції та variance."
+      }
+    },
+    {
+      "id": "s2-type-level",
+      "roman": "II",
+      "title": {
+        "en": "Type-Level Programming",
+        "uk": "Type-Level програмування"
+      },
+      "accent": "#1593ad",
+      "blurb": {
+        "en": "The type system as a language: generics, conditional types, infer, mapped & utility types.",
+        "uk": "Система типів як мова: generics, conditional types, infer, mapped- та utility-типи."
+      }
+    },
+    {
+      "id": "s3-applied",
+      "roman": "III",
+      "title": {
+        "en": "Applied TypeScript",
+        "uk": "Прикладний TypeScript"
+      },
+      "accent": "#6a7fe0",
+      "blurb": {
+        "en": "TypeScript in your stack: decorators & DI, DTO validation, typing RxJS and Angular signals.",
+        "uk": "TypeScript у вашому стеку: decorators і DI, валідація DTO, типізація RxJS та Angular signals."
+      }
+    },
+    {
+      "id": "s4-compiler",
+      "roman": "IV",
+      "title": {
+        "en": "Compiler & Tooling",
+        "uk": "Компілятор та інструменти"
+      },
+      "accent": "#4f86a8",
+      "blurb": {
+        "en": "tsconfig & strictness, module resolution, project references, declaration files and the build.",
+        "uk": "tsconfig і strictness, module resolution, project references, declaration files та збірка."
+      }
+    }
+  ],
+  "signatureSims": [
+    "m1-structural-typing",
+    "m2-narrowing",
+    "m4-generics",
+    "m5-generics-conditional-types",
+    "m6-mapped-template-literals",
+    "m7-utility-types"
+  ],
+  "modules": [
+    {
+      "id": "m1-structural-typing",
+      "num": 1,
+      "section": "s1-type-system",
+      "order": 1,
+      "level": "middle",
+      "signature": true,
+      "title": {
+        "en": "Structural Typing & Assignability",
+        "uk": "Structural Typing та Assignability"
+      },
+      "tagline": {
+        "en": "Why TypeScript matches shapes, not names — and what \"assignable\" really means, member by member.",
+        "uk": "Чому TypeScript зіставляє форми, а не імена — і що насправді означає «assignable», член за членом."
+      },
+      "mentalModel": {
+        "en": "If it has the right shape, it fits. TypeScript never checks the name on the box — it checks that every member the target needs is present, with a compatible type.",
+        "uk": "Якщо форма підходить — воно пасує. TypeScript не дивиться на назву коробки — він перевіряє, що кожен член, потрібний цілі, присутній і має сумісний тип."
+      },
+      "readMins": 18,
+      "topics": [
+        {
+          "id": "t1-structural-vs-nominal",
+          "title": {
+            "en": "Shapes, not names",
+            "uk": "Форми, а не імена"
+          }
+        },
+        {
+          "id": "t2-assignability",
+          "title": {
+            "en": "The assignability relation",
+            "uk": "Відношення assignability"
+          }
+        },
+        {
+          "id": "t3-excess-property-checks",
+          "title": {
+            "en": "Excess-property checks & freshness",
+            "uk": "Excess-property checks та freshness"
+          }
+        },
+        {
+          "id": "t4-widening-const",
+          "title": {
+            "en": "Widening, `const` & `satisfies`",
+            "uk": "Widening, `const` та `satisfies`"
+          }
+        },
+        {
+          "id": "t5-compatibility",
+          "title": {
+            "en": "Objects, functions, arrays & the edges",
+            "uk": "Обʼєкти, функції, масиви та краї"
+          }
+        }
+      ],
+      "seeAlso": [
+        "m2-narrowing",
+        "m3-functions-variance",
+        "m5-generics-conditional-types",
+        "m7-utility-types"
+      ],
+      "authored": true
+    },
+    {
+      "id": "m2-narrowing",
+      "num": 2,
+      "section": "s1-type-system",
+      "order": 2,
+      "level": "middle",
+      "signature": true,
+      "title": {
+        "en": "Narrowing & Control-Flow Analysis",
+        "uk": "Narrowing та Control-Flow Analysis"
+      },
+      "tagline": {
+        "en": "How the compiler tracks a type as it flows through guards, returns and assignments — down to `never`.",
+        "uk": "Як компілятор відстежує тип, поки той тече крізь guards, returns і присвоєння — аж до `never`."
+      },
+      "mentalModel": {
+        "en": "A union is a wide funnel and each guard is a checkpoint that narrows it. The compiler walks the control flow with you; when every member has been peeled off, what remains is `never`.",
+        "uk": "Union — це широка лійка, а кожен guard — checkpoint, що її звужує. Компілятор іде потоком керування разом із вами; коли всі члени відсіяно, лишається `never`."
+      },
+      "readMins": 19,
+      "topics": [
+        {
+          "id": "t1-cfa-guards",
+          "title": {
+            "en": "Control-flow analysis & the built-in guards",
+            "uk": "Control-flow analysis та вбудовані guards"
+          }
+        },
+        {
+          "id": "t2-truthiness-equality",
+          "title": {
+            "en": "Truthiness & equality (and their traps)",
+            "uk": "Truthiness та рівність (та їхні пастки)"
+          }
+        },
+        {
+          "id": "t3-discriminated-unions",
+          "title": {
+            "en": "Discriminated unions",
+            "uk": "Discriminated unions"
+          }
+        },
+        {
+          "id": "t4-predicates-assertions",
+          "title": {
+            "en": "Type predicates & assertion functions",
+            "uk": "Type predicates та assertion functions"
+          }
+        },
+        {
+          "id": "t5-exhaustiveness",
+          "title": {
+            "en": "Exhaustiveness, `never` & the limits of narrowing",
+            "uk": "Exhaustiveness, `never` та межі narrowing"
+          }
+        }
+      ],
+      "seeAlso": [
+        "m1-structural-typing",
+        "m3-functions-variance",
+        "m5-generics-conditional-types",
+        "m10-rxjs-signals"
+      ],
+      "authored": true
+    },
+    {
+      "id": "m3-functions-variance",
+      "num": 3,
+      "section": "s1-type-system",
+      "order": 3,
+      "level": "senior",
+      "signature": false,
+      "title": {
+        "en": "Functions, Overloads & Variance",
+        "uk": "Функції, Overloads та Variance"
+      },
+      "tagline": {
+        "en": "When one function can safely stand in for another — parameter contravariance, overload resolution, and where variance bites.",
+        "uk": "Коли одна функція може безпечно підмінити іншу — контраваріантність параметрів, розвʼязання overload-ів і де кусає variance."
+      },
+      "mentalModel": {
+        "en": "A function is safe to substitute when it asks for no more and promises no less: it may accept fewer (or wider) parameters, and must return the same or a more specific type.",
+        "uk": "Функцію безпечно підставити, коли вона просить не більше і обіцяє не менше: вона може приймати менше (або ширші) параметри й мусить повертати той самий чи конкретніший тип."
+      },
+      "readMins": 20,
+      "topics": [
+        {
+          "id": "t1-functions-as-shapes",
+          "title": {
+            "en": "Functions are shapes too: substitutability",
+            "uk": "Функції — теж форми: підставність"
+          }
+        },
+        {
+          "id": "t2-parameter-variance",
+          "title": {
+            "en": "Parameter variance & `strictFunctionTypes`",
+            "uk": "Variance параметрів та `strictFunctionTypes`"
+          }
+        },
+        {
+          "id": "t3-overloads",
+          "title": {
+            "en": "Overloads & resolution",
+            "uk": "Overloads та розвʼязання"
+          }
+        },
+        {
+          "id": "t4-generic-variance-annotations",
+          "title": {
+            "en": "Variance in generics & `in`/`out`",
+            "uk": "Variance у generics та `in`/`out`"
+          }
+        },
+        {
+          "id": "t5-unsound-corners",
+          "title": {
+            "en": "The unsound corners & safe APIs",
+            "uk": "Unsound-кути та безпечні API"
+          }
+        }
+      ],
+      "seeAlso": [
+        "m1-structural-typing",
+        "m2-narrowing",
+        "m4-generics",
+        "m5-generics-conditional-types"
+      ],
+      "authored": true
+    },
+    {
+      "id": "m4-generics",
+      "num": 4,
+      "section": "s2-type-level",
+      "order": 1,
+      "level": "senior",
+      "signature": true,
+      "title": {
+        "en": "Generic Functions & Classes",
+        "uk": "Generic-функції та класи"
+      },
+      "tagline": {
+        "en": "Parametric polymorphism at the value level: write it once for a placeholder type, infer the rest.",
+        "uk": "Параметричний поліморфізм на рівні значень: напишіть раз для типу-заглушки, решту виведе компілятор."
+      },
+      "mentalModel": {
+        "en": "A generic is a function whose argument is a *type*. You write it once for a placeholder `T`; the compiler stamps out a precise version per caller by inferring `T` from the arguments.",
+        "uk": "Generic — це функція, чий аргумент — *тип*. Ви пишете її раз для заглушки `T`; компілятор штампує точну версію під кожного викликача, виводячи `T` з аргументів."
+      },
+      "readMins": 18,
+      "topics": [
+        {
+          "id": "t1-parametric",
+          "title": {
+            "en": "Parametric polymorphism",
+            "uk": "Параметричний поліморфізм"
+          }
+        },
+        {
+          "id": "t2-inference",
+          "title": {
+            "en": "Inference sites & best common type",
+            "uk": "Місця inference та best common type"
+          }
+        },
+        {
+          "id": "t3-constraints",
+          "title": {
+            "en": "Constraints",
+            "uk": "Constraints"
+          }
+        },
+        {
+          "id": "t4-defaults-inference-knobs",
+          "title": {
+            "en": "Defaults, `const` params & `NoInfer`",
+            "uk": "Defaults, `const`-параметри та `NoInfer`"
+          }
+        },
+        {
+          "id": "t5-classes-guidelines",
+          "title": {
+            "en": "Generic classes & good taste",
+            "uk": "Generic-класи та гарний смак"
+          }
+        }
+      ],
+      "seeAlso": [
+        "m5-generics-conditional-types",
+        "m6-mapped-template-literals",
+        "m1-structural-typing",
+        "m3-functions-variance"
+      ],
+      "authored": true
+    },
+    {
+      "id": "m5-generics-conditional-types",
+      "num": 5,
+      "section": "s2-type-level",
+      "order": 2,
+      "level": "senior",
+      "signature": true,
+      "title": {
+        "en": "Generics & Conditional Types",
+        "uk": "Generics та Conditional Types"
+      },
+      "tagline": {
+        "en": "The type system as a small functional language: parameters, constraints, conditional types, and `infer`.",
+        "uk": "Система типів як маленька функціональна мова: параметри, constraints, conditional types та `infer`."
+      },
+      "mentalModel": {
+        "en": "A conditional type is a function in the type world — `T extends U ? X : Y`. Hand it a *naked* union and it runs once per member, then unions the answers.",
+        "uk": "Conditional type — це функція у світі типів: `T extends U ? X : Y`. Дай йому *naked* union — і він виконається для кожного члена окремо, а потім обʼєднає відповіді через union."
+      },
+      "readMins": 18,
+      "topics": [
+        {
+          "id": "t1-generics",
+          "title": {
+            "en": "From generics to types that compute",
+            "uk": "Від generics до типів, що обчислюють"
+          }
+        },
+        {
+          "id": "t2-conditional",
+          "title": {
+            "en": "Conditional types & distribution",
+            "uk": "Conditional types та розподіл (distribution)"
+          }
+        },
+        {
+          "id": "t3-infer",
+          "title": {
+            "en": "Extracting types with `infer`",
+            "uk": "Видобування типів через `infer`"
+          }
+        },
+        {
+          "id": "t4-utility-bridge",
+          "title": {
+            "en": "How the standard library is built",
+            "uk": "Як збудована стандартна бібліотека типів"
+          }
+        },
+        {
+          "id": "t5-engineering",
+          "title": {
+            "en": "Engineering type-level code",
+            "uk": "Інженерія type-level коду"
+          }
+        }
+      ],
+      "seeAlso": [
+        "m4-generics",
+        "m6-mapped-template-literals",
+        "m7-utility-types",
+        "m3-functions-variance"
+      ],
+      "authored": true
+    },
+    {
+      "id": "m6-mapped-template-literals",
+      "num": 6,
+      "section": "s2-type-level",
+      "order": 3,
+      "level": "senior",
+      "signature": true,
+      "title": {
+        "en": "Mapped & Template-Literal Types",
+        "uk": "Mapped- та Template-Literal типи"
+      },
+      "tagline": {
+        "en": "Iterate keys, flip modifiers, remap names and compute string types — build Pick/Partial/Record from scratch.",
+        "uk": "Ітеруйте ключі, змінюйте модифікатори, перейменовуйте та обчислюйте рядкові типи — зберіть Pick/Partial/Record з нуля."
+      },
+      "mentalModel": {
+        "en": "A mapped type is a for-loop over `keyof T`. Each pass can flip the key’s modifiers, rename the key, and transform its value — and template literals are string arithmetic in that same type world.",
+        "uk": "Mapped-тип — це for-цикл по `keyof T`. Кожен прохід може змінити модифікатори ключа, перейменувати ключ і перетворити його значення — а template literals це рядкова арифметика в тому ж світі типів."
+      },
+      "readMins": 19,
+      "topics": [
+        {
+          "id": "t1-mapped-basics",
+          "title": {
+            "en": "A for-loop over `keyof T`",
+            "uk": "For-цикл по `keyof T`"
+          }
+        },
+        {
+          "id": "t2-modifiers",
+          "title": {
+            "en": "Modifiers & homomorphic preservation",
+            "uk": "Модифікатори та homomorphic-збереження"
+          }
+        },
+        {
+          "id": "t3-key-remapping",
+          "title": {
+            "en": "Key remapping with `as`",
+            "uk": "Перейменування ключів через `as`"
+          }
+        },
+        {
+          "id": "t4-template-literals",
+          "title": {
+            "en": "Template-literal & intrinsic string types",
+            "uk": "Template-literal та intrinsic-рядкові типи"
+          }
+        },
+        {
+          "id": "t5-utility-bridge",
+          "title": {
+            "en": "The standard library, decoded",
+            "uk": "Стандартна бібліотека, розібрана"
+          }
+        }
+      ],
+      "seeAlso": [
+        "m5-generics-conditional-types",
+        "m7-utility-types",
+        "m4-generics",
+        "m1-structural-typing"
+      ],
+      "authored": true
+    },
+    {
+      "id": "m7-utility-types",
+      "num": 7,
+      "section": "s2-type-level",
+      "order": 4,
+      "level": "senior",
+      "signature": true,
+      "title": {
+        "en": "Built-in Utility Types, Decoded",
+        "uk": "Вбудовані Utility-типи, розібрані"
+      },
+      "tagline": {
+        "en": "Partial, Pick, Record, ReturnType, Awaited — read the real lib.d.ts source and see there is no magic, just two mechanisms.",
+        "uk": "Partial, Pick, Record, ReturnType, Awaited — прочитайте справжнє джерело lib.d.ts і побачте, що магії немає, лише два механізми."
+      },
+      "mentalModel": {
+        "en": "There is no magic in the standard library: every utility is either a mapped type that reshapes an object or a distributive conditional that filters a union — three lines you could have written yourself.",
+        "uk": "У стандартній бібліотеці немає магії: кожен utility — це або mapped-тип, що переформовує обʼєкт, або distributive conditional, що фільтрує union — три рядки, які ви могли б написати самі."
+      },
+      "readMins": 18,
+      "topics": [
+        {
+          "id": "t1-two-families",
+          "title": {
+            "en": "No magic: map or filter",
+            "uk": "Без магії: map або filter"
+          }
+        },
+        {
+          "id": "t2-object-shaping",
+          "title": {
+            "en": "Object-shaping utilities (mapped)",
+            "uk": "Обʼєкто-формувальні utility (mapped)"
+          }
+        },
+        {
+          "id": "t3-union-filtering",
+          "title": {
+            "en": "Union-filtering utilities (distributive)",
+            "uk": "Union-фільтрувальні utility (distributive)"
+          }
+        },
+        {
+          "id": "t4-function-inspection",
+          "title": {
+            "en": "Function inspection (`infer`)",
+            "uk": "Інспекція функцій (`infer`)"
+          }
+        },
+        {
+          "id": "t5-awaited-composing",
+          "title": {
+            "en": "`Awaited` & composing the library",
+            "uk": "`Awaited` та композиція бібліотеки"
+          }
+        }
+      ],
+      "seeAlso": [
+        "m6-mapped-template-literals",
+        "m5-generics-conditional-types",
+        "m4-generics",
+        "m9-dto-validation"
+      ],
+      "authored": true
+    },
+    {
+      "id": "m8-decorators-metadata",
+      "num": 8,
+      "section": "s3-applied",
+      "order": 1,
+      "level": "senior",
+      "signature": false,
+      "title": {
+        "en": "Decorators & Metadata (NestJS · Angular)",
+        "uk": "Decorators та Metadata (NestJS · Angular)"
+      },
+      "tagline": {
+        "en": "Stage-3 decorators vs the legacy experimental ones, and how DI reads metadata.",
+        "uk": "Stage-3 decorators проти legacy experimental, і як DI читає metadata."
+      },
+      "mentalModel": {
+        "en": "A decorator is a function that tags or rewrites a declaration so a framework can find it later.",
+        "uk": "Decorator — це функція, що позначає чи переписує оголошення, щоб фреймворк знайшов його потім."
+      },
+      "readMins": 0,
+      "topics": [],
+      "seeAlso": [],
+      "authored": false
+    },
+    {
+      "id": "m9-dto-validation",
+      "num": 9,
+      "section": "s3-applied",
+      "order": 2,
+      "level": "senior",
+      "signature": false,
+      "title": {
+        "en": "DTOs, Validation & API Boundaries",
+        "uk": "DTO, Валідація та межі API"
+      },
+      "tagline": {
+        "en": "One source of truth for a shape: a runtime schema, with the static type derived from it.",
+        "uk": "Єдине джерело правди для форми: runtime-схема, з якої виводиться статичний тип."
+      },
+      "mentalModel": {
+        "en": "Validate at the door, infer the type from the validator — never cast untrusted input.",
+        "uk": "Валідуйте на вході, виводьте тип із валідатора — ніколи не кастуйте недовірений вхід."
+      },
+      "readMins": 0,
+      "topics": [],
+      "seeAlso": [],
+      "authored": false
+    },
+    {
+      "id": "m10-rxjs-signals",
+      "num": 10,
+      "section": "s3-applied",
+      "order": 3,
+      "level": "senior",
+      "signature": false,
+      "title": {
+        "en": "Typing RxJS, Signals & Component State",
+        "uk": "Типізація RxJS, Signals та стану компонентів"
+      },
+      "tagline": {
+        "en": "Operator type flow, typed signals/computed, and discriminated unions for UI state.",
+        "uk": "Потік типів через оператори, типізовані signals/computed і discriminated unions для UI-стану."
+      },
+      "mentalModel": {
+        "en": "Model state as a discriminated union so impossible states cannot be represented.",
+        "uk": "Моделюйте стан як discriminated union, щоб неможливі стани не можна було виразити."
+      },
+      "readMins": 0,
+      "topics": [],
+      "seeAlso": [],
+      "authored": false
+    },
+    {
+      "id": "m11-tsconfig-strictness",
+      "num": 11,
+      "section": "s4-compiler",
+      "order": 1,
+      "level": "senior",
+      "signature": false,
+      "title": {
+        "en": "tsconfig & the Strictness Model",
+        "uk": "tsconfig та модель strictness"
+      },
+      "tagline": {
+        "en": "What each strict flag buys you, and how target/lib/module shape emit.",
+        "uk": "Що дає кожен strict-флаг, і як target/lib/module формують emit."
+      },
+      "mentalModel": {
+        "en": "tsconfig is a contract with the compiler — strictness trades a little friction for fewer runtime bugs.",
+        "uk": "tsconfig — це контракт із компілятором: strictness міняє трохи тертя на менше runtime-багів."
+      },
+      "readMins": 0,
+      "topics": [],
+      "seeAlso": [],
+      "authored": false
+    },
+    {
+      "id": "m12-modules-resolution",
+      "num": 12,
+      "section": "s4-compiler",
+      "order": 2,
+      "level": "senior",
+      "signature": false,
+      "title": {
+        "en": "Modules, Resolution & Project References",
+        "uk": "Модулі, Resolution та Project References"
+      },
+      "tagline": {
+        "en": "How TS finds files: moduleResolution, paths, exports maps, and composite builds.",
+        "uk": "Як TS знаходить файли: moduleResolution, paths, exports maps та composite-збірки."
+      },
+      "mentalModel": {
+        "en": "Module resolution is the compiler retracing the exact path your runtime will take to a file.",
+        "uk": "Module resolution — це компілятор, що повторює точний шлях, яким runtime дійде до файлу."
+      },
+      "readMins": 0,
+      "topics": [],
+      "seeAlso": [],
+      "authored": false
+    },
+    {
+      "id": "m13-declaration-files",
+      "num": 13,
+      "section": "s4-compiler",
+      "order": 3,
+      "level": "staff",
+      "signature": false,
+      "title": {
+        "en": "Declaration Files & Publishing Types",
+        "uk": "Declaration Files та публікація типів"
+      },
+      "tagline": {
+        "en": "Authoring .d.ts, shipping types with your package, and not breaking your consumers.",
+        "uk": "Написання .d.ts, постачання типів із пакетом і як не зламати споживачів."
+      },
+      "mentalModel": {
+        "en": "A .d.ts is the public type contract of a package — the shape, with the implementation removed.",
+        "uk": ".d.ts — це публічний типовий контракт пакета: форма без реалізації."
+      },
+      "readMins": 0,
+      "topics": [],
+      "seeAlso": [],
+      "authored": false
+    }
+  ]
+}
