@@ -4673,3 +4673,189 @@
 @media (prefers-reduced-motion: reduce) {
   .nr-line, .nr-readout { transition: none; }
 }
+
+/* ════════════════════════════════════════════════════════════════════════════
+   S3 additions — Section II sims. Mirror the golden .ct-* block: pure engine +
+   stepped reveal + ARIA live region + reduced-motion fallback. Shared tokens.
+   ════════════════════════════════════════════════════════════════════════════ */
+
+/* ── M6 · mapped-type transformer (.mp-*) ──────────────────────────────────── */
+.mp-sim {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.mp-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.mp-signature {
+  margin: 0;
+  padding: 12px 14px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--r-sm);
+  font-size: 13px;
+  color: var(--tx);
+  white-space: pre-wrap;
+  overflow-x: auto;
+}
+.mp-io { margin: 0; font-size: 13px; overflow-x: auto; }
+.mp-accent { color: var(--accent-bright); }
+.mp-loop-head {
+  margin: 2px 0 0;
+  font-size: 12px;
+  font-family: var(--font-mono);
+}
+.mp-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.mp-step {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 9px 12px;
+  background: var(--surface);
+  opacity: 0.35;
+  transition: opacity var(--dur) var(--ease), border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+.mp-step--on { opacity: 1; }
+.mp-step--active {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-glow);
+}
+.mp-step-key { font-size: 13px; }
+.mp-arrow { color: var(--tx3); }
+.mp-step-out { font-size: 13px; color: var(--tx); font-weight: 500; }
+.mp-chips {
+  flex-basis: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+.mp-chip {
+  font-family: var(--font-body);
+  font-size: 11px;
+  border-radius: 99px;
+  padding: 1px 8px;
+  border: 1px solid transparent;
+}
+.mp-chip--key { color: var(--accent-bright); background: var(--accent-soft); border-color: var(--accent-deep); }
+.mp-chip--ro { color: var(--c-storage); background: var(--c-storage-soft); border-color: var(--c-storage); }
+.mp-chip--opt { color: var(--c-analytics); background: var(--c-analytics-soft); border-color: var(--c-analytics); }
+.mp-chip--val { color: var(--c-commit); background: var(--c-commit-soft); border-color: var(--c-commit); }
+.mp-chip--keep { color: var(--tx3); background: var(--s2); }
+
+.mp-result {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 14px;
+  border: 1px solid var(--line2);
+  border-radius: var(--r-md);
+  background: var(--s2);
+  opacity: 0.6;
+  transition: opacity var(--dur) var(--ease), background var(--dur) var(--ease);
+  overflow-x: auto;
+}
+.mp-result--on { opacity: 1; background: var(--c-commit-soft); }
+.mp-result-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; }
+.mp-result-ty { font-size: 14.5px; color: var(--tx); font-weight: 500; white-space: pre-wrap; }
+
+@media (prefers-reduced-motion: reduce) {
+  .mp-step, .mp-result { transition: none; }
+}
+
+/* ── M4 · generic inference tracer (.in-*) ─────────────────────────────────── */
+.in-sim {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.in-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.in-signature {
+  margin: 0;
+  padding: 12px 14px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--r-sm);
+  font-size: 13px;
+  color: var(--tx);
+  white-space: pre-wrap;
+  overflow-x: auto;
+}
+.in-call { margin: 0; font-size: 13px; }
+.in-accent { color: var(--accent-bright); }
+.in-sites-head { margin: 2px 0 0; font-size: 12px; font-family: var(--font-body); }
+.in-sites {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.in-site {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 6px 10px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-md);
+  padding: 9px 12px;
+  background: var(--surface);
+  opacity: 0.35;
+  transition: opacity var(--dur) var(--ease), border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+.in-site--on { opacity: 1; }
+.in-site--active {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-glow);
+}
+.in-site-param { font-size: 13px; color: var(--accent-bright); }
+.in-arrow { color: var(--tx3); }
+.in-site-arg { font-size: 13px; color: var(--tx); }
+.in-cand { margin-left: auto; font-size: 12.5px; color: var(--tx2); }
+.in-cand strong { color: var(--c-analytics); }
+.in-cand--none { color: var(--tx3); font-style: italic; }
+
+.in-result {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 14px;
+  border: 1px solid var(--line2);
+  border-radius: var(--r-md);
+  background: var(--s2);
+  opacity: 0.6;
+  transition: opacity var(--dur) var(--ease), background var(--dur) var(--ease);
+  overflow-x: auto;
+}
+.in-result--on { opacity: 1; }
+.in-result--ok { background: var(--c-commit-soft); }
+.in-result--bad { background: var(--c-danger-soft); }
+.in-line { margin: 0; font-size: 12.8px; }
+.in-result-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; }
+.in-final { margin: 2px 0; }
+.in-t { font-size: 15.5px; color: var(--accent-bright); font-weight: 600; }
+.in-ok { color: var(--c-commit); }
+.in-bad { color: var(--c-danger); }
+
+@media (prefers-reduced-motion: reduce) {
+  .in-site, .in-result { transition: none; }
+}
