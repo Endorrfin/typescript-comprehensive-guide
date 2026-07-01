@@ -29,6 +29,8 @@ export const figures: Record<string, ComponentType> = {
   'mapped-type-mechanism': lazyNamed(() => import('../components/figures/MappedTypeMechanism'), 'MappedTypeMechanism'), // M6
   'inference-sites': lazyNamed(() => import('../components/figures/InferenceSites'), 'InferenceSites'), // M4
   'utility-type-taxonomy': lazyNamed(() => import('../components/figures/UtilityTypeTaxonomy'), 'UtilityTypeTaxonomy'), // M7
+  'variance-directions': lazyNamed(() => import('../components/figures/VarianceDirections'), 'VarianceDirections'), // M3
+  'overload-resolution': lazyNamed(() => import('../components/figures/OverloadResolution'), 'OverloadResolution'), // M3
 };
 
 export const getSim = (key: string): ComponentType | undefined => sims[key];

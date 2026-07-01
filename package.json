@@ -9,17 +9,21 @@
   "description": "A deep, interactive, bilingual (EN/UA) guide to TypeScript — the type system, type-level programming, applied patterns, and the compiler.",
   "scripts": {
     "dev": "vite",
+    "predev": "npm run gen:meta",
     "build": "tsc -b && vite build",
+    "prebuild": "npm run gen:meta",
     "preview": "vite preview",
-    "typecheck": "tsc -b --noEmit",
+    "gen:meta": "tsx scripts/genMeta.ts",
+    "check:meta": "tsx scripts/checkMeta.ts",
+    "typecheck": "tsc -b --noEmit && npm run check:meta",
     "lint": "eslint .",
     "check:data": "tsx scripts/check-data.ts",
     "test": "tsx scripts/run-tests.ts",
     "smoke": "tsx --tsconfig tsconfig.app.json scripts/smoke.ts",
-    "verify": "npm run typecheck && npm run lint && npm run check:data && npm run test && npm run smoke && npm run build"
+    "verify": "npm run gen:meta && npm run typecheck && npm run lint && npm run check:data && npm run test && npm run smoke && npm run build"
   },
   "//test+smoke": "standard §4.6. `test` auto-discovers scripts/test-*.ts (run-tests.ts) — green when none exist yet; add a pure engine in src/lib + scripts/test-<name>.ts and it's picked up. `smoke` SSR-renders every sim/figure/page (scripts/smoke.ts) — wire its 4 TODO spots after the golden module. Both run only meaningfully once the golden module exists; run `verify` from then on.",
-  "//meta-split": "When the guide grows, add the Claude-guide meta split (standard §4.4): scripts genMeta.ts + checkMeta.ts, then 'gen:meta': 'tsx scripts/genMeta.ts', 'predev'/'prebuild': 'npm run gen:meta', 'check:meta': 'tsx scripts/checkMeta.ts', and chain check:meta into typecheck/verify.",
+  "//meta-split": "DONE (S5, standard §4.4). scripts/genMeta.ts derives src/data/meta.json (slim nav/search index) from concepts.ts; scripts/checkMeta.ts guards drift and is chained into `typecheck`; gen:meta runs on predev/prebuild. The eager shell (TopBar, Sidebar, Footer, LandscapeMap, search) imports src/data/meta.ts; only the lazy ModulePage imports full bodies from concepts.ts, keeping module content out of the initial bundle.",
   "dependencies": {
     "react": "^19.2.0",
     "react-dom": "^19.2.0"

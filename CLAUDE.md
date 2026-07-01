@@ -22,9 +22,11 @@ building clean.
 - **Bilingual at the data layer:** every human‑readable string is a `Localized` value `{ en; uk }`.
 - **Figures and sims are referenced by key** and resolved via `lib/registry.tsx` (React.lazy). Content is
   edited **only** in `src/data/*`.
-- **Meta/bundle split DEFERRED** (standard §4.4): with one authored module the eager chrome imports
-  `concepts.ts` directly. Add the `gen:meta` + `meta.ts` split when the bundle grows (multiple authored
-  modules). `// CHANGED (S1)`.
+- **Meta/bundle split DONE (S5)** (standard §4.4): `scripts/genMeta.ts` derives `src/data/meta.json` (slim
+  nav/search index) from `concepts.ts`; the eager chrome (TopBar, Sidebar, Footer, LandscapeMap, search)
+  imports `src/data/meta.ts`, and only the lazy `ModulePage` imports full bodies from `concepts.ts` — so
+  the ~242 KB content chunk loads on module navigation, not initial paint. `checkMeta.ts` guards drift
+  (chained into `typecheck`); `gen:meta` runs on `predev`/`prebuild`; `meta.json` is committed. `// CHANGED (S5)`.
 - **TypeScript‑blue accent** (`#3178c6` family) on the shared dark‑editorial palette.
 
 ## 3. Repo layout (target — standard §4.3)
@@ -40,7 +42,7 @@ scripts/     check-data.ts · run-tests.ts · test-typeeval.ts · smoke.ts · cs
 public/      favicon.svg · .nojekyll
 .github/workflows/deploy.yml · CLAUDE.md · PROJECT-BRIEF.md · CURRICULUM.md · README.md · configs
 ```
-Deviation from §4.3: no `data/meta.*` yet (split deferred, see §2).
+`data/meta.ts` + generated `data/meta.json` present (S5 meta split, §2) — layout now matches §4.3.
 
 ## 4. Content / data model (the contract)
 **Section** (top‑level) → **Module** (navigable, skippable) → **Topic** (deep‑linkable
@@ -56,7 +58,8 @@ with **pitfalls** + interview Q&A. Stubs carry a mental model + nav only (`topic
 - **III · Applied TypeScript** — decorators & DI, DTO validation, RxJS/signals typing.
 - **IV · Compiler & Tooling** — tsconfig/strictness, module resolution & project refs, declaration files.
 - **4 sections · 13 modules.** S1 shipped M5 + the app shell; S2 shipped M1 + M2 (Section I); S3 added
-  M4 + M6 (Section II); S4 added M7 — **Section II (type‑level) now complete**.
+  M4 + M6 (Section II); S4 added M7 (**Section II complete**); S5 added M3 + the meta split — **Section I
+  (type‑system) now complete**. Sections III + IV remain (stubs).
 
 ## 6. Signature interactives + diagram‑first baseline
 Curated sims only — a pure engine in `lib/*` (deterministic, unit‑tested) + a component (play/pause/step,
@@ -64,8 +67,9 @@ ARIA + live region, **`prefers-reduced-motion`** fallback). Shipped (6): **★ `
 `lib/typeEval.ts` · 73); **★ `structural-assignability`** (M1, `lib/assignability.ts` · 141);
 **★ `control-flow-narrowing`** (M2, `lib/narrowing.ts` · 42); **★ `generic-inference`** (M4,
 `lib/inference.ts` · 37); **★ `mapped-type-transform`** (M6, `lib/mappedType.ts` · 52);
-**★ `utility-type-decode`** (M7, `lib/utilityType.ts` · 188). Diagram‑first elsewhere (crisp SVG + table).
-Planned sims: tsconfig explorer (M11), resolution tracer (M12).
+**★ `utility-type-decode`** (M7, `lib/utilityType.ts` · 188). Diagram‑first elsewhere (crisp SVG + table) —
+**M3 (functions & variance) is diagram‑first**, no sim: figures `variance-directions` + `overload-resolution`
+(figures now **9**). Planned sims: tsconfig explorer (M11), resolution tracer (M12).
 
 ## 7. Theme / brand
 Dark editorial; palette in `theme/tokens.css`; TypeScript‑blue accent (`#3178c6`). Fonts **Fraunces**
@@ -114,7 +118,7 @@ build → upload `dist` → deploy. `concurrency: cancel-in-progress: false`. `v
     checker** ("is A assignable to B?" with a member-by-member reasoning trace): pure engine
     `src/lib/assignability.ts` + `scripts/test-assignability.ts` + `components/sims/AssignabilitySim.tsx`
     + a figure. Topics: structural vs nominal · the assignability relation · excess-property checks ·
-    widening/`const` · object/function/array compatibility.
+      widening/`const` · object/function/array compatibility.
   - **M2 `m2-narrowing`** — *Narrowing & Control-Flow Analysis*. Sim = **control-flow narrowing
     visualizer** (step preset snippets line-by-line; show the variable's inferred type at each point,
     ending in `never` exhaustiveness): engine `src/lib/narrowing.ts` + `scripts/test-narrowing.ts` +
@@ -132,8 +136,15 @@ build → upload `dist` → deploy. `concurrency: cancel-in-progress: false`. `v
 - **S3 (done):** M4 (generics) + M6 (mapped/template‑literal types) — both authored with signature sims.
 - **S4 (done):** M7 (utility types) + the ★ utility‑type decoder — **Section II complete**. Single module,
   golden depth (M3 deferred to S5).
-- **S5 (next):** M3 (Functions, Overloads & Variance) — completes Section I.
-- **S6–S8:** Section III (applied) then Section IV (compiler/tooling), 1–2 modules each.
+- **S5 (done):** shipped the **meta/bundle split** (standard §4.4: `genMeta.ts` + `checkMeta.ts` +
+  `data/meta.ts`/`meta.json`; eager chrome repointed to `meta`, bodies deferred to the lazy `ModulePage`)
+  **then authored M3 (Functions, Overloads & Variance)** to golden depth — **Section I complete**. See §14.
+- **S6 (next):** **Section III (applied)** — start M8 (Decorators & Metadata) and/or M9 (DTO validation),
+  grounded in the owner's NestJS 11 / Angular 21 stack; then M10 (RxJS/signals). 1–2 modules per session.
+  - **Kickoff phrase for the new session:** *"Continue the TypeScript guide — author Section III modules
+    (start M8 Decorators & Metadata) per CLAUDE.md §13 to golden depth. Read CLAUDE.md, PROJECT-BRIEF,
+    CURRICULUM and the M1/M2/M3 patterns first; plan first, wait for my go before building."*
+- **S7–S8:** finish Section III then Section IV (compiler/tooling), 1–2 modules each.
 - **Polish:** remaining sims · `#/decide` picker · flashcards/quiz · deploy.
 
 ## 14. Status / progress log
@@ -199,3 +210,33 @@ build → upload `dist` → deploy. `concurrency: cancel-in-progress: false`. `v
   `UtilityTypeSim`/`UtilityTypeTaxonomy` isolated chunks). Branch `s4-section-ii-m7`. **Owner:** delete
   sandbox `node_modules`/`dist*`, `npm install`, commit + deploy. **Open items:** meta/bundle split still
   deferred (6 authored modules — revisit); **Section II complete**; next = S5 (M3, completes Section I).
+- **S5** — **Shipped the meta/bundle split, then authored M3 (Functions, Overloads & Variance) — Section I
+  complete.** Two parts. **(A) Meta/bundle split** (standard §4.4, the long‑deferred infra): added
+  `scripts/genMeta.ts` (derives the slim `src/data/meta.json` nav/search index from the `concepts.ts`
+  SSOT), `scripts/checkMeta.ts` (drift guard, chained into `typecheck`), and `src/data/meta.ts` (the
+  lightweight API mirroring `concepts` export names). Wired `gen:meta` + `predev`/`prebuild`; repointed the
+  five eager importers (TopBar `LEVELS`, Footer `COUNTS`, Sidebar `modulesBySection/sections`, `search.ts`
+  `getSection/modules`, LandscapeMap) from `concepts` → `meta`; only the lazy `ModulePage` (and the Node
+  scripts `check-data`/`smoke`/`genMeta`/`checkMeta`) still read `concepts`. **Build proof:** module bodies
+  are now an isolated `concepts` chunk (**242 KB**) that loads on module navigation, not initial paint —
+  `index.html` preloads only the 59 KB eager entry + react‑vendor; the entry references `concepts` only via
+  `__vite__mapDeps` (dynamic‑import preload map), not a static import; block‑body strings (pitfalls, prose)
+  are absent from the entry chunk. JSON default import verified clean under `verbatimModuleSyntax`.
+  **(B) M3 `m3-functions-variance`** — *Functions, Overloads & Variance*, **diagram‑first** (CURRICULUM
+  marks it "—", no sim). Golden DoD: 5 topics (functions‑as‑shapes/substitutability · parameter variance &
+  `strictFunctionTypes` · overloads & resolution · generic variance & `in`/`out` · unsound corners & safe
+  APIs), block kinds prose/figure/code/callout/table/compare, 6 key points, 4 pitfalls, 4 interview Q&A,
+  7 verified sources, EN+UA. Two figures (`variance-directions`, `overload-resolution`) registered +
+  SSR‑smoke‑canaried; 5 glossary terms (covariance, contravariance, bivariance, invariance, function
+  overload); smoke route hash added; replaced the stub in `concepts.ts`. Facts web‑verified:
+  `strictFunctionTypes` (2.6, part of `strict`; methods/constructors stay **bivariant** so `Array<T>` relates
+  covariantly); optional variance annotations `in`/`out` (**4.7**; both positions → invariant); the
+  value‑return→`() => void` assignability rule (`push`→`forEach`); overload resolution is **first‑match‑wins**
+  (order most‑specific‑first); TS **6.0** final JS‑based stable, **7.0** Go‑native **RC** (Jun 18 2026,
+  checking semantics identical to 6.0). COUNTS 4/13, sims **6** (unchanged — M3 has none), figures **9**.
+  **Verification:** `gen:meta ✓ · typecheck ✓ (+check:meta) · lint ✓ · check:data ✓ (4 sections, 13
+  modules) · test ✓ (533: 141+37+52+42+73+188) · smoke ✓ (109 checks, 6 sims + 9 figures, EN+UK) · build ✓
+  (dist-s5; module bodies deferred to the `concepts` chunk)`. Branch `s5-meta-split-m3-functions-variance`.
+  **Owner:** delete sandbox `node_modules`/`dist*`, `npm install`, commit + deploy. **Open items:**
+  **Section I complete**; next = S6 (Section III applied — M8 decorators/metadata, grounded in NestJS 11 /
+  Angular 21).

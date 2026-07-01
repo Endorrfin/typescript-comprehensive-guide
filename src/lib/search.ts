@@ -1,10 +1,10 @@
 import type { Lang, Localized } from '../data/types';
-import { getSection, modules } from '../data/concepts';
+import { getSection, modules } from '../data/meta'; // CHANGED (S5): meta split — search indexes the slim nav records (title/tagline/mentalModel/topics), no block bodies.
 import { glossary } from '../data/glossary';
 
 /*
- * Global search over modules + topics + glossary terms (reads concepts directly — the meta/bundle
- * split is deferred until the guide grows). Tiered ranking: whole-word > prefix > word-boundary >
+ * Global search over modules + topics + glossary terms (reads the slim nav index from data/meta, not
+ * concepts — S5 meta split keeps module bodies out of the eager bundle). Tiered ranking: whole-word > prefix > word-boundary >
  * substring, weighted by field. Results carry a kind, a ready href and a highlight match range.
  */
 export type SearchKind = 'module' | 'topic' | 'glossary';

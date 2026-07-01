@@ -1,4 +1,4 @@
-import { COUNTS } from '../../data/concepts';
+import { COUNTS } from '../../data/meta'; // CHANGED (S5): meta split — counts come from the slim nav index.
 import { useLang } from '../../i18n/lang';
 import { ui } from '../../i18n/ui';
 

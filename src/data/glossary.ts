@@ -91,7 +91,47 @@ export const glossary: GlossaryEntry[] = [
       en: 'How subtyping of a container relates to subtyping of its parts: covariant (out), contravariant (in), bivariant or invariant. Annotatable with `in`/`out` (4.7).',
       uk: 'Як підтипізація контейнера повʼязана з підтипізацією його частин: covariant (out), contravariant (in), bivariant чи invariant. Анотується `in`/`out` (4.7).',
     },
-    seeAlso: ['assignability'],
+    seeAlso: ['assignability', 'covariance', 'contravariance'],
+  },
+  {
+    term: 'covariance',
+    def: {
+      en: 'Subtyping that flows the same direction: Dog <: Animal ⇒ F<Dog> <: F<Animal>. Function return types and readonly outputs are covariant; annotated `out` (4.7).',
+      uk: 'Підтипізація, що тече в той самий бік: Dog <: Animal ⇒ F<Dog> <: F<Animal>. Типи повернення функцій і readonly-outputs covariant; анотується `out` (4.7).',
+    },
+    seeAlso: ['variance', 'contravariance'],
+  },
+  {
+    term: 'contravariance',
+    def: {
+      en: 'Subtyping that flows in reverse: Dog <: Animal ⇒ F<Animal> <: F<Dog>. Function parameter types are contravariant under `strictFunctionTypes` (2.6); annotated `in` (4.7).',
+      uk: 'Підтипізація, що тече навпаки: Dog <: Animal ⇒ F<Animal> <: F<Dog>. Типи параметрів функцій contravariant під `strictFunctionTypes` (2.6); анотується `in` (4.7).',
+    },
+    seeAlso: ['variance', 'covariance'],
+  },
+  {
+    term: 'bivariance',
+    def: {
+      en: 'Assignability in both directions at once — convenient but unsound. TypeScript keeps it for method and constructor parameters so generic collections like `Array<T>` stay covariant.',
+      uk: 'Assignability одразу в обидва боки — зручно, але unsound. TypeScript тримає це для параметрів методів і конструкторів, щоб generic-колекції на кшталт `Array<T>` лишались covariant.',
+    },
+    seeAlso: ['variance', 'invariance'],
+  },
+  {
+    term: 'invariance',
+    def: {
+      en: 'Neither covariant nor contravariant: F<Dog> and F<Animal> are unrelated. A mutable container that both reads and writes T is invariant; annotated `in out` (4.7).',
+      uk: 'Ні covariant, ні contravariant: F<Dog> і F<Animal> непов’язані. Мутабельний контейнер, що і читає, і пише T, invariant; анотується `in out` (4.7).',
+    },
+    seeAlso: ['variance', 'covariance'],
+  },
+  {
+    term: 'function overload',
+    def: {
+      en: 'Multiple call signatures over one implementation, so the return can depend on the argument shape. Callers see only the overloads; resolution is first-match-wins (order most-specific-first) and the implementation signature is not callable.',
+      uk: 'Кілька call-сигнатур над однією реалізацією, тож повернення може залежати від форми аргументів. Викликачі бачать лише overload-и; розвʼязання — перший-збіг-перемагає (найконкретніші першими), а implementation-сигнатура не викликається.',
+    },
+    seeAlso: ['variance'],
   },
   {
     term: 'union',

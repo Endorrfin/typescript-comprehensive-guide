@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { LEVELS } from '../../data/concepts';
+import { LEVELS } from '../../data/meta'; // CHANGED (S5): meta split — eager shell reads the slim nav index, not concepts.
 import type { Level } from '../../data/types';
 import { useLang } from '../../i18n/lang';
 import { ui } from '../../i18n/ui';

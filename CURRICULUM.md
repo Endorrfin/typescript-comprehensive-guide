@@ -27,7 +27,7 @@ See `CLAUDE.md` §4 and `src/data/types.ts` (the shared Tier‑1 contract). Leve
 |---|---|---|---|---|---|
 | 1 | **`m1-structural-typing`** ★ | **Structural Typing & Assignability** | middle | shapes vs names · assignability rules · excess‑property checks · fresh vs widened | **★ structural‑assignability checker** |
 | 2 | **`m2-narrowing`** ★ | **Narrowing & Control‑Flow Analysis** | middle | guards · `typeof`/`in`/`instanceof` · discriminated unions · assertion functions | **★ narrowing / CFA visualizer** |
-| 3 | `m3-functions-variance` | Functions, Overloads & Variance | senior | parameter bivariance · overload resolution · co/contravariance · `in`/`out` | — |
+| 3 | **`m3-functions-variance`** | **Functions, Overloads & Variance** | senior | functions as shapes/substitutability · parameter variance & `strictFunctionTypes` · overload resolution · generic variance & `in`/`out` · unsound corners | — (diagram‑first: `variance-directions` + `overload-resolution`) |
 
 ### Section II — Type‑Level Programming (`s2-type-level`)
 | # | id | Module | Level | Topics | Signature sim |
@@ -52,9 +52,10 @@ See `CLAUDE.md` §4 and `src/data/types.ts` (the shared Tier‑1 contract). Leve
 | 13 | `m13-declaration-files` | Declaration Files & Publishing Types | staff | authoring `.d.ts` · shipping types · not breaking consumers | — |
 
 ## E. Totals & asset budget
-**4 sections · 13 modules · 6 signature sims shipped** (M5 · M1 · M2 · M4 · M6 · M7; target ~6–8 across
-the project) · 7 figures shipped (M5 ×2, M1, M2, M4, M6, M7). Rough topic count: ~45 across the
-curriculum. **Section II (type‑level) is now complete** (M4·M5·M6·M7).
+**4 sections · 13 modules · 7 modules authored · 6 signature sims shipped** (M5 · M1 · M2 · M4 · M6 · M7;
+target ~6–8 across the project) · **9 figures shipped** (M5 ×2, M1, M2, M4, M6, M7, M3 ×2). Rough topic
+count: ~50 across the curriculum. **Sections I (type‑system) and II (type‑level) are now complete**
+(I = M1·M2·M3; II = M4·M5·M6·M7). M3 is diagram‑first (authored, no sim). Sections III + IV remain.
 
 ## F. Build order
 1. **S1 (golden, shipped):** M5 — Generics & Conditional Types + the conditional‑type/`infer` evaluator,
@@ -65,6 +66,9 @@ curriculum. **Section II (type‑level) is now complete** (M4·M5·M6·M7).
    — deepening Section II around the golden M5.
 4. **S4 (shipped):** M7 (utility types + the ★ utility‑type decoder) — completing Section II. Single
    module, golden depth.
-5. **S5…SN:** batches of 1–2 modules. Suggested next: M3 (functions & variance) — completes Section I —
-   then Section III (applied) and Section IV (compiler/tooling).
-6. Remaining signature sims · `#/decide` picker · flashcards/quiz · polish · deploy.
+5. **S5 (shipped):** the deferred **meta/bundle split** (standard §4.4) first, then **M3 (functions &
+   variance, diagram‑first)** — **Section I complete**.
+6. **S6 (next):** **Section III (applied)** — M8 (decorators/metadata), M9 (DTO validation), M10
+   (RxJS/signals), grounded in the owner's NestJS 11 / Angular 21 stack.
+7. **S7…SN:** finish Section III then Section IV (compiler/tooling), 1–2 modules each.
+7. Remaining signature sims · `#/decide` picker · flashcards/quiz · polish · deploy.
