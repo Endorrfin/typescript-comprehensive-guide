@@ -57,9 +57,9 @@ reference figures/sims by key, and register new widgets in `src/lib/registry.tsx
 second. Run `npm run verify`.
 
 ## Status
-**S1 delivered:** the scaffold + app shell + the golden module **M5 — Generics & Conditional Types** with
-its signature sim. The remaining 12 modules are navigable stubs, authored 1–2 per session per
-`CURRICULUM.md`.
+**Scaffold + app shell shipped, plus the golden module M5 — Generics & Conditional Types** with its
+signature sim. **8 of 13 modules are authored** (Sections I & II complete; Section III opened with
+**M8 — Decorators & Metadata**); the rest are navigable stubs, authored 1–2 per session per `CURRICULUM.md`.
 
 ---
 

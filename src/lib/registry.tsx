@@ -31,6 +31,8 @@ export const figures: Record<string, ComponentType> = {
   'utility-type-taxonomy': lazyNamed(() => import('../components/figures/UtilityTypeTaxonomy'), 'UtilityTypeTaxonomy'), // M7
   'variance-directions': lazyNamed(() => import('../components/figures/VarianceDirections'), 'VarianceDirections'), // M3
   'overload-resolution': lazyNamed(() => import('../components/figures/OverloadResolution'), 'OverloadResolution'), // M3
+  'decorator-two-systems': lazyNamed(() => import('../components/figures/DecoratorTwoSystems'), 'DecoratorTwoSystems'), // M8 (S6)
+  'di-metadata-flow': lazyNamed(() => import('../components/figures/DiMetadataFlow'), 'DiMetadataFlow'), // M8 (S6)
 };
 
 export const getSim = (key: string): ComponentType | undefined => sims[key];

@@ -11,6 +11,8 @@ import { m6 } from './modules/m6-mapped-template-literals';
 import { m7 } from './modules/m7-utility-types';
 // CHANGED (S5): Section I completed — M3 (Functions, Overloads & Variance), diagram-first (no sim).
 import { m3 } from './modules/m3-functions-variance';
+// CHANGED (S6): Section III opened — M8 (Decorators & Metadata, NestJS · Angular), diagram-first (no sim).
+import { m8 } from './modules/m8-decorators-metadata';
 
 /*
  * concepts.ts — the SINGLE SOURCE OF TRUTH (CLAUDE.md §2, §4).
@@ -104,22 +106,7 @@ export const modules: Module[] = [
   m7, // ★ authored (S4) — Built-in Utility Types, Decoded
 
   // ── Section III · Applied TypeScript ──────────────────────────────────────
-  stub({
-    id: 'm8-decorators-metadata',
-    num: 8,
-    section: 's3-applied',
-    order: 1,
-    level: 'senior',
-    title: { en: 'Decorators & Metadata (NestJS · Angular)', uk: 'Decorators та Metadata (NestJS · Angular)' },
-    tagline: {
-      en: 'Stage-3 decorators vs the legacy experimental ones, and how DI reads metadata.',
-      uk: 'Stage-3 decorators проти legacy experimental, і як DI читає metadata.',
-    },
-    mentalModel: {
-      en: 'A decorator is a function that tags or rewrites a declaration so a framework can find it later.',
-      uk: 'Decorator — це функція, що позначає чи переписує оголошення, щоб фреймворк знайшов його потім.',
-    },
-  }),
+  m8, // authored (S6) — Decorators & Metadata (NestJS · Angular), diagram-first (no sim)
   stub({
     id: 'm9-dto-validation',
     num: 9,

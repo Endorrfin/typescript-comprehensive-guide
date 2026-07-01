@@ -76,6 +76,8 @@ const FIG_CANARIES: Record<string, string[]> = {
   UtilityTypeTaxonomy: ["Awaited"], // M7 figure — the recursive branch is labelled Awaited
   VarianceDirections: ["contravariant"], // M3 figure — the reversed-parameter variance pill (English, no angle brackets)
   OverloadResolution: ["first match"], // M3 figure — the first-match-wins tag on the winning signature
+  DecoratorTwoSystems: ["descriptor"], // M8 figure — the legacy (target, key, descriptor) signature
+  DiMetadataFlow: ["design:paramtypes"], // M8 figure — the emitted DI metadata key
 };
 
 async function main(): Promise<void> {
@@ -148,7 +150,7 @@ async function main(): Promise<void> {
 
   // ── Layer D: eager app shell + hash router ──────────────────────────────────────────────────────
   const { App } = await import("../src/App");
-  for (const hash of ["", "#/map", "#/m/m1-structural-typing", "#/m/m2-narrowing", "#/m/m3-functions-variance", "#/m/m4-generics", "#/m/m5-generics-conditional-types", "#/m/m6-mapped-template-literals", "#/m/m7-utility-types", "#/mental-models", "#/glossary", "#/does-not-exist"]) {
+  for (const hash of ["", "#/map", "#/m/m1-structural-typing", "#/m/m2-narrowing", "#/m/m3-functions-variance", "#/m/m4-generics", "#/m/m5-generics-conditional-types", "#/m/m6-mapped-template-literals", "#/m/m7-utility-types", "#/m/m8-decorators-metadata", "#/mental-models", "#/glossary", "#/does-not-exist"]) {
     (g.location as { hash: string }).hash = hash;
     check(`App ${hash || "(empty)"}`, h(App), "en", 1500);
   }
